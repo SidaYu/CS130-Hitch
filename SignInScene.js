@@ -25,20 +25,20 @@ export default class SignInScene extends Component {
   _goToCreateAccount() {
     this.props.navigator.push({
       component: SignUpScene,
-      title: 'SignUpScene',
+      title: 'Sign Up',
     });
   }
 
   _goToHomePage() {
     this.props.navigator.push({
       component: HomePageScene,
-      title: 'HomePageScene',
+      title: 'Home Page',
     });
   }
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>       
+      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
         <View style={{height: 260, justifyContent: 'center',alignItems:'center'}}>
         	<Image
           source={require('./logo.png')} style={{height:80, width: 80}}/>
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
   	paddingTop: 10,
   },
   button: {
-  	height: 20, 
-  	justifyContent: 'center', 
+  	height: 20,
+  	justifyContent: 'center',
   	alignItems:'center',
   },
   logo: {
@@ -95,4 +95,3 @@ const styles = StyleSheet.create({
   	height: 50,
   }
 });
-

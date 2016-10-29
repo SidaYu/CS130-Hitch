@@ -12,7 +12,7 @@ import {
 export default class SignUpScene extends Component {
   static get defaultProps() {
     return {
-      title: 'SignUpScene'
+      title: 'Sign Up'
     };
   }
   static propTypes = {
@@ -21,7 +21,7 @@ export default class SignUpScene extends Component {
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>       
+      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
         <View style={{height: 100, justifyContent: 'center',alignItems:'center'}}>
           <Text>Create Account</Text>
         </View>
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   button: {
-    height: 20, 
-    justifyContent: 'center', 
+    height: 20,
+    justifyContent: 'center',
     alignItems:'center',
     backgroundColor: 'azure',
   },

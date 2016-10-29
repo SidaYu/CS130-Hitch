@@ -3,13 +3,7 @@ import SignUpScene from './SignUpScene';
 import SignInScene from './SignInScene';
 import {
   AppRegistry,
-  StyleSheet,
   NavigatorIOS,
-  Text,
-  Image,
-  TextInput,
-  TouchableHighlight,
-  View,
 } from 'react-native';
 
 class AwesomeProject extends Component {
