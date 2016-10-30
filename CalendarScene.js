@@ -14,11 +14,12 @@ var t = require('tcomb-form-native');
 var Form = t.form.Form;
 
 // here we are: define your domain model
-var Person = t.struct({
-  name: t.String,              // a required string
-  surname: t.maybe(t.String),  // an optional string
-  age: t.Number,               // a required number
-  rememberMe: t.Boolean        // a boolean
+var Event = t.struct({
+  EventName: t.String,              // a required string
+  Date: t.String,
+  Location: t.maybe(t.String),
+  Notes: t.maybe(t.String),
+  NotifyMe: t.Boolean        // a boolean
 });
 
 var options = {};
@@ -33,8 +34,12 @@ export default class CalendarScene extends Component {
   onPress() {
     // call getValue() to get the values of the form
     var value = this.refs.form.getValue();
+    // save to database
+    
     if (value) { // if validation fails, value will be null
       console.log(value); // value here is an instance of Person
+    } else {
+      console.log('this is a null');
     }
   }
 
@@ -42,34 +47,43 @@ export default class CalendarScene extends Component {
     title: PropTypes.string.isRequired,
   }
 
-	render() {
-		return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
-        
-        <Form
-          ref="form"
-          type={Person}
-          options={options}
-        />
-        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Save</Text>
-        </TouchableHighlight>
+  render() {
+    return (
+      <View style={styles.container} >
 
-     
-        <TouchableHighlight
-        underlayColor='#99d9f4' style={styles.button} >
-        <Text style={styles.buttonText}>Next</Text>
-        </TouchableHighlight>
+      <Form
+      ref="form"
+      type={Event}
+      options={options}
+      />
 
-        <TouchableHighlight
-        underlayColor='#99d9f4' style={styles.button} >
-        <Text style={styles.buttonText}>Prev</Text>
-        </TouchableHighlight>
+      <View style={{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}>
+
+
+      <TouchableHighlight
+      underlayColor='#99d9f4' style={styles.button} >
+      <Text style={styles.buttonText}> Prev </Text>
+      </TouchableHighlight>
+
+
+      <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
+      <Text style={styles.buttonText}> Save </Text>
+      </TouchableHighlight>
+
+      <TouchableHighlight
+      underlayColor='#99d9f4' style={styles.button} >
+      <Text style={styles.buttonText}> Next </Text>
+      </TouchableHighlight>
+      </View>
 
       </View>
-		)
-	};
-}
+      )
+    };
+  }
 
 
 const styles = StyleSheet.create({
@@ -138,7 +152,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
-    alignSelf: 'stretch',
     justifyContent: 'center'
-  }
+  },
 });
