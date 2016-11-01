@@ -1,4 +1,3 @@
-// Hello, world
 import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
