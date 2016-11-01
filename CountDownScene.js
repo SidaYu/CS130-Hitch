@@ -18,6 +18,8 @@ export default class CountDownScene extends Component {
   }
   static propTypes = {
     title: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   }
 	render() {
 		return (

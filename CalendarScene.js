@@ -18,7 +18,10 @@ export default class Calendar extends Component {
   }
   static propTypes = {
     title: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   }
+
 	render() {
 		return (
       <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>

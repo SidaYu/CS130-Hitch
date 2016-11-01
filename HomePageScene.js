@@ -16,6 +16,11 @@ import {
 
 
 export default class HomePageScene extends React.Component {
+  static propTypes = {
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  }
+
   render() {
     return (
       <ScrollView style={styles.list}>
@@ -25,34 +30,55 @@ export default class HomePageScene extends React.Component {
             this.props.navigator.push({
               title: 'Profile Page',
               component: Profile,
+              passProps: {
+                email: this.props.email,
+                password: this.props.password
+              }
             });
           })}
           {this._renderRow('Application Jobs', () => {
             this.props.navigator.push({
               title: 'Application Jobs',
               component: Calendar,
+              passProps: {
+                email: this.props.email,
+                password: this.props.password
+              }
             });
           })}
           {this._renderRow('Job Calendar', () => {
             this.props.navigator.push({
               title: 'Calendar',
               component: Calendar,
+              passProps: {
+                email: this.props.email,
+                password: this.props.password
+              }
             });
           })}
           {this._renderRow('Count Down', () => {
             this.props.navigator.push({
               title: 'Count Down',
               component: CountDown,
+              passProps: {
+                email: this.props.email,
+                password: this.props.password
+              }
             });
           })}
           {this._renderRow('About Us', () => {
             this.props.navigator.push({
               title: 'About Us',
               component: AboutUs,
+              passProps: {
+                email: this.props.email,
+                password: this.props.password
+              }
             });
           })}
           {this._renderRow('Log Out', () => {
             this.props.navigator.popToTop();
+
           })}
         </View>
         <View style={styles.line}/>
