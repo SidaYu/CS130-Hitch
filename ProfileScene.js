@@ -19,19 +19,6 @@ export default class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      hello: ''
-    }
-  }
-
-  componentWillMount() {
-    fetch("https://hitch.herokuapp.com/api/test")
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log('a');
-        this.setState({hello: responseData.hello});
-      })
-      .done();
   }
 
   static propTypes = {
@@ -41,7 +28,7 @@ export default class Profile extends Component {
 		return (
       <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
         <View style={{height: 500, justifyContent: 'center',alignItems:'center'}}>
-          <Text>{this.state.hello}</Text>
+          <Text>Your profile</Text>
         </View>
       </View>
 		)

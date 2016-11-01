@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/ios/AwesomeProjectTests/AwesomeProjectTests.m \
+  /Users/MENU/AwesomeProject/ios/AwesomeProjectTests/AwesomeProjectTests.m \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Modules/module.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIRemote.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIKeyboardKeys.h \

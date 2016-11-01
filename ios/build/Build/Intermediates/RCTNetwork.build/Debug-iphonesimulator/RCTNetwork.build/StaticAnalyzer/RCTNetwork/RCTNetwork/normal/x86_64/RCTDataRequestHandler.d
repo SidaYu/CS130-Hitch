@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.m \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.m \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.h \
   ../../React/Base/RCTURLRequestHandler.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTDefines.h \
   ../../React/Base/RCTURLRequestDelegate.h \

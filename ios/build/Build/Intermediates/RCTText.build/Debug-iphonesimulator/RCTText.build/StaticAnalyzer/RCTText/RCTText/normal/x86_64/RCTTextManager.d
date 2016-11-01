@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextManager.m \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextManager.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextManager.m \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextManager.h \
   ../../React/Views/RCTViewManager.h ../../React/Base/RCTBridgeModule.h \
   ../../React/Base/RCTDefines.h ../../React/Base/RCTConvert.h \
   ../../React/CSSLayout/CSSLayout.h ../../React/CSSLayout/CSSMacros.h \
@@ -15,9 +15,9 @@ dependencies: \
   ../../React/Base/RCTFrameUpdate.h ../../React/Base/RCTInvalidating.h \
   ../../React/Views/UIView+React.h ../../React/Views/RCTComponent.h \
   ../../React/Modules/RCTAccessibilityManager.h \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
   ../../React/Views/RCTShadowView.h ../../React/Base/RCTRootView.h \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTShadowText.h \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTText.h \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextView.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Text/RCTShadowText.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Text/RCTText.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextView.h \
   ../../React/Views/RCTView.h

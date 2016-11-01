@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Geolocation/RCTLocationObserver.m \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Geolocation/RCTLocationObserver.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Geolocation/RCTLocationObserver.m \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Geolocation/RCTLocationObserver.h \
   ../../React/Modules/RCTEventEmitter.h ../../React/Base/RCTBridge.h \
   ../../React/Base/RCTBridgeDelegate.h \
   ../../React/Base/RCTJavaScriptLoader.h \

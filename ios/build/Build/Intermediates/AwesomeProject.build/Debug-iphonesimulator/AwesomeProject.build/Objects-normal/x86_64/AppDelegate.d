@@ -1,6 +1,5 @@
-dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/ios/AwesomeProject/AppDelegate.m \
-  /Users/MENU/Desktop/CS130-Hitch/ios/AwesomeProject/AppDelegate.h \
+dependencies: /Users/MENU/AwesomeProject/ios/AwesomeProject/AppDelegate.m \
+  /Users/MENU/AwesomeProject/ios/AwesomeProject/AppDelegate.h \
   ../node_modules/react-native/React/Base/RCTBundleURLProvider.h \
   ../node_modules/react-native/React/Base/RCTRootView.h \
   ../node_modules/react-native/React/Base/RCTBridge.h \

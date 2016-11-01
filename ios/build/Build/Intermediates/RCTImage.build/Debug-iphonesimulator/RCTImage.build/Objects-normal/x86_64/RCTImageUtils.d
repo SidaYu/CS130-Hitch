@@ -1,8 +1,8 @@
 dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageUtils.m \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageUtils.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageUtils.m \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageUtils.h \
   ../../React/Base/RCTDefines.h \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
   ../../React/Base/RCTConvert.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTAnimationType.h \
   ../../React/Views/RCTBorderStyle.h \

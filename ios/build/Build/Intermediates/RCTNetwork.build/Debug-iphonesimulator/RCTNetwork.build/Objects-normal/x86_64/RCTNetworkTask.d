@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Network/RCTNetworkTask.m \
-  /Users/MENU/Desktop/CS130-Hitch/node_modules/react-native/Libraries/Network/RCTNetworkTask.h \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Network/RCTNetworkTask.m \
+  /Users/MENU/AwesomeProject/node_modules/react-native/Libraries/Network/RCTNetworkTask.h \
   ../../React/Base/RCTURLRequestDelegate.h \
   ../../React/Base/RCTURLRequestHandler.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTDefines.h \
