@@ -55,6 +55,7 @@ constructor(props) {
   }
 }
 
+
 const styles = StyleSheet.create({
   textInput: {
     backgroundColor:'azure',
