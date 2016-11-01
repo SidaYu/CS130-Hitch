@@ -69,17 +69,17 @@ export default class SignInScene extends Component {
   render() {
     return (
       <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
-        <View style={{height: 260, justifyContent: 'center',alignItems:'center'}}>
+        <View style={{height: 230, justifyContent: 'center',alignItems:'center'}}>
         	<Image
           source={require('./logo.png')} style={{height:80, width: 80}}/>
         </View>
-        <View style={{height: 90, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
+        <View style={{height: 130, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
           <View style={styles.textInput}>
-          	<TextInput style={{height: 40,width: 300}} placeholder=" Email"
+          	<TextInput style={{height: 35,width: 300}} placeholder=" Email"
           	onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
           </View>
           <View style={styles.textInput}>
-          	<TextInput style={{height: 40,width: 300}} placeholder=" Password"
+          	<TextInput style={{height: 35,width: 300}} placeholder=" Password"
           	onChangeText={(password) => this.setState({password})} autoCapitalize="none"/>
           </View>
         </View>
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius:20,
     borderTopLeftRadius:20,
     borderBottomRightRadius:20,
+    padding: 10,
   },
   forgetPassWord: {
   	fontFamily: 'Cochin',

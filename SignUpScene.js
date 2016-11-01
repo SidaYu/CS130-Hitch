@@ -46,7 +46,7 @@ export default class SignUpScene extends Component {
       .then((responseData) => {
         if(responseData.result == "this user is already registered"){
           AlertIOS.alert(
-            "Login failed",
+            "Account Creation Failed",
             "This user is already registered."
           )
         }else{
@@ -67,19 +67,18 @@ export default class SignUpScene extends Component {
     return (
       <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
         <View style={{height: 100, justifyContent: 'center',alignItems:'center'}}>
-          <Text>Create Account</Text>
         </View>
-        <View style={{height: 90, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
+        <View style={{height: 140, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
           <View style={styles.textInput}>
-            <TextInput style={{height: 40,width: 300}} placeholder=" Email"
+            <TextInput style={{height: 35,width: 300}} placeholder=" Email"
             onChangeText={(email) => this.setState({email})}  autoCapitalize="none"/>
           </View>
           <View style={styles.textInput}>
-            <TextInput style={{height: 40,width: 300}} placeholder=" Password"
+            <TextInput style={{height: 35,width: 300}} placeholder=" Password"
             onChangeText={(password) => this.setState({password})} autoCapitalize="none"/>
           </View>
         </View>
-        <View style={{height: 200}}>
+        <View style={{height: 160}}>
         </View>
         <View style={{height: 120, justifyContent: 'center',alignItems:'center'}}>
           <View style={styles.textInput}>
@@ -102,6 +101,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius:20,
     borderTopLeftRadius:20,
     borderBottomRightRadius:20,
+    padding: 10,
   },
   forgetPassWord: {
     fontFamily: 'Cochin',
