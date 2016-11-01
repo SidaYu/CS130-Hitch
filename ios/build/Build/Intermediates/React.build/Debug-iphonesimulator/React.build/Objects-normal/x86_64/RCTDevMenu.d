@@ -1,0 +1,21 @@
+dependencies: \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTDevMenu.m \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTDevMenu.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTKeyCommands.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTSourceCode.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTWebSocketProxy.h \
+  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTWebSocketProxyDelegate.h
