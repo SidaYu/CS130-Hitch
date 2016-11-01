@@ -3,6 +3,8 @@ import Calendar from './CalendarScene';
 import Profile from './ProfileScene';
 import CountDown from './CountDownScene';
 import AboutUs from './AboutUsScene';
+import ProgressBar from './ProgressBar';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -30,7 +32,7 @@ export default class HomePageScene extends React.Component {
           {this._renderRow('Application Jobs', () => {
             this.props.navigator.push({
               title: 'Application Jobs',
-              component: Calendar,
+              component: ProgressBar,
             });
           })}
           {this._renderRow('Job Calendar', () => {

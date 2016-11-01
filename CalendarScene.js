@@ -15,8 +15,8 @@ var Form = t.form.Form;
 
 // here we are: define your domain model
 var Event = t.struct({
+  Date: t.Date,
   EventName: t.String,              // a required string
-  Date: t.String,
   Location: t.maybe(t.String),
   Notes: t.maybe(t.String),
   NotifyMe: t.Boolean        // a boolean
