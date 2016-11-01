@@ -16,6 +16,24 @@ export default class Profile extends Component {
       title: 'Profile'
     };
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      hello: ''
+    }
+  }
+
+  componentWillMount() {
+    fetch("https://hitch.herokuapp.com/api/test")
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log('a');
+        this.setState({hello: responseData.hello});
+      })
+      .done();
+  }
+
   static propTypes = {
     title: PropTypes.string.isRequired,
   }
@@ -23,7 +41,7 @@ export default class Profile extends Component {
 		return (
       <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
         <View style={{height: 500, justifyContent: 'center',alignItems:'center'}}>
-          <Text>Your profile</Text>
+          <Text>{this.state.hello}</Text>
         </View>
       </View>
 		)

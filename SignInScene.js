@@ -8,6 +8,7 @@ import {
   Text,
   Image,
   TextInput,
+  AlertIOS,
   View
 } from 'react-native';
 
@@ -20,6 +21,10 @@ export default class SignInScene extends Component {
     super(props);
     this._goToCreateAccount = this._goToCreateAccount.bind(this);
     this._goToHomePage = this._goToHomePage.bind(this);
+    this.state = {
+      email: '',
+      password:''
+    };
   }
 
   _goToCreateAccount() {
@@ -30,10 +35,31 @@ export default class SignInScene extends Component {
   }
 
   _goToHomePage() {
-    this.props.navigator.push({
-      component: HomePageScene,
-      title: 'Home Page',
-    });
+    fetch("https://hitch.herokuapp.com/api/login", {
+      method: 'POST',
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+        email: this.state.email, password: this.state.password
+      })
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.result){
+          this.props.navigator.push({
+            component: HomePageScene,
+            title: 'Home Page',
+          })
+        }else{
+          AlertIOS.alert(
+            "Login failed",
+            "Account doesn't exist or your password doesn't match your account."
+          )
+        }
+      })
+      .done();
   }
 
   render() {
@@ -46,11 +72,11 @@ export default class SignInScene extends Component {
         <View style={{height: 90, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
           <View style={styles.textInput}>
           	<TextInput style={{height: 40,width: 300}} placeholder=" Email"
-          	onChangeText={(text) => this.setState({text})}/>
+          	onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
           </View>
           <View style={styles.textInput}>
           	<TextInput style={{height: 40,width: 300}} placeholder=" Password"
-          	onChangeText={(text) => this.setState({text})}/>
+          	onChangeText={(password) => this.setState({password})} autoCapitalize="none"/>
           </View>
         </View>
         <View style={{height: 20}}>
