@@ -48,7 +48,7 @@ export default class AddJobForm extends Component {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        if(responseData.result === "success"){
+        if(responseData.result == "success"){
           this.props.navigator.pop()        
         }else{
           AlertIOS.alert(
