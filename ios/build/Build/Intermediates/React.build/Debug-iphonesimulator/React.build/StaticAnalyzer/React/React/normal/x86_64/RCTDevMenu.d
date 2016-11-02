@@ -1,21 +1,21 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTDevMenu.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTDevMenu.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridge.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridge+Private.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTEventDispatcher.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTKeyCommands.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Profiler/RCTProfile.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTRootView.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTSourceCode.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTWebSocketProxy.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTWebSocketProxyDelegate.h
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Modules/RCTDevMenu.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Modules/RCTDevMenu.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTKeyCommands.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Modules/RCTSourceCode.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTWebSocketProxy.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTWebSocketProxyDelegate.h

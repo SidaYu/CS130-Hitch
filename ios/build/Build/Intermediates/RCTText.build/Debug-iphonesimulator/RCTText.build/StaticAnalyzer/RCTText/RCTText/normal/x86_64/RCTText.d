@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTText.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTText.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTShadowText.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTText.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTText.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTShadowText.h \
   ../../React/Views/RCTShadowView.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTComponent.h \
   ../../React/Base/RCTRootView.h ../../React/Base/RCTBridge.h \

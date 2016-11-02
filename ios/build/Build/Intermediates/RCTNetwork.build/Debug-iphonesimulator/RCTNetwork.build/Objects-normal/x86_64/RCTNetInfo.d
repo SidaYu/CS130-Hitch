@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Network/RCTNetInfo.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Network/RCTNetInfo.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Network/RCTNetInfo.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Network/RCTNetInfo.h \
   ../../React/Modules/RCTEventEmitter.h ../../React/Base/RCTBridge.h \
   ../../React/Base/RCTBridgeDelegate.h \
   ../../React/Base/RCTJavaScriptLoader.h \

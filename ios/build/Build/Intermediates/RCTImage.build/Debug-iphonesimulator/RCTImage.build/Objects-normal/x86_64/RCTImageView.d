@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageView.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageView.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageView.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageView.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
   ../../React/Base/RCTConvert.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTAnimationType.h \
   ../../React/Views/RCTBorderStyle.h \
@@ -13,11 +13,11 @@ dependencies: \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTFrameUpdate.h \
   ../../React/Base/RCTInvalidating.h \
   ../../React/Base/RCTEventDispatcher.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageLoader.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageLoader.h \
   ../../React/Base/RCTURLRequestHandler.h \
   ../../React/Base/RCTURLRequestDelegate.h \
   ../../React/Base/RCTImageSource.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageUtils.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageUtils.h \
   ../../React/Base/RCTUtils.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Image/RCTImageBlurUtils.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Image/RCTImageBlurUtils.h \
   ../../React/Views/UIView+React.h ../../React/Views/RCTComponent.h

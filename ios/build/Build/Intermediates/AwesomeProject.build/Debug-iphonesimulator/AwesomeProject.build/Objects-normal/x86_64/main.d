@@ -1,2 +1,3 @@
-dependencies: /Users/gloriatian/AwesomeProject/ios/AwesomeProject/main.m \
-  /Users/gloriatian/AwesomeProject/ios/AwesomeProject/AppDelegate.h
+dependencies: \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/ios/AwesomeProject/main.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/ios/AwesomeProject/AppDelegate.h

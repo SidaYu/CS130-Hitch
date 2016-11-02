@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Views/RCTActivityIndicatorView.h
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Views/RCTActivityIndicatorView.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Views/RCTActivityIndicatorView.h

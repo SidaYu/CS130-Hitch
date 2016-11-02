@@ -1,16 +1,16 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTAsyncLocalStorage.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Modules/RCTAsyncLocalStorage.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTConvert.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/CSSLayout/CSSLayout.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/CSSLayout/CSSMacros.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Views/RCTAnimationType.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Views/RCTBorderStyle.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Views/RCTPointerEvents.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/React/Base/RCTUtils.h
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Modules/RCTAsyncLocalStorage.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Modules/RCTAsyncLocalStorage.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/CSSLayout/CSSLayout.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/CSSLayout/CSSMacros.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/React/Base/RCTUtils.h

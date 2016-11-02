@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextView.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextView.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextView.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextView.h \
   ../../React/Views/RCTView.h ../../React/Views/RCTBorderStyle.h \
   ../../React/Views/RCTComponent.h ../../React/Views/RCTPointerEvents.h \
   ../../React/Views/UIView+React.h ../../React/Base/RCTConvert.h \
@@ -13,8 +13,8 @@ dependencies: \
   ../../React/Base/RCTJavaScriptLoader.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTFrameUpdate.h \
   ../../React/Base/RCTInvalidating.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTShadowText.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTShadowText.h \
   ../../React/Views/RCTShadowView.h ../../React/Base/RCTRootView.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTText.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTText.h \
   ../../React/Base/RCTUtils.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextSelection.h
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextSelection.h

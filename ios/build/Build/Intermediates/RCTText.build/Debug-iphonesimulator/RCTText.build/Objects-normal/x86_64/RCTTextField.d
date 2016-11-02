@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextField.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextField.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextField.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextField.h \
   ../../React/Views/RCTComponent.h ../../React/Base/RCTConvert.h \
   ../../React/CSSLayout/CSSLayout.h ../../React/CSSLayout/CSSMacros.h \
   ../../React/Views/RCTAnimationType.h \
@@ -13,5 +13,5 @@ dependencies: \
   ../../React/Base/RCTJavaScriptLoader.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTFrameUpdate.h \
   ../../React/Base/RCTInvalidating.h ../../React/Base/RCTUtils.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTTextSelection.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTTextSelection.h \
   ../../React/Views/UIView+React.h

@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/WebSocket/RCTWebSocketExecutor.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/WebSocket/RCTWebSocketExecutor.m \
   ../../React/Base/RCTDefines.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/WebSocket/RCTWebSocketExecutor.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/WebSocket/RCTWebSocketExecutor.h \
   ../../React/Base/RCTJavaScriptExecutor.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTInvalidating.h \
   ../../React/Base/RCTBridge.h ../../React/Base/RCTBridgeDelegate.h \
@@ -13,4 +13,4 @@ dependencies: \
   ../../React/Views/RCTTextDecorationLineType.h \
   ../../React/Base/RCTLog.h ../../React/Base/RCTAssert.h \
   ../../React/Views/RCTPointerEvents.h ../../React/Base/RCTUtils.h \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/WebSocket/RCTSRWebSocket.h
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/WebSocket/RCTSRWebSocket.h

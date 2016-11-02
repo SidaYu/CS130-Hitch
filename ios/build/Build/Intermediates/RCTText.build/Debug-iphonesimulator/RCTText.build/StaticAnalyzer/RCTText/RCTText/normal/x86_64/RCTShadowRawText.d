@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTShadowRawText.m \
-  /Users/gloriatian/AwesomeProject/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTShadowRawText.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
   ../../React/Views/RCTShadowView.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTComponent.h \
   ../../React/Base/RCTRootView.h ../../React/Base/RCTBridge.h \

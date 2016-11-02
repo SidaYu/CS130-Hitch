@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/gloriatian/AwesomeProject/ios/AwesomeProject/AppDelegate.m \
-  /Users/gloriatian/AwesomeProject/ios/AwesomeProject/AppDelegate.h \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/ios/AwesomeProject/AppDelegate.m \
+  /Users/jingwu/AwesomeProject/CS130-Hitch/ios/AwesomeProject/AppDelegate.h \
   ../node_modules/react-native/React/Base/RCTBundleURLProvider.h \
   ../node_modules/react-native/React/Base/RCTRootView.h \
   ../node_modules/react-native/React/Base/RCTBridge.h \
