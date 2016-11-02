@@ -32,17 +32,11 @@ var CalenderScene = React.createClass({
   getInitialState() {
     return {
       value: {
-        // Date: "Jun 1 2005",
-        EventName: "Dicking bimbos",  
-        Location: "Boelter hall",
-        Notes: "whatever notes",
-        NotifyMe: true,
-        Finished: false
       }
     };
   },
 
-  // NOTE: NEED "UPDATE" DATABASE, WHICH WE DON'T HAVE RIGHT NOW 
+  // CREATE NEW ITE
   onPress:function () {
     var value = this.refs.form.getValue();
     fetch("https://hitch.herokuapp.com/api/addTimeStamp", {

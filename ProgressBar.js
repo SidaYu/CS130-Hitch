@@ -55,11 +55,23 @@ export default class ProgressBar extends Component {
 			i++;
 			if (i < this.state.counter)
 			{
-				this.props.pairs.push(<Icon.Button name="check-circle-o" size={50} marginBottom={-10} marginTop={-10} color="green" backgroundColor="white" onPress={() => this.props.navigator.push({component: CalendarScene, title: 'CalendarScene'})}/>);
+				this.props.pairs.push(<Icon.Button name="check-circle-o" size={50} 
+				marginBottom={-10} marginTop={-10} color="green" backgroundColor="white" 
+				onPress={() => this.props.navigator.push(
+					{component: CalendarScene, title: 'CalendarScene', 
+					passProps: {
+              		job_id: 1
+            		}})}/>);
 			}
 			else
 			{
-				this.props.pairs.push(<Icon.Button name="check-circle-o" size={50} marginBottom={-10} marginTop={-10} color="black" backgroundColor="white" onPress={() => this.props.navigator.push({component: CalendarScene, title: 'CalendarScene'})}/>);
+				this.props.pairs.push(<Icon.Button name="check-circle-o" size={50} 
+				marginBottom={-10} marginTop={-10} color="black" backgroundColor="white" 
+				onPress={() => this.props.navigator.push(
+					{component: CalendarScene, title: 'CalendarScene',
+					passProps: {
+              		job_id: 1
+            		}})}/>);
 			}
 		}
 	}

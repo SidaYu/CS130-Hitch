@@ -46,11 +46,11 @@ export default class SignInScene extends Component {
         <View style={{height: 90, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
           <View style={styles.textInput}>
           	<TextInput style={{height: 40,width: 300}} placeholder=" Email"
-          	onChangeText={(text) => this.setState({text})}/>
+          	onChangeText={(text) => this.setState({text})} autoCapitalize="none"/>
           </View>
           <View style={styles.textInput}>
           	<TextInput style={{height: 40,width: 300}} placeholder=" Password"
-          	onChangeText={(text) => this.setState({text})}/>
+          	onChangeText={(text) => this.setState({text})} autoCapitalize="none" />
           </View>
         </View>
         <View style={{height: 20}}>
