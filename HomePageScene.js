@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Calendar from './CalendarScene';
-import Profile from './ProfileScene';
 import CountDown from './CountDownScene';
 import AboutUs from './AboutUsScene';
 import {
@@ -26,16 +25,6 @@ export default class HomePageScene extends React.Component {
       <ScrollView style={styles.list}>
         <View style={styles.line}/>
         <View style={styles.group}>
-          {this._renderRow('Your Profile', () => {
-            this.props.navigator.push({
-              title: 'Profile Page',
-              component: Profile,
-              passProps: {
-                email: this.props.email,
-                password: this.props.password
-              }
-            });
-          })}
           {this._renderRow('Application Jobs', () => {
             this.props.navigator.push({
               title: 'Application Jobs',
@@ -46,6 +35,7 @@ export default class HomePageScene extends React.Component {
               }
             });
           })}
+          <View style={{height:10}}/>
           {this._renderRow('Job Calendar', () => {
             this.props.navigator.push({
               title: 'Calendar',
@@ -56,6 +46,7 @@ export default class HomePageScene extends React.Component {
               }
             });
           })}
+          <View style={{height:10}}/>
           {this._renderRow('Count Down', () => {
             this.props.navigator.push({
               title: 'Count Down',
@@ -66,6 +57,7 @@ export default class HomePageScene extends React.Component {
               }
             });
           })}
+          <View style={{height:10}}/>
           {this._renderRow('About Us', () => {
             this.props.navigator.push({
               title: 'About Us',
@@ -76,9 +68,9 @@ export default class HomePageScene extends React.Component {
               }
             });
           })}
+          <View style={{height:10}}/>
           {this._renderRow('Log Out', () => {
             this.props.navigator.popToTop();
-
           })}
         </View>
         <View style={styles.line}/>
@@ -88,7 +80,7 @@ export default class HomePageScene extends React.Component {
 
   _renderRow = (title: string, onPress: Function) => {
     return (
-      <View>
+      <View style={styles.textInput}>
         <TouchableHighlight onPress={onPress}>
           <View style={styles.row}>
             <Text style={styles.rowText}>
@@ -118,24 +110,33 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   list: {
-    backgroundColor: '#eeeeee',
-    marginTop: 10,
+    backgroundColor: 'powderblue',
+    marginTop: 5,
   },
   group: {
-    backgroundColor: 'white',
+    backgroundColor: 'powderblue',
+    alignItems:'center',
+    justifyContent: 'center',
+    height: 350,
   },
   groupSpace: {
     height: 15,
   },
   line: {
-    backgroundColor: '#bbbbbb',
+    backgroundColor: 'powderblue',
     height: StyleSheet.hairlineWidth,
   },
   row: {
-    backgroundColor: 'white',
+    backgroundColor: 'azure',
     justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 15,
     paddingVertical: 15,
+    borderBottomLeftRadius:20,
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
+    borderBottomRightRadius:20,
+    width: 300,
   },
   separator: {
     height: StyleSheet.hairlineWidth,
@@ -148,5 +149,12 @@ const styles = StyleSheet.create({
   rowText: {
     fontSize: 17,
     fontWeight: '500',
+  },
+  textInput: {
+    backgroundColor:'azure',
+    borderBottomLeftRadius:20,
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
+    borderBottomRightRadius:20,
   },
 });
