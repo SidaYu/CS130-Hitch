@@ -9,7 +9,7 @@ import {
 class AwesomeProject extends Component {
   render() {
     const routes = [
-      {component: SignInScene, title: 'Sign In',},
+      {component: SignInScene, title: 'Sign In',navigationBarHidden: true, backButtonTitle: "Back"},
     ];
     return (
       <NavigatorIOS initialRoute={routes[0]} style={{flex: 1}}/>

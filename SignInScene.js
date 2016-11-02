@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SignUpScene from './SignUpScene';
 import HomePageScene from './HomePageScene';
+import Video from 'react-native-video';
 import {
   AppRegistry,
   StyleSheet,
@@ -11,6 +12,7 @@ import {
   AlertIOS,
   View
 } from 'react-native';
+
 
 export default class SignInScene extends Component {
   static propTypes = {
@@ -26,6 +28,18 @@ export default class SignInScene extends Component {
       password:''
     };
   }
+
+  state = {
+   rate: 1,
+   volume: 1,
+   muted: false,
+   resizeMode: 'contain',
+   duration: 0.0,
+   currentTime: 0.0,
+   controls: false,
+   paused: true,
+   skin: 'custom'
+ };
 
   _goToCreateAccount() {
     this.props.navigator.push({
@@ -68,35 +82,36 @@ export default class SignInScene extends Component {
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
-        <View style={{height: 230, justifyContent: 'center',alignItems:'center'}}>
-        	<Image
-          source={require('./logo.png')} style={{height:80, width: 80}}/>
+        <View style={{height: 680, width: 380,flex:1, flexDirection: 'column',backgroundColor: 'powderblue',alignItems:'center'}}>
+          <Image
+          source={require('./pics/bcg.png')} style={{height:680,width:380}}>
+            <View style={{height: 300, justifyContent: 'center',alignItems:'center'}}>
+            </View>
+            <View style={{height: 130, justifyContent: 'space-between',alignItems:'center'}}>
+              <View style={styles.textInput}>
+              	<TextInput style={{height: 35,width: 300}} placeholder=" Email"
+              	onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
+              </View>
+              <View style={styles.textInput}>
+              	<TextInput style={{height: 35,width: 300}} placeholder=" Password"
+              	onChangeText={(password) => this.setState({password})} autoCapitalize="none" secureTextEntry={true}/>
+              </View>
+            </View>
+            <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
+              <View style={styles.button}>
+                <TouchableHighlight onPress={this._goToHomePage}>
+                	<Text>Sign In</Text>
+                </TouchableHighlight>
+              </View>
+              <View style={{height:60}}/>
+              <View style={styles.button}>
+                <TouchableHighlight onPress={this._goToCreateAccount}>
+                	<Text>Create Account</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Image>
         </View>
-        <View style={{height: 130, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
-          <View style={styles.textInput}>
-          	<TextInput style={{height: 35,width: 300}} placeholder=" Email"
-          	onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
-          </View>
-          <View style={styles.textInput}>
-          	<TextInput style={{height: 35,width: 300}} placeholder=" Password"
-          	onChangeText={(password) => this.setState({password})} autoCapitalize="none"/>
-          </View>
-        </View>
-        <View style={{height: 20}}>
-        	<Text style={styles.forgetPassWord}>Forget Password?</Text>
-        </View>
-        <View style={{height: 120, justifyContent: 'center',alignItems:'center'}}>
-          <TouchableHighlight onPress={this._goToHomePage}>
-          	<Text>Sign In</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={{height: 180, justifyContent: 'center', alignItems:'center'}}>
-          <TouchableHighlight onPress={this._goToCreateAccount}>
-          	<Text style={styles.button}>Create Account</Text>
-          </TouchableHighlight>
-        </View>
-      </View>
     )
   }
 }
@@ -108,7 +123,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius:20,
     borderTopLeftRadius:20,
     borderBottomRightRadius:20,
-    padding: 10,
+    padding:10,
+
   },
   forgetPassWord: {
   	fontFamily: 'Cochin',
@@ -117,12 +133,22 @@ const styles = StyleSheet.create({
   	paddingTop: 10,
   },
   button: {
-  	height: 20,
-  	justifyContent: 'center',
-  	alignItems:'center',
+    backgroundColor:'azure',
+    borderBottomLeftRadius:20,
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
+    borderBottomRightRadius:20,
+    padding: 10,
   },
   logo: {
   	width: 50,
   	height: 50,
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   }
 });

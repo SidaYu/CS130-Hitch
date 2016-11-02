@@ -10,7 +10,7 @@ import {
   View
 } from 'react-native';
 
-export default class AboutUs extends Component {
+export default class Settings extends Component {
   static get defaultProps() {
     return {
       title: 'Calendar'
@@ -25,12 +25,9 @@ export default class AboutUs extends Component {
 
 	render() {
 		return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
-        <View style={{height: 500, justifyContent: 'center',alignItems:'center'}}>
-          <Text style={styles.font}>Hi {this.props.email}</Text>
-          <Text style={styles.font}>Thank you for choosing us!</Text>
-          <Text style={styles.font}>We are Triple Nine Team!</Text>
-        </View>
+      <View style={{flex:1, flexDirection: 'column'}}>
+        <Image source={require('./pics/settingsbcg.png')} style={{height:680,width:380}}>
+        </Image>
       </View>
 		)
 	};

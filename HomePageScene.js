@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Calendar from './CalendarScene';
 import CountDown from './CountDownScene';
-import AboutUs from './AboutUsScene';
+import Settings from './SettingsScene';
 import {
   AppRegistry,
   StyleSheet,
@@ -9,6 +9,7 @@ import {
   ScrollView,
   NavigatorIOS,
   Text,
+  Image,
   TextInput,
   View
 } from 'react-native';
@@ -22,58 +23,61 @@ export default class HomePageScene extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.list}>
-        <View style={styles.line}/>
-        <View style={styles.group}>
-          {this._renderRow('Application Jobs', () => {
-            this.props.navigator.push({
-              title: 'Application Jobs',
-              component: Calendar,
-              passProps: {
-                email: this.props.email,
-                password: this.props.password
-              }
-            });
-          })}
-          <View style={{height:10}}/>
-          {this._renderRow('Job Calendar', () => {
-            this.props.navigator.push({
-              title: 'Calendar',
-              component: Calendar,
-              passProps: {
-                email: this.props.email,
-                password: this.props.password
-              }
-            });
-          })}
-          <View style={{height:10}}/>
-          {this._renderRow('Count Down', () => {
-            this.props.navigator.push({
-              title: 'Count Down',
-              component: CountDown,
-              passProps: {
-                email: this.props.email,
-                password: this.props.password
-              }
-            });
-          })}
-          <View style={{height:10}}/>
-          {this._renderRow('About Us', () => {
-            this.props.navigator.push({
-              title: 'About Us',
-              component: AboutUs,
-              passProps: {
-                email: this.props.email,
-                password: this.props.password
-              }
-            });
-          })}
-          <View style={{height:10}}/>
-          {this._renderRow('Log Out', () => {
-            this.props.navigator.popToTop();
-          })}
-        </View>
-        <View style={styles.line}/>
+      <ScrollView>
+        <Image source={require('./pics/homepagebg.jpg')} style={{height:680,width:380}}>
+          <View style={styles.line}/>
+          <View style={{height:90}}/>
+          <View style={styles.group}>
+            {this._renderRow('Application Jobs', () => {
+              this.props.navigator.push({
+                title: 'Application Jobs',
+                component: Calendar,
+                passProps: {
+                  email: this.props.email,
+                  password: this.props.password
+                }
+              });
+            })}
+            <View style={{height:45}}/>
+            {this._renderRow('Job Calendar', () => {
+              this.props.navigator.push({
+                title: 'Calendar',
+                component: Calendar,
+                passProps: {
+                  email: this.props.email,
+                  password: this.props.password
+                }
+              });
+            })}
+            <View style={{height:45}}/>
+            {this._renderRow('Count Down', () => {
+              this.props.navigator.push({
+                title: 'Count Down',
+                component: CountDown,
+                passProps: {
+                  email: this.props.email,
+                  password: this.props.password
+                }
+              });
+            })}
+            <View style={{height:45}}/>
+            {this._renderRow('Settings', () => {
+              this.props.navigator.push({
+                title: 'Settings',
+                component: Settings,
+                passProps: {
+                  email: this.props.email,
+                  password: this.props.password
+                }
+              });
+            })}
+            <View style={{height:45}}/>
+            {this._renderRow('Log Out', () => {
+              this.props.navigator.popToTop();
+            })}
+          </View>
+          <View style={styles.line}/>
+        </Image>
       </ScrollView>
     );
   }
@@ -109,12 +113,7 @@ const styles = StyleSheet.create({
   emptyPageText: {
     margin: 10,
   },
-  list: {
-    backgroundColor: 'powderblue',
-    marginTop: 5,
-  },
   group: {
-    backgroundColor: 'powderblue',
     alignItems:'center',
     justifyContent: 'center',
     height: 350,
@@ -123,7 +122,6 @@ const styles = StyleSheet.create({
     height: 15,
   },
   line: {
-    backgroundColor: 'powderblue',
     height: StyleSheet.hairlineWidth,
   },
   row: {
