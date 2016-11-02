@@ -10,30 +10,58 @@ import {
   View
 } from 'react-native';
 
-export default class SignInScene extends Component {
+export default class AddJobForm extends Component {
+  static get defaultProps() {
+    return {
+      title: 'Add Job Form'
+    };
+  }
   static propTypes = {
+    title: PropTypes.string.isRequired,
     navigator: PropTypes.object.isRequired,
   }
-
   constructor(props) {
     super(props);
-    this._goToCreateAccount = this._goToCreateAccount.bind(this);
-    this._goToHomePage = this._goToHomePage.bind(this);
+    this._goToJobList = this._goToJobList.bind(this);
+    this.state = {
+      company_name:'',
+      company_depart:'',
+      position_title:'',
+      app_URL:''
+    }
   }
 
-  _goToCreateAccount() {
-    this.props.navigator.push({
-      component: SignUpScene,
-      title: 'Sign Up',
-    });
+  _goToJobList() {
+     fetch("https://hitch.herokuapp.com/api/addjob", {
+      method: 'POST',
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({ 
+        user_email: 'tian@test.com', //REMEMBER TO CHANGE
+        company_name: this.state.company_name,
+        company_depart: this.state.company_depart,  
+        position_title: this.state.position_title,
+        app_URL: this.state.app_URL
+      })
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.result === "success"){
+          this.props.navigator.pop()        
+        }else{
+          AlertIOS.alert(
+            "Add job failed"
+          )
+        }
+      }) 
+      .done(); 
+  
+    //this.props.navigator.pop();
   }
 
-  _goToHomePage() {
-    this.props.navigator.push({
-      component: HomePageScene,
-      title: 'Home Page',
-    });
-  }
+
 
   render() {
     return (
@@ -46,22 +74,22 @@ export default class SignInScene extends Component {
           
           <View style={styles.textInput}>
             <TextInput style={{height: 40,width: 300}} placeholder=" Company Name "
-            onChangeText={(text) => this.setState({text})}/>
+            onChangeText={(company_name) => this.setState({company_name})}/>
           </View>
 
           <View style={styles.textInput}>
-            <TextInput style={{height: 40,width: 300}} placeholder=" Job Type "
-            onChangeText={(text) => this.setState({text})}/>
+            <TextInput style={{height: 40,width: 300}} placeholder=" Department "
+            onChangeText={(company_depart) => this.setState({company_depart})}/>
           </View>
 
           <View style={styles.textInput}>
-            <TextInput style={{height: 40,width: 300}} placeholder=" Application Due Day "
-            onChangeText={(text) => this.setState({text})}/>
+            <TextInput style={{height: 40,width: 300}} placeholder="Job Title "
+            onChangeText={(position_title) => this.setState({position_title})}/>
           </View>
 
            <View style={styles.textInput}>
-            <TextInput style={{height: 40,width: 300}} placeholder=" First Interview Time "
-            onChangeText={(text) => this.setState({text})}/>
+            <TextInput style={{height: 40,width: 300}} placeholder=" URL to apply "
+            onChangeText={(app_URL) => this.setState({app_URL})}/>
           </View>
 
 
@@ -69,9 +97,9 @@ export default class SignInScene extends Component {
 
         <View style={{height: 200}}>
         </View>
-        <View style={{height: 120, justifyContent: 'center',alignItems:'center'}}>
+        <View style={{height: 120, justifyContent: 'flex-start',alignItems:'center'}}>
           <View style={styles.textInput}>
-            <TouchableHighlight onPress={this.props.onForward}>
+            <TouchableHighlight onPress={this._goToJobList}>
               <Text>Add Job</Text>
             </TouchableHighlight>
           </View>
@@ -86,10 +114,10 @@ export default class SignInScene extends Component {
 const styles = StyleSheet.create({
   textInput: {
     backgroundColor:'azure',
-    borderBottomLeftRadius:10,
-    borderTopRightRadius:10,
-    borderTopLeftRadius:10,
-    borderBottomRightRadius:10,
+    borderBottomLeftRadius:5,
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    borderBottomRightRadius:5,
   },
   button: {
     height: 40,
