@@ -65,30 +65,35 @@ export default class SignUpScene extends Component {
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
-        <View style={{height: 100, justifyContent: 'center',alignItems:'center'}}>
-        </View>
-        <View style={{height: 140, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
-          <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Email"
-            onChangeText={(email) => this.setState({email})}  autoCapitalize="none"/>
+      <View>
+      <Image
+      source={require('./pics/signupbg.png')} style={{height:680,width:380}}>
+        <View style={{flex:1, flexDirection: 'column'}}>
+          <View style={{height: 260, justifyContent: 'center',alignItems:'center'}}>
           </View>
-          <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Password"
-            onChangeText={(password) => this.setState({password})} autoCapitalize="none"/>
+          <View style={{height: 140, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
+            <View style={styles.textInput}>
+              <TextInput style={{height: 35,width: 300}} placeholder=" Email"
+              onChangeText={(email) => this.setState({email})}  autoCapitalize="none"/>
+            </View>
+            <View style={styles.textInput}>
+              <TextInput style={{height: 35,width: 300}} placeholder=" Password"
+              onChangeText={(password) => this.setState({password})} autoCapitalize="none" secureTextEntry={true}/>
+            </View>
+          </View>
+          <View style={{height: 80}}>
+          </View>
+          <View style={{height: 120, justifyContent: 'center',alignItems:'center'}}>
+            <View style={styles.textInput}>
+              <TouchableHighlight onPress={this._goToHomePage}>
+                <Text>Create Account</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <View style={{height: 140, justifyContent: 'center', alignItems:'center'}}>
           </View>
         </View>
-        <View style={{height: 160}}>
-        </View>
-        <View style={{height: 120, justifyContent: 'center',alignItems:'center'}}>
-          <View style={styles.textInput}>
-            <TouchableHighlight onPress={this._goToHomePage}>
-              <Text>Create Account</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View style={{height: 140, justifyContent: 'center', alignItems:'center'}}>
-        </View>
+        </Image>
       </View>
     )
   }

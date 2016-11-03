@@ -10,12 +10,16 @@ import {
   View
 } from 'react-native';
 
-export default class Calendar extends Component {
+import Video from 'react-native-video';
+import Calendar from 'react-native-calendar';
+
+export default class CalendarScene extends Component {
   static get defaultProps() {
     return {
       title: 'Calendar'
     };
   }
+
   static propTypes = {
     title: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
@@ -24,10 +28,19 @@ export default class Calendar extends Component {
 
 	render() {
 		return (
-      <View style={{flex:1, flexDirection: 'column',backgroundColor: 'powderblue'}}>
-        <View style={{height: 500, justifyContent: 'center',alignItems:'center'}}>
-          <Text>This is a calendar page</Text>
+      <View style={{flex:1}}>
+        <Image
+        source={require('./pics/calendarbg.png')} style={{height:680,width:380}}>
+        <View style={{height:200}}>
         </View>
+        <Calendar
+        scrollEnabled={true}
+        showControls={true}
+        showEventIndicators={true}
+        events={[{date: '2016-11-04', hasEventCircle: {backgroundColor: 'powderblue'}},
+                {date: '2016-11-05'}]}>
+        </Calendar>
+        </Image>
       </View>
 		)
 	};

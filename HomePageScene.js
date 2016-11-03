@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Calendar from './CalendarScene';
+import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
 import {
@@ -42,7 +42,7 @@ export default class HomePageScene extends React.Component {
             {this._renderRow('Job Calendar', () => {
               this.props.navigator.push({
                 title: 'Calendar',
-                component: Calendar,
+                component: CalendarScene,
                 passProps: {
                   email: this.props.email,
                   password: this.props.password
