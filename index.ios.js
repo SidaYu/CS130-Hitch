@@ -1,128 +1,135 @@
-<<<<<<< HEAD
 import React, { Component, PropTypes } from 'react';
-import { AppRegistry, NavigatorIOS, Text, View } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  Image,
+  TextInput,
+  View,
+  NavigatorIOS,
+} from 'react-native';
+import {
+  Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
+} from 'react-native-elements'
 
-import JobList from './JobList';
+
+import JobList from './JobList'
 import AddJobForm from './AddJobForm';
-
-
-
+import SignUpScene from './SignUpScene';
+import HomePageScene from './HomePageScene';
+import Calendar from './Calendar';
+import Comments from './Comments';
 
 class AwesomeProject extends Component {
 
-constructor(props)
-{
-  super(props);
-  this.state = {
-    email : 'tian@test.com',
-    company: ''
-  };  
-}
+constructor(props) {
+	super();
 
-
-R_GET(url, params) {
-    if (params) {
-        let paramsArray = []
-        Object.keys(params).forEach(key => paramsArray.push(key + '=' + encodeURIComponent(params[key])))
-        if (url.search(/\?/) === -1) {
-            url += '?' + paramsArray.join('&')
-        } else {
-            url += '&' + paramsArray.join('&')
-        }
-    }
-    return new Promise(function (resolve, reject) {
-        fetch(url)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    reject('server busy；\r\nCode:' + response.status)
-                }
-            })
-            .then((response) => {
-                if (response && response.error_code === 0) {
-                    resolve(response)
-                } else {
-                    reject(response.message)
-                }
-            })
-            .catch((err)=> {
-                reject(_parseErrorMsg(err))
-            })
-    })
-}
-
-getCompany() {
-  var url = "https://hitch.herokuapp.com/api/getAllJobs";
-  var params = { user_email: "tian@test.com" };
-  (R_GET (url, params)).then((responseData)=> 
-      {
-        (company) => this.setState(responseData.status);
-      })
-      .done();
-}
-
-
-
-    render() {
-        this.getCompany();
-        return ( <Text> {this.state.company} </Text>);
+    this.state = {};
   }
+
+ 
+  changeTab (selectedTab) {
+  this.setState({selectedTab})
 }
-
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
-
-=======
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component, PropTypes } from 'react';
-import JobList from './JobList';
-import AddJobForm from './AddJobForm';
-
-import {
-  AppRegistry,
-  NavigatorIOS,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-export default class AwesomeProject extends Component {
 
  render() {
+const { selectedTab } = this.state;
+
+
     const routes = [
-     {component: JobList, title: 'Job List',},
-     //{component: AddJobForm, title: 'Add Job Form',},
+      {component: JobList, title: 'Job List', navigationBarHidden: true},
     ];
     return (
-      <NavigatorIOS initialRoute={routes[0]} style={{flex: 1}}/>
+    <View style = {{flex: 1, backgroundColor: '#e6e6e6'}}>
+      <Tabs>
+  <Tab
+    titleStyle={[styles.titleStyle]}
+    selectedTitleStyle={[styles.titleSelected]}
+    selected={selectedTab === 'home'}
+    title={selectedTab === 'home' ? 'Home' : null}
+    renderIcon={() => <Icon name='account-box' size={26} />}
+    renderSelectedIcon={() => <Icon name='account-box' size={26} />}
+    onPress={() => this.changeTab('home')}>
+    <HomePageScene />
+  </Tab>
+  <Tab
+    titleStyle={[styles.titleStyle]}
+    selectedTitleStyle={[styles.titleSelected]}
+    selected={selectedTab === 'job list'}
+    title={selectedTab === 'job list' ? 'JOB LIST' : null}
+    renderIcon={() => <Icon name='playlist-add' size={26} />}
+    renderSelectedIcon={() => <Icon name='playlist-add' size={26} />}
+    onPress={() => this.changeTab('job list')}>
+    <JobList />
+  </Tab>
+  <Tab
+    titleStyle={[styles.titleStyle]}
+    selectedTitleStyle={[styles.titleSelected]}
+    selected={selectedTab === 'calendar'}
+    title={selectedTab === 'calendar' ? 'CALENDAAR' : null}
+    renderIcon={() => <Icon name='alarm-on' size={26} />}
+    renderSelectedIcon={() => <Icon name='alarm-on' size={26} />}
+    onPress={() => this.changeTab('calendar')}>
+    <Calendar />
+  </Tab>
+  <Tab
+    titleStyle={[styles.titleStyle]}
+    selectedTitleStyle={[styles.titleSelected]}
+    selected={selectedTab === 'comments'}
+    title={selectedTab === 'comments' ? 'C' : null}
+    renderIcon={() => <Icon name='assignment' size={26} />}
+    renderSelectedIcon={() => <Icon name='assignment' size={26} />}
+    onPress={() => this.changeTab('comments')}>
+    <SignUpScene />
+  </Tab>
+</Tabs>
+</View>
     );
   }
 
 }
 
-/*const styles = StyleSheet.create({
+const styles = StyleSheet.create({
+  textInput: {
+    backgroundColor:'azure',
+    borderBottomLeftRadius:5,
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    borderBottomRightRadius:5,
+  },
+  button: {
+    height: 20,
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: 'azure',
+  },
+  background:
+  {
+    flex:1, 
+  },
   container: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
   },
-  welcome: {
+  listView: {
+    borderTopColor: 'grey',
+    borderTopWidth: 1,
+    paddingTop: 70,
+    flex: 30,
+  },
+  company: {
     fontSize: 20,
+    marginBottom: 8,
     textAlign: 'center',
-    margin: 10,
   },
-  instructions: {
+  position: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
-}); */
+});
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
->>>>>>> 47717e0b1fc3b813464c7408ea6e26cc07056a8a

@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Calendar from './CalendarScene';
-import Profile from './ProfileScene';
-import CountDown from './CountDownScene';
-import AboutUs from './AboutUsScene';
+
 import {
   AppRegistry,
   StyleSheet,
