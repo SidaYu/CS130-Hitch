@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
   NavigatorIOS,
+  ScrollView
 } from 'react-native';
 import {
   Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
@@ -21,7 +22,8 @@ import AddJobForm from './AddJobForm';
 import Google from './Google';
 import DynamicList from './DynamicList'
 
-var REQUEST_URL = 'https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com'
+var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
+var Swipeout = require('react-native-swipeout')
 
 export default class JobList extends Component {
   static get defaultProps() {
@@ -43,6 +45,7 @@ constructor(props) {
         searched_jobs: null,
       loaded: false,
       search:false,
+      rowToDelete : null
     };
   }
 
@@ -55,19 +58,23 @@ constructor(props) {
     var list = this.state.jobs;
     for (var i = 0; i < list.length; i++)
     {
-      if (list[i].company_name == 'Microsoft')
+      if (list[i].company_name == '' && list[i].company_depart == '') list.splice(i, 1);
+      else
+      {
+        if (list[i].company_name == 'Microsoft')
           list[i].avatar_url = 'https://www.microsoft.com/en-us/server-cloud/Images/shared/page-sharing-thumbnail.jpg';
-      if (list[i].company_name == 'Linkedin')
+        if (list[i].company_name == 'Linkedin')
           list[i].avatar_url = 'https://yt3.ggpht.com/-CepHHHB3l1Y/AAAAAAAAAAI/AAAAAAAAAAA/Z8MftqWbEqA/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
-      if (list[i].company_name == 'Facebook')
+        if (list[i].company_name == 'Facebook')
           list[i].avatar_url = 'https://www.facebook.com/images/fb_icon_325x325.png';
 
-      if (list[i].company_name == 'Google')
+        if (list[i].company_name == 'Google')
           list[i].avatar_url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg';
-      if (list[i].company_name == 'Amazon')
+        if (list[i].company_name == 'Amazon')
           list[i].avatar_url = 'https://store-images.s-microsoft.com/image/apps.31672.9007199266244431.afea25ca-b409-4393-9a82-97fef1b330a0.6ae63586-6e3a-415f-bb6b-31a82bdcba1d?w=180&h=180&q=60';
-      if (list[i].company_name == 'Appfolio')
+        if (list[i].company_name == 'Appfolio')
           list[i].avatar_url = 'https://www.appfolio.com/images/html/apm-fb-logo.png';
+      }
     }
   }
 
@@ -90,6 +97,38 @@ constructor(props) {
     });
   }
 
+  _onAfterRemovingElement() {
+    this.setState({
+      rowToDelete : null,
+      dataSource  : this.state.dataSource.cloneWithRows(this._data)
+      });
+  }
+
+  _deleteItem(id) {
+    fetch(REQUEST_URL, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 
+        job_id: id,
+      })
+    })
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        jobs: responseData.jobs.job_list,
+        searched_jobs: responseData.jobs.job_list,
+        loaded: true,
+        rowToDelete: -1,
+        });
+    })
+    .done(); 
+    //this.props.navigator.pop();
+    this.render();
+  }
+
 fetchData() {
     fetch(REQUEST_URL, {
       headers: {
@@ -99,13 +138,22 @@ fetchData() {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          jobs: responseData.user_info.jobs,
-          searched_jobs: responseData.user_info.jobs,
+          jobs: responseData.jobs.job_list,
+          searched_jobs: responseData.jobs.job_list,
           loaded: true,
+          rowToDelete: -1,
         });
       })
       .done();
+  //   var responseData = require('./jobs.json');
+  //   this.setState({
+  //    jobs: responseData.user_info.jobs,
+  //    searched_jobs: responseData.user_info.jobs,
+  //    loaded: true,
+  // });
+
   }
+
 
 
 
@@ -156,7 +204,8 @@ fetchData() {
     ]
 
 
-    if (this.state.search == false) this.fetchData();
+
+    if (this.state.loaded == false) this.fetchData();
 
     return (
       <View style = {{marginTop: 70, flex: 1, backgroundColor: '#e6e6e6'}}>
@@ -167,9 +216,22 @@ fetchData() {
       placeholder='Type to search company name...' />
 
 
+
+      <ScrollView>
+
+
+
       <List containerStyle = {{}} >
       {
+        
         this.state.searched_jobs.map((l, i) => (
+
+
+          <Swipeout right={[deleteButton = {
+          text: 'Delete',
+          backgroundColor: '#FF6347',
+          onPress: () => this._deleteItem(l.job_id),
+          }]}>
           <ListItem
           roundAvatar
           avatar = {{uri: l.avatar_url}}
@@ -178,10 +240,10 @@ fetchData() {
           subtitle = {l.position_title}
           onPress = {this._goToSpecificJob}
           />
+          </Swipeout>
           ))
         }
         </List>
-        </View>
 
 
         <List >
@@ -209,9 +271,10 @@ fetchData() {
           ))
         }
         </List>
+        </ScrollView>
 
 
-
+        </View>
         </View>
         // <Button 
         //   small
