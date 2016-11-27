@@ -1,0 +1,42 @@
+[
+  {
+    "id": "6f3b04111d8c896d2dd0fe2b89105652",
+    "name": "Online Judgement Round 1",
+    "company": "Modus Create",
+    "email": "alex@moduscreate.com",
+    "phone": "Thursday November 3",
+    "status": "True"
+  },
+  {
+    "id": "5693fcb5a83e20b8599b4065116c2440",
+    "name": "Online Judgement Round 1",
+    "company": "Modus Create",
+    "email": "andrei@moduscreate.com",
+    "phone": "Thursday November 3",
+    "status": "False"
+  },
+  {
+    "id": "e65aa1b6433e36f2500959d51ad6ad80",
+    "name": "Phone Interview Round 1",
+    "company": "Modus Create",
+    "email": "vadim@moduscreate.com",
+    "phone": "Thursday November 3",
+    "status": "True"
+  },
+  {
+    "id": "080444f08287029d5387a95109d5ab7a",
+    "name": "Phone Interview Round 2",
+    "company": "Modus Create",
+    "email": "sergiu@moduscreate.com",
+    "phone": "Thursday November 3",
+    "status": "False"
+  },
+  {
+    "id": "856462f3439d1f8e21a281525f6abdb1",
+    "name": "On-Site Interview",
+    "company": "Modus Create",
+    "email": "elod@moduscreate.com",
+    "phone": "Thursday November 3",
+    "status": "True"
+  }
+]
