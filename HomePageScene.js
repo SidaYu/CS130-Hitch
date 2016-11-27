@@ -75,6 +75,7 @@ export default class HomePageScene extends React.Component {
               this.props.navigator.replace({
                   component: HomePageScene,
                   title: 'Home Page',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -90,6 +91,7 @@ export default class HomePageScene extends React.Component {
               this.props.navigator.replace({
                   component: CalendarScene,
                   title: 'Calendar',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -105,6 +107,7 @@ export default class HomePageScene extends React.Component {
               this.props.navigator.replace({
                   component: CountDown,
                   title: 'Count Down ',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -120,6 +123,7 @@ export default class HomePageScene extends React.Component {
               this.props.navigator.push({
                   component: JobList,
                   title: 'Job List',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password

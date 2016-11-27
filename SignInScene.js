@@ -65,6 +65,7 @@ export default class SignInScene extends Component {
           this.props.navigator.push({
             component: HomePageScene,
             title: 'Home Page',
+            navigationBarHidden: true,
             passProps: {
               email: this.state.email,
               password: this.state.password
