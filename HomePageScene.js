@@ -27,14 +27,10 @@ export default class HomePageScene extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password:''
+      password:'',
+      selectedTab: 'firstTab',
     };
   }
-
-
-  state = {
-      selectedTab: 'firstTab',
-  };
 
   render() {
     return (

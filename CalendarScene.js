@@ -5,6 +5,7 @@ import {
   TabBarIOS,
   TouchableHighlight,
   NavigatorIOS,
+  AlertIOS,
   Text,
   Image,
   TextInput,
@@ -19,6 +20,14 @@ import Settings from './SettingsScene';
 import JobList from './JobList';
 
 export default class CalendarScene extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTab: 'secondTab',
+      //date_list: [],
+    };
+    this.date_list = [];
+  }
   static get defaultProps() {
     return {
       title: 'Calendar'
@@ -30,11 +39,10 @@ export default class CalendarScene extends Component {
     password: PropTypes.string.isRequired,
   }
 
-  state = {
-      selectedTab: 'secondTab',
-  };
+
 
 	render() {
+    
 		return (
       <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
         <View style={{height: 150, justifyContent: 'center',alignItems:'center'}}>
@@ -44,8 +52,7 @@ export default class CalendarScene extends Component {
           scrollEnabled={true}
           showControls={true}
           showEventIndicators={true}
-          events={[{date: '2016-11-04', hasEventCircle: {backgroundColor: 'powderblue'}},
-                  {date: '2016-11-05'}]}>
+          events={[{date: '2016-11-10', hasEventCircle: {backgroundColor: 'powderblue'}}]}>
           </Calendar>
         </View>
         <View style={{height: 50,backgroundColor:'lightgrey'}}>

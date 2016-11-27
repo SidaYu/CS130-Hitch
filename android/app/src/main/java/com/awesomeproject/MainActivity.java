@@ -1,6 +1,8 @@
 package com.awesomeproject;
 
 import com.facebook.react.ReactActivity;
+import com.brentvatne.react.ReactVideoPackage;
+import com.smixx.reactnativeicons.ReactNativeIcons;
 
 public class MainActivity extends ReactActivity {
 
