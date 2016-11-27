@@ -8,6 +8,7 @@ var {
   Text,
   TextInput,
   View,
+  ScrollView
 } = ReactNative;
 
 import { 
@@ -15,6 +16,8 @@ import {
   FormInput,
   Button
 } from 'react-native-elements'
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class EventScene extends React.Component {
   constructor(props) {
@@ -48,13 +51,13 @@ class EventScene extends React.Component {
   render() {
 
     return (
-      <View marginTop={60}>
+      <ScrollView marginTop={70} marginBottom={20}>
 
-        <FormLabel>Event name</FormLabel>
-        <FormInput value={this.state.name}/>
+        <FormLabel labelStyle={styles.labelStyle}>Event name</FormLabel>
+        <FormInput inputStyle={styles.inputStyle} value={this.state.name}/>
 
-        <FormLabel>Event time</FormLabel>
-        <FormInput value={this.state.date.toLocaleDateString() +
+        <FormLabel labelStyle={styles.labelStyle}>Event time</FormLabel>
+        <FormInput inputStyle={styles.inputStyle} value={this.state.date.toLocaleDateString() +
             ' ' +
             this.state.date.toLocaleTimeString()}/>
 
@@ -65,24 +68,28 @@ class EventScene extends React.Component {
           onDateChange={this.onDateChange}
         />
 
-        <FormLabel>Location(optional)</FormLabel>
-        <FormInput
-          value={this.state.location}
+        <FormLabel labelStyle={styles.labelStyle}>Location(optional)</FormLabel>
+        <FormInput inputStyle={styles.inputStyle} value={this.state.location}
         />
 
-        <FormLabel>Notes(optional)</FormLabel>
+        <FormLabel labelStyle={styles.labelStyle}>Notes(optional)</FormLabel>
         <FormInput
           placeholder="your notes here..."/>
         <FormInput/>
         <FormInput/>
 
         <Button
-        small
-        icon={{name: 'envira', type: 'font-awesome', fontSize: 30}}
-        title='SUBMIT'
-        />
-      </View>
+        large
+        iconRight
+        icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+        title='Submit'
+        fontSize={24}
+        color='white'
+        backgroundColor='#1F2F3C' />
+      </ScrollView>
     );
+  }
+}
   }
 }
 
@@ -99,6 +106,15 @@ exports.examples = [
 }];
 
 var styles = StyleSheet.create({
+  labelStyle: {
+    color: 'black',
+    fontSize: 20,
+    fontFamily: 'Helvetica Neue'
+  },
+  inputStyle: {
+    color: '#363c47', 
+    fontSize: 15
+  },
   textinput: {
     height: 26,
     width: 50,
