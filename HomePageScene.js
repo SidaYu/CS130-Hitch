@@ -10,6 +10,7 @@ import {
   ScrollView,
   NavigatorIOS,
   Text,
+  AlertIOS,
   Image,
   TabBarIOS,
   TextInput,
@@ -25,11 +26,66 @@ export default class HomePageScene extends React.Component {
 
   constructor(props) {
     super(props);
+    this._goToChangePassword = this._goToChangePassword.bind(this);
     this.state = {
-      email: '',
-      password:'',
+      currentPassword:'',
       selectedTab: 'firstTab',
+      newPassword: '',
+      newPassword2: '',
     };
+  }
+
+  _goToChangePassword() {
+    if(this.state.currentPassword != this.props.password){
+      AlertIOS.alert(
+        "Error",
+        "Your current password is incorrect"
+      )
+    }else if(this.state.newPassword != this.state.newPassword2){
+      AlertIOS.alert(
+        "Error",
+        "Your new passwords are not consistent"
+      )
+    }else{
+      fetch("https://hitch.herokuapp.com/api/changePW", {
+        method: 'POST',
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({
+          email: this.props.email, oldpassword: this.props.password, newpassword: this.state.newPassword,
+        })
+      })
+        .then((response) => response.json())
+        .then((responseData) => {
+          // AlertIOS.alert(
+          //   "You have successfully changed your password!",
+          //   responseData.result
+          // )
+          if(responseData.result == 'success'){
+            AlertIOS.alert(
+              "Success",
+              "You have successfully changed your password!"
+            )
+            // this.props.navigator.replace({
+            //   component: HomePageScene,
+            //   title: 'Home Page',
+            //   navigationBarHidden: true,
+            //   passProps: {
+            //     email: this.state.email,
+            //     password: this.state.password
+            //   }
+            // })
+          }else{
+            AlertIOS.alert(
+              "Error",
+              responseData.result
+            )
+          }
+        })
+        .done();
+    }
   }
 
   render() {
@@ -40,18 +96,18 @@ export default class HomePageScene extends React.Component {
         <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightgrey'}}>
           <View style={styles.textInput}>
             <TextInput style={{height: 35,width: 300}} placeholder=" Verify Your Current Password"
-            onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
+            onChangeText={(currentPassword) => this.setState({currentPassword})} autoCapitalize="none"/>
           </View>
           <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Input yout new password"
-            onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
+            <TextInput style={{height: 35,width: 300}} placeholder=" Please enter your new password"
+            onChangeText={(newPassword) => this.setState({newPassword})} autoCapitalize="none"/>
           </View>
           <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Input yout new password"
-            onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
+            <TextInput style={{height: 35,width: 300}} placeholder=" Please enter your new password again"
+            onChangeText={(newPassword2) => this.setState({newPassword2})} autoCapitalize="none"/>
           </View>
           <View style={styles.button}>
-            <TouchableHighlight onPress={this._goToCreateAccount}>
+            <TouchableHighlight onPress={this._goToChangePassword}>
               <Text>Change Password</Text>
             </TouchableHighlight>
           </View>
