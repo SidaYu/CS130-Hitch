@@ -129,7 +129,7 @@ fetchData() {
     if (!comps.length) this.setState({searched_jobs: this.state.jobs});
   }
 
-  render() 
+  render()
   {
 
     var titleConfig = {
@@ -145,7 +145,7 @@ fetchData() {
     {
       title: 'Add New Job',
       icon: 'add',
-    },  
+    },
     ]
 
     var refresh = [
@@ -213,13 +213,13 @@ fetchData() {
 
 
         </View>
-        // <Button 
+        // <Button
         //   small
         //   containerStyle={{padding:10, height:45, overflow:'hidden', borderRadius:4, backgroundColor: 'white'}}
         //   onPress={this._goToAddJobForm}
-        //   title = 'Add New Job' 
+        //   title = 'Add New Job'
         //   backgroundColor = 'steelblue'
-        //   color = 'white' 
+        //   color = 'white'
         //   />
           // <View style = {{flex: 1}} />
           );
@@ -262,7 +262,7 @@ fetchData() {
         },
         background:
         {
-          flex:1, 
+          flex:1,
         },
         container: {
           justifyContent: 'center',

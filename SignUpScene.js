@@ -65,13 +65,11 @@ export default class SignUpScene extends Component {
 
   render() {
     return (
-      <View>
-      <Image
-      source={require('./pics/signupbg.png')} style={{height:680,width:380}}>
-        <View style={{flex:1, flexDirection: 'column'}}>
-          <View style={{height: 260, justifyContent: 'center',alignItems:'center'}}>
+      <View style={{backgroundColor:'gainsboro'}}>
+        <View style={{flex:1, flexDirection: 'column', backgroundColor:'gainsboro'}}>
+          <View style={{height: 260, justifyContent: 'center',alignItems:'center', backgroundColor:'gainsboro'}}>
           </View>
-          <View style={{height: 140, justifyContent: 'space-between',alignItems:'right', alignItems:'center'}}>
+          <View style={{height: 140, justifyContent: 'space-between',alignItems:'right', alignItems:'center', backgroundColor:'gainsboro'}}>
             <View style={styles.textInput}>
               <TextInput style={{height: 35,width: 300}} placeholder=" Email"
               onChangeText={(email) => this.setState({email})}  autoCapitalize="none"/>
@@ -81,19 +79,18 @@ export default class SignUpScene extends Component {
               onChangeText={(password) => this.setState({password})} autoCapitalize="none" secureTextEntry={true}/>
             </View>
           </View>
-          <View style={{height: 80}}>
+          <View style={{height: 80, backgroundColor:'gainsboro'}}>
           </View>
-          <View style={{height: 120, justifyContent: 'center',alignItems:'center'}}>
+          <View style={{height: 120, justifyContent: 'center',alignItems:'center', backgroundColor:'gainsboro'}}>
             <View style={styles.textInput}>
               <TouchableHighlight onPress={this._goToHomePage}>
                 <Text>Create Account</Text>
               </TouchableHighlight>
             </View>
           </View>
-          <View style={{height: 140, justifyContent: 'center', alignItems:'center'}}>
+          <View style={{height: 140, justifyContent: 'center', alignItems:'center', backgroundColor:'gainsboro'}}>
           </View>
         </View>
-        </Image>
       </View>
     )
   }

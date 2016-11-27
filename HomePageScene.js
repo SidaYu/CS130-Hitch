@@ -11,6 +11,7 @@ import {
   NavigatorIOS,
   Text,
   Image,
+  TabBarIOS,
   TextInput,
   View
 } from 'react-native';
@@ -19,142 +20,138 @@ import {
 export default class HomePageScene extends React.Component {
   static propTypes = {
     email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired
+    password: PropTypes.string.isRequired,
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password:''
+    };
+  }
+
+
+  state = {
+      selectedTab: 'firstTab',
+  };
 
   render() {
     return (
-      <ScrollView>
-        <Image source={require('./pics/homepagebg.jpg')} style={{height:680,width:380}}>
-          <View style={styles.line}/>
-          <View style={{height:90}}/>
-          <View style={styles.group}>
-            {this._renderRow('Job List', () => {
-              this.props.navigator.push({
-                title: 'Job List',
-                component: JobList,
-               // navigationBarHidden:true,
-                passProps: {
-                  email: this.props.email,
-                  password: this.props.password
-                }
-              });
-            })}
-            <View style={{height:45}}/>
-            {this._renderRow('Job Calendar', () => {
-              this.props.navigator.push({
-                title: 'Calendar',
-                component: CalendarScene,
-                passProps: {
-                  email: this.props.email,
-                  password: this.props.password
-                }
-              });
-            })}
-            <View style={{height:45}}/>
-            {this._renderRow('Count Down', () => {
-              this.props.navigator.push({
-                title: 'Count Down',
-                component: CountDown,
-                passProps: {
-                  email: this.props.email,
-                  password: this.props.password
-                }
-              });
-            })}
-            <View style={{height:45}}/>
-            {this._renderRow('Settings', () => {
-              this.props.navigator.push({
-                title: 'Settings',
-                component: Settings,
-                passProps: {
-                  email: this.props.email,
-                  password: this.props.password
-                }
-              });
-            })}
-            <View style={{height:45}}/>
-            {this._renderRow('Log Out', () => {
-              this.props.navigator.popToTop();
-            })}
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
+        <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
+        </View>
+        <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightgrey'}}>
+          <View style={styles.textInput}>
+            <TextInput style={{height: 35,width: 300}} placeholder=" Verify Your Current Password"
+            onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
           </View>
-          <View style={styles.line}/>
-        </Image>
-      </ScrollView>
+          <View style={styles.textInput}>
+            <TextInput style={{height: 35,width: 300}} placeholder=" Input yout new password"
+            onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
+          </View>
+          <View style={styles.textInput}>
+            <TextInput style={{height: 35,width: 300}} placeholder=" Input yout new password"
+            onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
+          </View>
+          <View style={styles.button}>
+            <TouchableHighlight onPress={this._goToCreateAccount}>
+              <Text>Change Password</Text>
+            </TouchableHighlight>
+          </View>
+          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'azure'}}>
+          </View>
+        </View>
+        <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
+          <TabBarIOS
+          unselectedTintColor="azure"
+          tintColor="white"
+          barTintColor="gainsboro"
+          backgroundColor = "azure">
+          <TabBarIOS.Item
+            systemIcon="bookmarks"
+            selected={this.state.selectedTab === 'firstTab'}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: HomePageScene,
+                  title: 'Home Page',
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text>Home</Text>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            systemIcon="recents"
+            selected={this.state.selectedTab === 'secondTab'}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CalendarScene,
+                  title: 'Calendar',
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text>Home</Text>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            systemIcon="downloads"
+            selected={this.state.selectedTab === 'thirdTab'}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CountDown,
+                  title: 'Count Down ',
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text>Home</Text>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            systemIcon="bookmarks"
+            selected={this.state.selectedTab === 'jobListTab'}
+            onPress={() => {
+              this.props.navigator.push({
+                  component: JobList,
+                  title: 'Job List',
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text>Home</Text>
+          </TabBarIOS.Item>
+        </TabBarIOS>
+        </View>
+      </View>
     );
   }
 
-  _renderRow = (title: string, onPress: Function) => {
-    return (
-      <View style={styles.textInput}>
-        <TouchableHighlight onPress={onPress}>
-          <View style={styles.row}>
-            <Text style={styles.rowText}>
-              {title}
-            </Text>
-          </View>
-        </TouchableHighlight>
-        <View style={styles.separator} />
-      </View>
-    );
-  };
+
 }
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  customWrapperStyle: {
-    backgroundColor: '#bbdddd',
-  },
-  emptyPage: {
-    flex: 1,
-    paddingTop: 64,
-  },
-  emptyPageText: {
-    margin: 10,
-  },
-  group: {
-    alignItems:'center',
-    justifyContent: 'center',
-    height: 350,
-  },
-  groupSpace: {
-    height: 15,
-  },
-  line: {
-    height: StyleSheet.hairlineWidth,
-  },
-  row: {
-    backgroundColor: 'azure',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderBottomLeftRadius:20,
-    borderTopRightRadius:20,
-    borderTopLeftRadius:20,
-    borderBottomRightRadius:20,
-    width: 300,
-  },
-  separator: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#bbbbbb',
-    marginLeft: 15,
-  },
-  rowNote: {
-    fontSize: 17,
-  },
-  rowText: {
-    fontSize: 17,
-    fontWeight: '500',
-  },
   textInput: {
     backgroundColor:'azure',
     borderBottomLeftRadius:20,
     borderTopRightRadius:20,
     borderTopLeftRadius:20,
     borderBottomRightRadius:20,
+    padding:10,
+  },
+  button: {
+    backgroundColor:'azure',
+    borderBottomLeftRadius:20,
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
+    borderBottomRightRadius:20,
+    padding: 10,
   },
 });
