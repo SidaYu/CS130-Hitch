@@ -10,8 +10,8 @@ var {
   View,
 } = ReactNative;
 
-import { 
-  FormLabel, 
+import {
+  FormLabel,
   FormInput,
   Button
 } from 'react-native-elements'
@@ -49,7 +49,6 @@ class EventScene extends React.Component {
 
     return (
       <View marginTop={60}>
-
         <FormLabel>Event name</FormLabel>
         <FormInput value={this.state.name}/>
 
