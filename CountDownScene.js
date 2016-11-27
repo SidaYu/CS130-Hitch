@@ -69,14 +69,16 @@ export default class CountDownScene extends Component {
     return fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
-        var events = [];
-        for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
-          events.push(responseJson.res.timeStamp_list[i].deadline);
-        }
+        var state = {};
+          state['size'] = responseJson.res.timeStamp_list.length;
+          for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
+            state[i] = responseJson.res.timeStamp_list[i].deadline;
+          }
+        this.setState(state);
         this.setState({
           loaded : true,
         });
-        return events;
+        // return events;
       })
       .catch(function(err) {
         // something went wrong
@@ -91,19 +93,19 @@ export default class CountDownScene extends Component {
     var events = [];
     
 
-    // if (this.state.loaded == false) {
-    //   events = this._fetchData();
-    // }
+    if (this.state.loaded == false) {
+      this._fetchData();
+    }
 
     
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < this.state.size; i++) {
       //var diffDays = Math.round(Math.abs((this.state.time - this.state.time)/(oneDay)));
       events.push(<ListItem key={i}
                       title={'Days left'}
                       titleStyle={{fontSize: 22, color: '#eeeae5'}}
-                      subtitle={'this event'}
+                      subtitle={this.state[i]}
                       subtitleStyle={{fontSize: 15, color: 'white'}}
                       leftIcon={{name: 'clock-o', type: 'font-awesome', color: 'black'}}
                       containerStyle={{backgroundColor: 'transparent'}}
