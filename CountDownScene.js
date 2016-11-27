@@ -104,7 +104,6 @@ export default class CountDownScene extends Component {
                       titleStyle={{fontSize: 22, color: '#eeeae5'}}
                       subtitle={'this event'}
                       subtitleStyle={{fontSize: 15, color: 'white'}}
-                      leftIcon={{name: 'clock-o', type: 'font-awesome', color: 'black'}}
                       containerStyle={{backgroundColor: 'transparent'}}
                       onPress={() => this._goEventDetail()}>
 
