@@ -9,7 +9,7 @@ import {
   TextInput,
   View
 } from 'react-native';
-
+import Store from 'react-native-simple-store';
 export default class Settings extends Component {
   static get defaultProps() {
     return {
@@ -24,11 +24,11 @@ export default class Settings extends Component {
   }
 
   state = {
-    jsonData : null,
+    loaded: false,
   }
 
   _getData() {
-        return fetch("https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com", {
+        fetch("https://hitch.herokuapp.com/api/getTimeStamp?event_id=2", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -36,16 +36,24 @@ export default class Settings extends Component {
         })
         .then((response) => response.json())
         .then((responseData) => {
-            return responseData;
+          this.setState({
+            loaded: true,
+            status: responseData.status,
+            event_id: responseData.timeStamps.event_id,
+          })
         })
         .done();
     }
 
 	render() {
-    var json = this._getData();
+    Store.save('json', {status: "fail"})
+    if (this.state.loaded == false)
+    {
+      this._getData();
+    }
 		return (
-      <View style={{flex:1, flexDirection: 'column'}} marginTop={200}>
-        <Text>{console.warn(json)}</Text>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'red'}} marginTop={200}>
+        <Text>{this.state.status}  {this.state.event_id}</Text>
       </View>
 		)
 	};
