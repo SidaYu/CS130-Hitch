@@ -37,6 +37,28 @@ class MyButton extends Component {
         _pressed : false,
     }
 
+    _parseDate(dateString) {
+    var monthtoDay = {
+      "Jan" : 0,
+      "Feb" : 1,
+      "Mar" : 2,
+      "Apr" : 3,
+      "May" : 4,
+      "Jun" : 5,
+      "Jul" : 6,
+      "Aug" : 7,
+      "Sep" : 8,
+      "Oct" : 9,
+      "Nov" : 10,
+      "Dec" : 11
+    };
+
+    var eventDate = dateString.substring(5,7);
+    var eventMonth = dateString.substring(8,11);
+    var eventYear = dateString.substring(12,17);
+    return eventMonth + " " + eventDate + ", " + eventYear;
+  }
+
     _changeColor() {
         this.setState({_pressed : !this.state._pressed});
     }
@@ -82,7 +104,7 @@ class MyButton extends Component {
                       titleStyle={this._getTitleStyles()}
                       containerStyle={this._changeStyles()}
                       underlayColor={'green'}
-                      subtitle={this.props.subtitle}
+                      subtitle={this.props.subtitle.substring(0,17)}
                       subtitleStyle={this._getSubtitleStyles()}
                       onPress={() => this._changeColor()}>
                   </ListItem>
