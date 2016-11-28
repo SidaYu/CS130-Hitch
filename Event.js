@@ -8,7 +8,8 @@ var {
   Text,
   TextInput,
   View,
-  ScrollView
+  ScrollView,
+  AlertIOS
 } = ReactNative;
 
 import { 
@@ -22,6 +23,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class EventScene extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      date: this.props.date,
+      timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
+      name: "Interview"
+    };
   }
 
   static defaultProps = {
@@ -29,12 +36,6 @@ class EventScene extends React.Component {
     timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,
   };
 
-  state = {
-    date: this.props.date,
-    timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
-    name: "Trader Joe",
-    location: "Ralphs"
-  };
 
   onDateChange = (date) => {
     this.setState({date: date});
@@ -47,6 +48,34 @@ class EventScene extends React.Component {
     }
     this.setState({timeZoneOffsetInHours: offset});
   };
+
+  _addNewEvent() {
+    fetch("https://hitch.herokuapp.com/api/addTimeStamp", {
+      method: 'POST',
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({ 
+          job_id: "30",
+          description: this.state.name,
+          deadline: this.state.date,
+          status: "False"
+      })
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.result == "success") {
+          AlertIOS.alert("SUCCESS");
+          this.props.navigator.pop()       
+        } else {
+          AlertIOS.alert (
+            "Add event failed"
+          )
+        }
+      }) 
+      .done(); 
+  }
 
   render() {
 
@@ -69,10 +98,6 @@ class EventScene extends React.Component {
           onDateChange={this.onDateChange}
         />
 
-        <FormLabel labelStyle={styles.labelStyle}>Location(optional)</FormLabel>
-        <FormInput inputStyle={styles.inputStyle} value={this.state.location}
-        	onChangeText={(text) => this.setState({Location : text})}/>
-
         <Button
         large
         iconRight
@@ -80,11 +105,16 @@ class EventScene extends React.Component {
         title='Submit'
         fontSize={24}
         color='white'
-        backgroundColor='#1F2F3C' />
+        backgroundColor='#1F2F3C'
+        onPress={()=>this._addNewEvent()} />
       </ScrollView>
     );
   }
 }
+
+        // <FormLabel labelStyle={styles.labelStyle}>Location(optional)</FormLabel>
+        // <FormInput inputStyle={styles.inputStyle} value={this.state.location}
+        //   onChangeText={(text) => this.setState({Location : text})}/>
 
 
 
