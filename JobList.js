@@ -24,7 +24,7 @@ import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
 import Google from './Google';
-import DynamicList from './DynamicList';
+import DynamicList from './EventsScene';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
