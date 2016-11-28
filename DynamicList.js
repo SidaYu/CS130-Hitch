@@ -117,6 +117,10 @@ export default class DynamicList extends Component {
     /**
      * Default state values
      * */
+     constructor(props) {
+        super(props);
+        this.setState({temp : this._getData()});
+     }
     state = {
         loading     : true,
         dataSource  : new ListView.DataSource({
@@ -150,12 +154,36 @@ export default class DynamicList extends Component {
             loading     : false,
             refreshing  : false,
             rowToDelete : -1,
-            dataSource  : ds
+            dataSource  : ds,
+            dealineList : [null, null, null, null, null],
         });
     }
 
+    _fetchData() {
+    var URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com';
+    return fetch(URL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        var state = {};
+          state['size'] = responseJson.res.timeStamp_list.length;
+          for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
+            state[i] = responseJson.res.timeStamp_list[i].deadline;
+          }
+        this.setState(state);
+        this.setState({
+          loaded : true,
+        });
+        // return events;
+      })
+      .catch(function(err) {
+        // something went wrong
+        AlertIOS.alert("failed to get event!", "Please check you network");
+      })
+      .done();
+  }
 
     render() {
+        JSON.parse({this.state.jsonData});
         return (
             <View style={styles.container}>
                 <ListView
@@ -173,11 +201,11 @@ export default class DynamicList extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={this._renderRow.bind(this)}/>
                     
-                <View style={styles.addPanel}>
+                <View>
                     <TouchableOpacity
                         style={styles.addButton}
                         onPress={()=> this._addItemPressed()}>
-                        <Text style={styles.addButtonText}>+ NEW</Text>
+                        <Text style={styles.addButtonText}>{console.warn(this.state.jsonData)}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -208,7 +236,7 @@ export default class DynamicList extends Component {
             <DynamicListRow
                 remove={rowData.id === this.state.rowToDelete}
                 onRemoving={this._onAfterRemovingElement.bind(this)}>
-                <Swipeout right={[deleteButton, editButton]}>
+                <Swipeout autoClose={true} right={[deleteButton, editButton]}>
                 <View style={styles.rowStyle}>
                     <View style={styles.contact}>
                         <TouchableOpacity onPress={() => this._showCollapsed()}>
@@ -309,15 +337,13 @@ const styles = StyleSheet.create({
     },
     addButton     : {
         backgroundColor : '#0A5498',
-        width           : 120,
-        alignSelf       : 'flex-end',
-        marginRight     : 10,
-        padding         : 5,
-        borderRadius    : 5
+        height: 50,
+        alignItems: 'stretch',
+        justifyContent: 'center',
     },
     addButtonText : {
         color     : '#fff',
-        alignSelf : 'center'
+        alignSelf : 'center',
     },
 
     rowStyle : {

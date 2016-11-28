@@ -18,6 +18,7 @@ import HomePageScene from './HomePageScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
 import JobList from './JobList';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class CalendarScene extends Component {
   constructor(props) {
@@ -63,9 +64,13 @@ export default class CalendarScene extends Component {
           tintColor="white"
           barTintColor="gainsboro"
           backgroundColor = "azure">
-          <TabBarIOS.Item
-            systemIcon="bookmarks"
+          <Icon.TabBarItemIOS
+            iconName="home"
+            title="Home"
             selected={this.state.selectedTab === 'firstTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: HomePageScene,
@@ -78,10 +83,14 @@ export default class CalendarScene extends Component {
                 });
             }}>
             <Text>Home</Text>
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
-            systemIcon="recents"
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="calendar"
+            title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: CalendarScene,
@@ -94,10 +103,14 @@ export default class CalendarScene extends Component {
                 });
             }}>
             <Text>Home</Text>
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
-            systemIcon="downloads"
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="list"
+            title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: CountDown,
@@ -110,10 +123,14 @@ export default class CalendarScene extends Component {
                 });
             }}>
             <Text>Home</Text>
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
-            systemIcon="bookmarks"
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="user"
+            title="Profile"
             selected={this.state.selectedTab === 'jobListTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.push({
                   component: JobList,
@@ -125,7 +142,7 @@ export default class CalendarScene extends Component {
                 });
             }}>
             <Text>Home</Text>
-          </TabBarIOS.Item>
+          </Icon.TabBarItemIOS>
         </TabBarIOS>
         </View>
       </View>

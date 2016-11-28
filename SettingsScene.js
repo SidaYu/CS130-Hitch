@@ -23,11 +23,29 @@ export default class Settings extends Component {
     password: PropTypes.string.isRequired,
   }
 
+  state = {
+    jsonData : null,
+  }
+
+  _getData() {
+        return fetch("https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+            return responseData;
+        })
+        .done();
+    }
+
 	render() {
+    var json = this._getData();
 		return (
-      <View style={{flex:1, flexDirection: 'column'}}>
-        <Image source={require('./pics/settingsbcg.png')} style={{height:680,width:380}}>
-        </Image>
+      <View style={{flex:1, flexDirection: 'column'}} marginTop={200}>
+        <Text>{console.warn(json)}</Text>
       </View>
 		)
 	};
