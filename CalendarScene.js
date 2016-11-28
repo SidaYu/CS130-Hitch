@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { List, ListItem } from 'react-native-elements';
 import {
   AppRegistry,
   StyleSheet,
@@ -9,10 +10,12 @@ import {
   Text,
   Image,
   TextInput,
+  ListView,
   View
 } from 'react-native';
 
 import Calendar from 'react-native-calendar';
+import moment from 'moment';
 
 import HomePageScene from './HomePageScene';
 import CountDown from './CountDownScene';
@@ -20,14 +23,28 @@ import Settings from './SettingsScene';
 import JobList from './JobList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+const list = [
+  {
+    name: 'No event on this day',
+  },
+  
+]
+
+const rows = []
+
 export default class CalendarScene extends Component {
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this._updateDateEvent = this._updateDateEvent.bind(this);
     this.state = {
       selectedTab: 'secondTab',
-      //date_list: [],
+      dataSource: ds.cloneWithRows(list),
+      selectedDate: moment().format(),
+      dateList: [],
     };
-    this.date_list = [];
+    this.date_list = {};
+
   }
   static get defaultProps() {
     return {
@@ -40,23 +57,110 @@ export default class CalendarScene extends Component {
     password: PropTypes.string.isRequired,
   }
 
+  _updateDateEvent(date) {
+    this.setState({selectedDate:date});
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email=tian@test.com', {
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((responseDate) => {
+
+        var dateString = moment(this.state.selectedDate).format('YYYY-MM-DD');
+        var dateList = [];
+        dateList = responseDate.res.timeStamp_list[dateString];
+        if(dateList == null){
+          var temp = [
+            {
+              name: 'No event on this day',
+            },
+          ]
+          this.setState({dataSource: ds.cloneWithRows(temp)});
+        }else{
+          var l = [];
+          for(var i = 0;i<dateList.length;i++){
+            var object =
+              {
+                name: dateList[i].description,
+                subtitle: dateList[i].deadline
+              };
+            l.push(object);
+          }
+          this.setState({dataSource: ds.cloneWithRows(l)});
+        }
+      })
+      .done();
+  }
+
+
+  renderRow (rowData, sectionID) {
+    return (
+      <ListItem
+        roundAvatar
+        key={sectionID}
+        title={rowData.name}
+        subtitle={rowData.subtitle}
+      />
+    )
+  }
+
 
 
 	render() {
-    
+
+    var day = '2005-07-20';
+    fetchResponse = {};
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email=tian@test.com', {
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        var dateList = [];
+        dateList = responseData.res.date_list;
+        if(dateList != null){
+          for(var i = 0;i<dateList.length;i++){
+            var bg = {
+              backgroundColor: 'powderblue'
+            }
+            var object = {
+              date: dateList[i],
+              hasEventCircle: bg
+            }
+            rows.push(object);
+          }
+        }
+      })
+      .done();
+
 		return (
       <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
-        <View style={{height: 150, justifyContent: 'center',alignItems:'center'}}>
+        <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}>
         </View>
-        <View style={{height: 420}}>
+        <View style={{height: 350}}>
           <Calendar
           scrollEnabled={true}
           showControls={true}
           showEventIndicators={true}
-          events={[{date: '2016-11-10', hasEventCircle: {backgroundColor: 'powderblue'}}]}>
-          </Calendar>
+          events={rows}
+          onDateSelect={(date) => this._updateDateEvent(date) }
+          />
         </View>
-        <View style={{height: 50,backgroundColor:'lightgrey'}}>
+        <View style={{flexDirection: 'column', height: 150}}>
+        <List>
+          <ListView
+            renderRow={this.renderRow}
+            dataSource={this.state.dataSource}
+          />
+        </List>
+        </View>
+        <View style={{height: 70, justifyContent: 'center',alignItems:'center'}}>
         </View>
         <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
           <TabBarIOS
@@ -149,3 +253,28 @@ export default class CalendarScene extends Component {
 		)
 	};
 }
+
+var styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    backgroundColor: 'azure',
+  },
+  thumb: {
+    width: 64,
+    height: 64,
+  },
+  listContainer: {
+      paddingTop: 22,
+
+   },
+  text: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Cochin',
+    textAlign: 'left',
+    backgroundColor: 'azure',
+  },
+});

@@ -38,23 +38,15 @@ export default class CountDownScene extends Component {
       title: 'Count Down'
     };
   }
+
   static propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
   }
 
-  static defaultProps = {
-    date: new Date()
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      date_list:[],
-      selectedTab: 'thirdTab',
-      date: new Date(),
-    };
-
+  state = {
+    date: new Date(),
+    loaded: false
   }
 
   _goEventDetail() {
@@ -72,37 +64,48 @@ export default class CountDownScene extends Component {
            this.state.date.getDate() + "th " + monthNames[this.state.date.getMonth()-1];
   }
 
-	render() {
-    var URL = 'https://hitch.herokuapp.com/api/getTimeStamp?event_id=2';
-
-    // url (required), options (optional)
-
-    fetch(URL, {
-        method: 'GET'
-      })
+  _fetchData() {
+    var URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com';
+    return fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
-        var data = responseJson.data;
-        // for (var i in data.res.timeStamp_list) {
-        //   this.setState({ data: this.state.data.push(i.deadline) });
-        // }
+        var state = {};
+          state['size'] = responseJson.res.timeStamp_list.length;
+          for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
+            state[i] = responseJson.res.timeStamp_list[i].deadline;
+          }
+        this.setState(state);
+        this.setState({
+          loaded : true,
+        });
+        // return events;
       })
       .catch(function(err) {
         // something went wrong
-        AlertIOS.alert("failed to get event!", "......");
+        AlertIOS.alert("failed to get event!", "Please check you network");
       })
       .done();
+  }
 
+	render() {
+    var URL = 'https://hitch.herokuapp.com/api/getTimeStamp?event_id=2';
 
     var events = [];
+    
+
+    if (this.state.loaded == false) {
+      this._fetchData();
+    }
+
+    
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < this.state.size; i++) {
       //var diffDays = Math.round(Math.abs((this.state.time - this.state.time)/(oneDay)));
       events.push(<ListItem key={i}
                       title={'Days left'}
                       titleStyle={{fontSize: 22, color: '#eeeae5'}}
-                      subtitle={'this event'}
+                      subtitle={this.state[i]}
                       subtitleStyle={{fontSize: 15, color: 'white'}}
                       containerStyle={{backgroundColor: 'transparent'}}
                       onPress={() => this._goEventDetail()}>
