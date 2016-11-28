@@ -126,7 +126,7 @@ export default class CountDownScene extends Component {
     var URL = 'https://hitch.herokuapp.com/api/getTimeStamp?event_id=2';
 
     var events = [];
-    
+
 
     if (this.state.loaded == false) {
       this._fetchData();
@@ -136,7 +136,7 @@ export default class CountDownScene extends Component {
     for (var i = 0; i < this.state.length; i++) {
       var eventDateString = this.state[i];
       var eventDateObj = this._parseDate(eventDateString);
-      
+
       var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
       var diffDays = Math.ceil(Math.abs(eventDateObj.getTime() - this.state.date.getTime())/oneDay);
       var id = parseInt(this.state[this.state.length*2 + i]);
@@ -193,17 +193,7 @@ export default class CountDownScene extends Component {
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
-            onPress={() => {
-              this.props.navigator.replace({
-                  component: CountDown,
-                  title: 'Count Down ',
-                  navigationBarHidden: true,
-                  passProps: {
-                    email: this.props.email,
-                    password: this.props.password
-                  }
-                });
-            }}>
+            >
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
