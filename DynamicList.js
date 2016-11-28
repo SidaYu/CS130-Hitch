@@ -159,20 +159,20 @@ export default class DynamicList extends Component {
     }
 
     _fetchData() {
-    var URL = 'https://hitch.herokuapp.com/api/getTimeStamp?event_id=2';
+    var URL = 'https://hitch.herokuapp.com/api/getTimeStamps?job_id=2';
     return fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
         var deadlineList = {};
         var descriptionList = {};
         var statusList = {};
-          deadlineList['size'] = responseJson.res.timeStamp_list.length;
-          descriptionList['size'] = responseJson.res.timeStamp_list.length;
-          statusList['size'] = responseJson.res.timeStamp_list.length;
-          for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
-            deadlineList[i] = responseJson.res.timeStamp_list[i].deadline;
-            descriptionList[i] = responseJson.res.timeStamp_list[i].description;
-            statusList[i] = responseJson.res.timeStamp_list[i].status;
+          deadlineList['size'] = responseJson.timeStamps.timeStamp_list.length;
+          descriptionList['size'] = responseJson.timeStamps.timeStamp_list.length;
+          statusList['size'] = responseJson.timeStamps.timeStamp_list.length;
+          for (var i = 0; i < responseJson.timeStamps.timeStamp_list.length; i++) {
+            deadlineList[i] = responseJson.timeStamps.timeStamp_list[i].deadline;
+            descriptionList[i] = responseJson.timeStamps.timeStamp_list[i].description;
+            statusList[i] = responseJson.timeStamps.timeStamp_list[i].status;
           }
         this.setState(deadlineList);
         this.setState(descriptionList);
@@ -190,6 +190,10 @@ export default class DynamicList extends Component {
   }
 
     render() {
+        if (this.state.loaded == true)
+        {
+            this._fetchData();
+        }
         return (
             <View style={styles.container}>
                 <ListView

@@ -33,6 +33,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class CountDownScene extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTab: 'thirdTab',
+      date: new Date(),
+      loaded: false
+    };
+  }
   static get defaultProps() {
     return {
       title: 'Count Down'
@@ -42,11 +50,6 @@ export default class CountDownScene extends Component {
   static propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
-  }
-
-  state = {
-    date: new Date(),
-    loaded: false
   }
 
   _goEventDetail() {
@@ -191,6 +194,8 @@ export default class CountDownScene extends Component {
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
+              if (this.state.selectedTab !== 'thirdTab')
+              {
               this.props.navigator.replace({
                   component: CountDown,
                   title: 'Count Down ',
@@ -200,6 +205,7 @@ export default class CountDownScene extends Component {
                     password: this.props.password
                   }
                 });
+            }
             }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
