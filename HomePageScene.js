@@ -29,7 +29,7 @@ export default class HomePageScene extends React.Component {
     this._goToChangePassword = this._goToChangePassword.bind(this);
     this.state = {
       currentPassword:'',
-      selectedTab: 'firstTab',
+      selectedTab: 'fourthTab',
       newPassword: '',
       newPassword2: '',
     };
@@ -121,16 +121,16 @@ export default class HomePageScene extends React.Component {
           barTintColor="gainsboro"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
-            iconName="home"
-            title="Home"
+            iconName="list"
+            title="MyJobs"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
-                  component: HomePageScene,
-                  title: 'Home Page',
+                  component: CountDown,
+                  title: 'Count Down ',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
@@ -168,10 +168,9 @@ export default class HomePageScene extends React.Component {
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
-              this.props.navigator.replace({
-                  component: CountDown,
-                  title: 'Count Down ',
-                  navigationBarHidden:true,
+              this.props.navigator.push({
+                  component: JobList,
+                  title: 'Job List',
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -183,14 +182,15 @@ export default class HomePageScene extends React.Component {
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'jobListTab'}
+            selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
-              this.props.navigator.push({
-                  component: JobList,
-                  title: 'Job List',
+              this.props.navigator.replace({
+                  component: HomePageScene,
+                  title: 'Home Page',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password

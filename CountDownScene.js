@@ -36,7 +36,7 @@ export default class CountDownScene extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'thirdTab',
+      selectedTab: 'firstTab',
       date: new Date(),
       loaded: false
     };
@@ -94,13 +94,13 @@ export default class CountDownScene extends Component {
     var URL = 'https://hitch.herokuapp.com/api/getTimeStamp?event_id=2';
 
     var events = [];
-    
+
 
     if (this.state.loaded == false) {
       this._fetchData();
     }
 
-    
+
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 
     for (var i = 0; i < this.state.size; i++) {
@@ -147,16 +147,16 @@ export default class CountDownScene extends Component {
           barTintColor="gainsboro"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
-            iconName="home"
-            title="Home"
+            iconName="list"
+            title="MyJobs"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
-                  component: HomePageScene,
-                  title: 'Home Page',
+                  component: CountDown,
+                  title: 'Count Down ',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
@@ -194,32 +194,29 @@ export default class CountDownScene extends Component {
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
-              if (this.state.selectedTab !== 'thirdTab')
-              {
-              this.props.navigator.replace({
-                  component: CountDown,
-                  title: 'Count Down ',
-                  navigationBarHidden: true,
+              this.props.navigator.push({
+                  component: JobList,
+                  title: 'Job List',
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
                   }
                 });
-            }
             }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'jobListTab'}
+            selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
-              this.props.navigator.push({
-                  component: JobList,
-                  title: 'Job List',
+              this.props.navigator.replace({
+                  component: HomePageScene,
+                  title: 'Home Page',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
