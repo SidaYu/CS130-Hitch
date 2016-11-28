@@ -1,0 +1,108 @@
+{
+  "success": true,
+  "status": "OK",
+  "jsessionid": "C3AB4AE881D16A282D8D9E418B3F9C55",
+  "response": {
+    "attributionURL": "http://www.glassdoor.com/Reviews/software-27-reviews-SRCH_KO0,11.htm",
+    "currentPageNumber": 1,
+    "totalNumberOfPages": 1,
+    "totalRecordCount": 1,
+    "employers": [{
+      "id": 354,
+      "name": "IBM",
+      "website": "www.ibm.com",
+      "isEEP": true,
+      "exactMatch": false,
+      "industry": "Consulting",
+      "numberOfRatings": 25600,
+      "squareLogo": "https://media.glassdoor.com/sqll/354/ibm-squarelogo-1468349448058.png",
+      "overallRating": "3.4",
+      "ratingDescription": "OK",
+      "cultureAndValuesRating": "3.3",
+      "seniorLeadershipRating": "2.8",
+      "compensationAndBenefitsRating": "3.0",
+      "careerOpportunitiesRating": "3.3",
+      "workLifeBalanceRating": "3.5",
+      "recommendToFriendRating": 61,
+      "sectorId": 10006,
+      "sectorName": "Business Services",
+      "industryId": 200028,
+      "industryName": "Consulting",
+      "featuredReview": {
+        "attributionURL": "http://www.glassdoor.com/Reviews/Employee-Review-IBM-RVW5726258.htm",
+        "id": 5726258,
+        "currentJob": true,
+        "reviewDateTime": "2015-01-19 06:04:29.753",
+        "jobTitle": "Advisory Software Engineer - 27 Years",
+        "location": "Boca Raton, FL",
+        "jobTitleFromDb": "Advisory Software Engineer - 27 Years",
+        "headline": "I wish management would have been honest about discrimination policies against women software engineers' ceiling.",
+        "pros": "I started the team who developed the first speech recognition software on PC's and embedded products in 1993 in Boca.  The extended team included executives, Yortown research scientists with PhD's,  and direct report employees.  We worked on great technology, implementing the first speech enabled Netscape browser in 1995.  The rappor and support from executives in Watson was exciting as wer the great PRODUCTS we created.",
+        "cons": "1)  Being a woman Software Engineer, I was denied promotions beyond \"Advisory\" level, even with 27 years of successful projects, products and manager ratings.  Many people thought I was Senior level because of my work and responsibilities.  Several Senior level men held the same job I had after I did it.  \r\n2)  The current CEO got her props for bringing the Price Waterhouse people into IBM and spent HUGE $$$ doing it.  At the same time, executive management didn't have the cahoonas to fight the battles necessary to WIN at the Personal Computer business, in spite of having invented it and Microsoft's ANTI-TRUST Judgement  And they decimated the skilled developers from Boca into NC and TX in 1996.  OS/2 Warp 4.0 was shipped in 1996, AT THE SAME TIME, moving 400 developers to Austin.  The day after we shipped the product, IBM announced there would be the last release of OS/2.  So, all the talented operating system developers were told their new assignments were device drivers for AIX.  My job was to be the Planner for OS/2 - which is the place for requirements from the field for service releases to land.  But, there was NO money in the budget for any service release of OS/2, even though it would have been very easy to accomplish a small service release, while the skills were in place AND there was great customer acceptance of  Warp 4.0, due to it's inclusion of VoiceType Dictation, thanks to MY TEAM.  \r\n3)  We developed a lot of software that is still shipped in Windows, yet we were PROHIBITED from investing in Microsoft, as indiviuals because MS was a \"competitor\".  IBM receives license income from this code, but there is no benefit to the IBM employees to be compensated appropriately.  Our peers - those who worked jontly with us on the \"New Technology\" in the 1980's and 1990's at MS are many times over, multi-millionaires because of the tactics of Bill Gates and IBM's neglect of its own skilled developers.",
+        "overall": 1,
+        "overallNumeric": 1
+      },
+      "ceo": {
+        "name": "Virginia Rometty",
+        "title": "CEO",
+        "numberOfRatings": 8704,
+        "pctApprove": 58,
+        "pctDisapprove": 42,
+        "image": {
+          "src": "https://media.glassdoor.com/people/sqll/354/ibm-virginia-rometty.png",
+          "height": 200,
+          "width": 200
+        }
+      }
+    },
+    {
+      "id": 354,
+      "name": "IBM",
+      "website": "www.ibm.com",
+      "isEEP": true,
+      "exactMatch": false,
+      "industry": "Consulting",
+      "numberOfRatings": 25600,
+      "squareLogo": "https://media.glassdoor.com/sqll/354/ibm-squarelogo-1468349448058.png",
+      "overallRating": "3.4",
+      "ratingDescription": "OK",
+      "cultureAndValuesRating": "3.3",
+      "seniorLeadershipRating": "2.8",
+      "compensationAndBenefitsRating": "3.0",
+      "careerOpportunitiesRating": "3.3",
+      "workLifeBalanceRating": "3.5",
+      "recommendToFriendRating": 61,
+      "sectorId": 10006,
+      "sectorName": "Business Services",
+      "industryId": 200028,
+      "industryName": "Consulting",
+      "featuredReview": {
+        "attributionURL": "http://www.glassdoor.com/Reviews/Employee-Review-IBM-RVW5726258.htm",
+        "id": 5726258,
+        "currentJob": true,
+        "reviewDateTime": "2015-01-19 06:04:29.753",
+        "jobTitle": "Advisory Software Engineer - 27 Years",
+        "location": "Boca Raton, FL",
+        "jobTitleFromDb": "Advisory Software Engineer - 27 Years",
+        "headline": "I wish management would have been honest about discrimination policies against women software engineers' ceiling.",
+        "pros": "I started the team who developed the first speech recognition software on PC's and embedded products in 1993 in Boca.  The extended team included executives, Yortown research scientists with PhD's,  and direct report employees.  We worked on great technology, implementing the first speech enabled Netscape browser in 1995.  The rappor and support from executives in Watson was exciting as wer the great PRODUCTS we created.",
+        "cons": "1)  Being a woman Software Engineer, I was denied promotions beyond \"Advisory\" level, even with 27 years of successful projects, products and manager ratings.  Many people thought I was Senior level because of my work and responsibilities.  Several Senior level men held the same job I had after I did it.  \r\n2)  The current CEO got her props for bringing the Price Waterhouse people into IBM and spent HUGE $$$ doing it.  At the same time, executive management didn't have the cahoonas to fight the battles necessary to WIN at the Personal Computer business, in spite of having invented it and Microsoft's ANTI-TRUST Judgement  And they decimated the skilled developers from Boca into NC and TX in 1996.  OS/2 Warp 4.0 was shipped in 1996, AT THE SAME TIME, moving 400 developers to Austin.  The day after we shipped the product, IBM announced there would be the last release of OS/2.  So, all the talented operating system developers were told their new assignments were device drivers for AIX.  My job was to be the Planner for OS/2 - which is the place for requirements from the field for service releases to land.  But, there was NO money in the budget for any service release of OS/2, even though it would have been very easy to accomplish a small service release, while the skills were in place AND there was great customer acceptance of  Warp 4.0, due to it's inclusion of VoiceType Dictation, thanks to MY TEAM.  \r\n3)  We developed a lot of software that is still shipped in Windows, yet we were PROHIBITED from investing in Microsoft, as indiviuals because MS was a \"competitor\".  IBM receives license income from this code, but there is no benefit to the IBM employees to be compensated appropriately.  Our peers - those who worked jontly with us on the \"New Technology\" in the 1980's and 1990's at MS are many times over, multi-millionaires because of the tactics of Bill Gates and IBM's neglect of its own skilled developers.",
+        "overall": 1,
+        "overallNumeric": 1
+      },
+      "ceo": {
+        "name": "Virginia Rometty",
+        "title": "CEO",
+        "numberOfRatings": 8704,
+        "pctApprove": 58,
+        "pctDisapprove": 42,
+        "image": {
+          "src": "https://media.glassdoor.com/people/sqll/354/ibm-virginia-rometty.png",
+          "height": 200,
+          "width": 200
+        }
+      }
+    },
+  ]
+  }
+}

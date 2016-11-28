@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import SignUpScene from './SignUpScene';
 import SignInScene from './SignInScene';
 import JobList from './JobList';
+import JobDetail from './JobDetail'
 import {
   AppRegistry,
   NavigatorIOS,

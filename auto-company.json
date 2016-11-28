@@ -46,16 +46,37 @@
       {
         "app_URL": "https://www.adobe.com/", 
         "company_depart": "Image Process", 
-        "company_name": "ADOBE", 
+        "company_name": "Adobe", 
         "job_id": 54, 
         "position_title": "SDE"
       }, 
       {
         "app_URL": "https://www.yelp.com/", 
         "company_depart": "System", 
-        "company_name": "yelp", 
+        "company_name": "Yelp", 
         "job_id": 52, 
         "position_title": "Junior Developer"
+      }, 
+      {
+        "app_URL": "https://www.hulu.com/", 
+        "company_depart": "Food", 
+        "company_name": "Hulu", 
+        "job_id": 52, 
+        "position_title": "Product manager"
+      }, 
+      {
+        "app_URL": "https://www.apple.com/", 
+        "company_depart": "Supply", 
+        "company_name": "Apple", 
+        "job_id": 52, 
+        "position_title": "System Developer"
+      }, 
+      {
+        "app_URL": "https://www.laserfiche.com/", 
+        "company_depart": "Demand", 
+        "company_name": "Laserfiche", 
+        "job_id": 52, 
+        "position_title": "Data Analysist"
       }, 
     ], 
   }, 
