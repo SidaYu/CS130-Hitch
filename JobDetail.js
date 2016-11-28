@@ -78,23 +78,34 @@ constructor(props) {
 
 
 fetchData() {
-   fetch(REQUEST_URL, {
+     fetch("https://hitch.herokuapp.com/api/addjob", {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
-      },
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
       body: JSON.stringify({ 
-        job_id: this.props.add_comment_id,
-        comment: this.state.text,
+        user_email: 'tian@test.com', //REMEMBER TO CHANGE
+        company_name: this.props.m_n,
+        company_depart: "",  
+        position_title: "Software Development Test",
+        app_URL: this.props.m_w,
       })
     })
-    // .then((response) => response.json())
-    .then((response) => console.log(response))
-    .then((responseData) => {
-    })
-    .done();
+      .then((response) => response.json())
+      .then((responseData) => {
+        if(responseData.result == "success"){
+          AlertIOS.alert(
+            "Add job succeeded"
+          );      
+        }else{
+          AlertIOS.alert(
+            "Add job failed"
+          )
+        }
+      })
+      .then(() => this.props.navigator.pop()) 
+      .done(); 
   }
 
   helpFind()
@@ -147,7 +158,7 @@ fetchData() {
         <Text style = {styles.company}>Review</Text>
         <Text style = {styles.position}>{this.props.m_r}</Text>
         </View>
-        
+
         </View>
 
         <View style={{flex:1}}>

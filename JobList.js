@@ -53,9 +53,6 @@ constructor(props) {
     };
   }
 
-  changeTab (selectedTab) {
-  this.setState({selectedTab})
-}
 
   setImage()
   {
@@ -83,7 +80,8 @@ constructor(props) {
           list[i].avatar_url = 'https://yt3.ggpht.com/-MgU-QxeJRcM/AAAAAAAAAAI/AAAAAAAAAAA/_tghiNsm6NU/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
        if (list[i].company_name.toLowerCase() == 'apple')
           list[i].avatar_url = 'https://www.fantasygrounds.com/img/mac_os.png';
- 
+        if (list[i].company_name.toLowerCase() == 'ibm')
+          list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
     }
   }
 
@@ -176,7 +174,6 @@ fetchData() {
           jobs: responseData.jobs.job_list,
           searched_jobs: responseData.jobs.job_list,
           loaded: true,
-          rowToDelete: -1,
         });
       })
       .done();
@@ -280,7 +277,7 @@ fetchData() {
           key={i}
           title={l.company_name}
           subtitle = {l.position_title}
-          onPress = {()=>this._goToSpecificJob(l.job_id)}
+          onPress = {()=>this._goToSpecificJob(l)}
           />
           </Swipeout>
           ))
