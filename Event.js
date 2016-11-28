@@ -12,8 +12,8 @@ var {
   AlertIOS
 } = ReactNative;
 
-import { 
-  FormLabel, 
+import {
+  FormLabel,
   FormInput,
   Button
 } from 'react-native-elements'
@@ -56,8 +56,8 @@ class EventScene extends React.Component {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-      body: JSON.stringify({ 
-          job_id: "30",
+      body: JSON.stringify({
+          job_id: this.props.job_id,
           description: this.state.name,
           deadline: this.state.date,
           status: "False"
@@ -67,14 +67,14 @@ class EventScene extends React.Component {
       .then((responseData) => {
         if(responseData.result == "success") {
           AlertIOS.alert("SUCCESS");
-          this.props.navigator.pop()       
+          this.props.navigator.pop()
         } else {
           AlertIOS.alert (
             "Add event failed"
           )
         }
-      }) 
-      .done(); 
+      })
+      .done();
   }
 
   render() {
@@ -83,7 +83,7 @@ class EventScene extends React.Component {
       <ScrollView marginTop={70} marginBottom={20}>
 
         <FormLabel labelStyle={styles.labelStyle}>Event name</FormLabel>
-        <FormInput inputStyle={styles.inputStyle} value={this.state.name} 
+        <FormInput inputStyle={styles.inputStyle} value={this.state.name}
         	onChangeText={(text) => this.setState({name : text})}/>
 
         <FormLabel labelStyle={styles.labelStyle}>Event time</FormLabel>
@@ -125,7 +125,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Helvetica Neue'
   },
   inputStyle: {
-    color: '#363c47', 
+    color: '#363c47',
     fontSize: 15
   },
   textinput: {
