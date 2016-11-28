@@ -63,25 +63,27 @@ constructor(props) {
 
         if (list[i].company_name.toLowerCase() == 'microsoft')
           list[i].avatar_url = 'https://www.microsoft.com/en-us/server-cloud/Images/shared/page-sharing-thumbnail.jpg';
-        if (list[i].company_name.toLowerCase() == 'linkedin')
+        else if (list[i].company_name.toLowerCase() == 'linkedin')
           list[i].avatar_url = 'https://yt3.ggpht.com/-CepHHHB3l1Y/AAAAAAAAAAI/AAAAAAAAAAA/Z8MftqWbEqA/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
-        if (list[i].company_name.toLowerCase() == 'facebook')
+        else if (list[i].company_name.toLowerCase() == 'facebook')
           list[i].avatar_url = 'https://www.facebook.com/images/fb_icon_325x325.png';
 
-        if (list[i].company_name.toLowerCase() == 'google')
+        else if (list[i].company_name.toLowerCase() == 'google')
           list[i].avatar_url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg';
-        if (list[i].company_name.toLowerCase() == 'amazon')
+        else if (list[i].company_name.toLowerCase() == 'amazon')
           list[i].avatar_url = 'https://store-images.s-microsoft.com/image/apps.31672.9007199266244431.afea25ca-b409-4393-9a82-97fef1b330a0.6ae63586-6e3a-415f-bb6b-31a82bdcba1d?w=180&h=180&q=60';
-        if (list[i].company_name.toLowerCase() == 'appfolio')
+        else if (list[i].company_name.toLowerCase() == 'appfolio')
           list[i].avatar_url = 'https://www.appfolio.com/images/html/apm-fb-logo.png';
-        if (list[i].company_name.toLowerCase() == 'laserfiche')
+        else if (list[i].company_name.toLowerCase() == 'laserfiche')
           list[i].avatar_url = 'https://lh5.ggpht.com/TZOsQ_TJKzcobHRvQO9VDuk_fOuUGa7sgi6yFdJ3Opy_lnLAHvPyLZqsRX0gCm5mDzcQ=w300';
-        if (list[i].company_name.toLowerCase() == 'hulu')
+        else if (list[i].company_name.toLowerCase() == 'hulu')
           list[i].avatar_url = 'https://yt3.ggpht.com/-MgU-QxeJRcM/AAAAAAAAAAI/AAAAAAAAAAA/_tghiNsm6NU/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
-       if (list[i].company_name.toLowerCase() == 'apple')
+       else if (list[i].company_name.toLowerCase() == 'apple')
           list[i].avatar_url = 'https://www.fantasygrounds.com/img/mac_os.png';
-        if (list[i].company_name.toLowerCase() == 'ibm')
+        else if (list[i].company_name.toLowerCase() == 'ibm')
           list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
+        else
+          list[i].avatar_url = 'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
     }
   }
 
@@ -97,12 +99,14 @@ constructor(props) {
     var a = 1;
   }
 
-  _goToSpecificJob(id) {
+  _goToSpecificJob(id, name, logo) {
     this.props.navigator.push({
       component: DynamicList,
       title: 'Application Process',
       passProps: {
         job_id: id,
+        company_name: name,
+        company_logo: logo,
       }
     });
   }
@@ -195,12 +199,13 @@ fetchData() {
 
   changeList(n)
   {
+    n = n.toLowerCase();
     this.setState({search: true});
     let comps = [];
     var list = this.state.jobs;
     for (var i = 0; i < list.length; i++)
     {
-      if (list[i].company_name.includes(n))
+      if (list[i].company_name.toLowerCase().includes(n))
       {
         comps.push(list[i]);
         this.setState ({searched_jobs: comps});
@@ -237,7 +242,7 @@ fetchData() {
 
 
 
-    if (this.state.loaded == false) this.fetchData();
+    this.fetchData();
 
     return (
       <View style = {{marginTop: 70, flex: 1, backgroundColor: '#e6e6e6'}}>
@@ -256,20 +261,22 @@ fetchData() {
         this.state.searched_jobs.map((l, i) => (
 
 
-          <Swipeout right={
-          [
-            deleteButton = {
-              text: 'Delete',
-              backgroundColor: '#FF6347',
-              onPress: () => this._deleteItem(l.job_id),
-            },
-            editButton = {
-            text: 'Add Comment',
-            backgroundColor: 'lightgray',
-            color: 'white',
-            onPress: () => this._goAddComment(l.job_id),
-            }
-          ]
+          <Swipeout 
+            key = {i} 
+            right={
+            [
+              deleteButton = {
+                text: 'Delete',
+                backgroundColor: '#FF6347',
+                onPress: () => this._deleteItem(l.job_id),
+              },
+              editButton = {
+                text: 'Add Comment',
+                backgroundColor: 'lightgray',
+                color: 'white',
+                onPress: () => this._goAddComment(l.job_id),
+              }
+            ]
           }>
           <ListItem
           roundAvatar
@@ -277,7 +284,7 @@ fetchData() {
           key={i}
           title={l.company_name}
           subtitle = {l.position_title}
-          onPress = {()=>this._goToSpecificJob(l)}
+          onPress = {()=>this._goToSpecificJob(l.job_id, l.company_name, l.avatar_url)}
           />
           </Swipeout>
           ))

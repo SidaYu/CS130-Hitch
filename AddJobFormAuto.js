@@ -20,6 +20,7 @@ import {
 import AddJobForm from './AddJobForm';
 import JobDetail from './JobDetail';
 
+
 export default class CountDownScene extends Component {
   static get defaultProps() {
     return {
@@ -88,7 +89,7 @@ export default class CountDownScene extends Component {
 
   addJobAutoHelp()
   {
-     fetch("https://api.glassdoor.com/api/api.htm?t.p=108386&t.k=gOGr6axYbOq&userip=172.91.91.28&useragent=Mozilla/5.0%2520(Macintosh;%2520Intel%2520Mac%2520OS%2520X%252010_11_6)%2520AppleWebKit/537.36%2520(KHTML,%2520like%2520Gecko)%2520Chrome/54.0.2840.98%2520Safari/537.36&format=json&v=1&action=employers&q=software%2527", {
+     fetch("https://api.glassdoor.com/api/api.htm?t.p=108386&t.k=gOGr6axYbOq&userip=172.91.91.28&useragent=Mozilla/5.0%20(Macintosh;%20Intel%20Mac%20OS%20X%2010_11_6)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/54.0.2840.98%20Safari/537.36&format=json&v=1&action=employers&q=XXXXX", {
     })
       .then((response) => response.json())
       .then((responseData) => {
@@ -102,6 +103,7 @@ export default class CountDownScene extends Component {
 
   addJobAuto(n)
   {
+    n = n.toLowerCase();
     this.setState({search: true});
     let comps = [];
     var list = this.state.jobs;
@@ -112,7 +114,7 @@ export default class CountDownScene extends Component {
      }
     for (var i = 0; i < list.length; i++)
     {
-      if (list[i].name.includes(n))
+      if (list[i].name.toLowerCase().includes(n))
       {
         comps.push(list[i]);
         this.setState ({searched_jobs: comps});
