@@ -169,8 +169,8 @@ export default class CalendarScene extends Component {
           barTintColor="gainsboro"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
-            iconName="list"
-            title="MyJobs"
+            iconName="clock-o"
+            title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
@@ -216,7 +216,7 @@ export default class CalendarScene extends Component {
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
-              this.props.navigator.push({
+              this.props.navigator.replace({
                   component: JobList,
                   title: 'Job List',
                   passProps: {

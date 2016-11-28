@@ -8,20 +8,30 @@ import {
   TextInput,
   View,
   NavigatorIOS,
+  ScrollView,
+  TabBarIOS
 } from 'react-native';
 import {
-  Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
+  Button, List, ListItem, CheckBox, SearchBar, Tabs, Tab,
 } from 'react-native-elements'
 
 
 import NavigationBar from 'react-native-navbar';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-
+import AddComment from './AddComment'
+import Comment from './Comment'
 import AddJobForm from './AddJobForm';
+import AddJobFormAuto from './AddJobFormAuto';
 import Google from './Google';
-import DynamicList from './DynamicList'
+import DynamicList from './DynamicList';
+import CalendarScene from './CalendarScene';
+import CountDown from './CountDownScene';
+import Settings from './SettingsScene';
+import HomePageScene from './HomePageScene';
 
-var REQUEST_URL = 'https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com'
+var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
+var Swipeout = require('react-native-swipeout')
 
 export default class JobList extends Component {
   static get defaultProps() {
@@ -32,46 +42,64 @@ export default class JobList extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     navigator: PropTypes.object.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   }
 
 constructor(props) {
     super(props);
-    this._goToAddJobForm = this._goToAddJobForm.bind(this);
+    this._goToAddJobFormAuto = this._goToAddJobFormAuto.bind(this);
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
+    this._goToComment = this._goToComment.bind(this);
     this.state = {
-      jobs: null,
-      searched_jobs: null,
-      selectedTab: 'thirdTab',
+        jobs: null,
+        searched_jobs: null,
       loaded: false,
       search:false,
+      rowToDelete : null,
+      add_comment_id: -1,
+      selectedTab: 'thirdTab'
     };
   }
+
 
   setImage()
   {
     var list = this.state.jobs;
-    for (var i = 0; i < list.length; i++)
+    var len = list.length;
+    for (var i = 0; i < len; i++)
     {
-      if (list[i].company_name == 'Microsoft')
+
+        if (list[i].company_name.toLowerCase() == 'microsoft')
           list[i].avatar_url = 'https://www.microsoft.com/en-us/server-cloud/Images/shared/page-sharing-thumbnail.jpg';
-      if (list[i].company_name == 'Linkedin')
+        else if (list[i].company_name.toLowerCase() == 'linkedin')
           list[i].avatar_url = 'https://yt3.ggpht.com/-CepHHHB3l1Y/AAAAAAAAAAI/AAAAAAAAAAA/Z8MftqWbEqA/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
-      if (list[i].company_name == 'Facebook')
+        else if (list[i].company_name.toLowerCase() == 'facebook')
           list[i].avatar_url = 'https://www.facebook.com/images/fb_icon_325x325.png';
 
-      if (list[i].company_name == 'Google')
+        else if (list[i].company_name.toLowerCase() == 'google')
           list[i].avatar_url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg';
-      if (list[i].company_name == 'Amazon')
+        else if (list[i].company_name.toLowerCase() == 'amazon')
           list[i].avatar_url = 'https://store-images.s-microsoft.com/image/apps.31672.9007199266244431.afea25ca-b409-4393-9a82-97fef1b330a0.6ae63586-6e3a-415f-bb6b-31a82bdcba1d?w=180&h=180&q=60';
-      if (list[i].company_name == 'Appfolio')
+        else if (list[i].company_name.toLowerCase() == 'appfolio')
           list[i].avatar_url = 'https://www.appfolio.com/images/html/apm-fb-logo.png';
+        else if (list[i].company_name.toLowerCase() == 'laserfiche')
+          list[i].avatar_url = 'https://lh5.ggpht.com/TZOsQ_TJKzcobHRvQO9VDuk_fOuUGa7sgi6yFdJ3Opy_lnLAHvPyLZqsRX0gCm5mDzcQ=w300';
+        else if (list[i].company_name.toLowerCase() == 'hulu')
+          list[i].avatar_url = 'https://yt3.ggpht.com/-MgU-QxeJRcM/AAAAAAAAAAI/AAAAAAAAAAA/_tghiNsm6NU/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
+       else if (list[i].company_name.toLowerCase() == 'apple')
+          list[i].avatar_url = 'https://www.fantasygrounds.com/img/mac_os.png';
+        else if (list[i].company_name.toLowerCase() == 'ibm')
+          list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
+        else
+          list[i].avatar_url = 'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
     }
   }
 
-  _goToAddJobForm() {
+  _goToAddJobFormAuto() {
     this.props.navigator.push({
-      component: AddJobForm,
-      title: 'Add Job Form',
+      component: AddJobFormAuto,
+      title: 'Add Job Form Auto',
     });
   }
 
@@ -80,12 +108,72 @@ constructor(props) {
     var a = 1;
   }
 
-  _goToSpecificJob() {
+  _goToSpecificJob(id, name, logo) {
     this.props.navigator.push({
       component: DynamicList,
       title: 'Application Process',
+      passProps: {
+        job_id: id,
+        company_name: name,
+        company_logo: logo,
+      }
     });
   }
+
+
+  _goAddComment(id){
+      this.props.navigator.push({
+      component: AddComment,
+      title: 'Add Comment',
+      passProps: {
+        add_comment_id: id,
+      }
+    });
+  }
+
+
+  _goToComment(){
+      this.props.navigator.push({
+      component: Comment,
+      title: 'Comment',
+    });
+  }
+
+  _onAfterRemovingElement() {
+    this.setState({
+      rowToDelete : null,
+      dataSource  : this.state.dataSource.cloneWithRows(this._data)
+      });
+  }
+
+  _deleteItem(id) {
+    console.log("start deleteJob")
+    console.log(id)
+    fetch('https://hitch.herokuapp.com/api/deleteJob', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
+      },
+      body: JSON.stringify({ 
+        job_id: +id,
+      })
+    })
+    // .then((response) => response.json())
+    .then((response) => console.log(response))
+    .then((responseData) => {
+      this.setState({
+        loaded: true,
+        rowToDelete: -1,
+        });
+    })
+    .done(); 
+    this.fetchData();
+    //this.props.navigator.pop();
+    this.render();
+  }
+
 
 fetchData() {
     fetch(REQUEST_URL, {
@@ -96,13 +184,21 @@ fetchData() {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          jobs: responseData.user_info.jobs,
-          searched_jobs: responseData.user_info.jobs,
+          jobs: responseData.jobs.job_list,
+          searched_jobs: responseData.jobs.job_list,
           loaded: true,
         });
       })
       .done();
+  //   var responseData = require('./jobs.json');
+  //   this.setState({
+  //    jobs: responseData.jobs.job_list,
+  //    searched_jobs: responseData.jobs.job_list,
+  //    loaded: true,
+  // });
+
   }
+
 
 
 
@@ -112,12 +208,13 @@ fetchData() {
 
   changeList(n)
   {
+    n = n.toLowerCase();
     this.setState({search: true});
     let comps = [];
     var list = this.state.jobs;
     for (var i = 0; i < list.length; i++)
     {
-      if (list[i].company_name.includes(n))
+      if (list[i].company_name.toLowerCase().includes(n))
       {
         comps.push(list[i]);
         this.setState ({searched_jobs: comps});
@@ -126,7 +223,7 @@ fetchData() {
     if (!comps.length) this.setState({searched_jobs: this.state.jobs});
   }
 
-  render()
+  render() 
   {
 
     var titleConfig = {
@@ -142,7 +239,7 @@ fetchData() {
     {
       title: 'Add New Job',
       icon: 'add',
-    },
+    },  
     ]
 
     var refresh = [
@@ -153,10 +250,11 @@ fetchData() {
     ]
 
 
-    if (this.state.search == false) this.fetchData();
+
+    if (this.state.loaded == false) this.fetchData();
 
     return (
-      <View style = {{marginTop: 70, flex: 1, backgroundColor: '#e6e6e6'}}>
+      <View style = {{marginTop: 60, flex: 1, backgroundColor: '#e6e6e6'}}>
 
       <View>
       <SearchBar
@@ -164,21 +262,43 @@ fetchData() {
       placeholder='Type to search company name...' />
 
 
+
+      <ScrollView style = {{height: 510}}>
       <List containerStyle = {{}} >
       {
+        
         this.state.searched_jobs.map((l, i) => (
+
+
+          <Swipeout 
+            key = {i} 
+            right={
+            [
+              deleteButton = {
+                text: 'Delete',
+                backgroundColor: '#FF6347',
+                onPress: () => this._deleteItem(l.job_id),
+              },
+              editButton = {
+                text: 'Add Comment',
+                backgroundColor: 'lightgray',
+                color: 'white',
+                onPress: () => this._goAddComment(l.job_id),
+              }
+            ]
+          }>
           <ListItem
           roundAvatar
           avatar = {{uri: l.avatar_url}}
           key={i}
           title={l.company_name}
           subtitle = {l.position_title}
-          onPress = {this._goToSpecificJob}
+          onPress = {()=>this._goToSpecificJob(l.job_id, l.company_name, l.avatar_url)}
           />
+          </Swipeout>
           ))
         }
         </List>
-        </View>
 
 
         <List >
@@ -188,7 +308,7 @@ fetchData() {
           key={i}
           title={item.title}
           leftIcon={{name: item.icon}}
-          onPress = {this._goToAddJobForm}
+          onPress = {this._goToAddJobFormAuto}
           />
           ))
         }
@@ -201,24 +321,98 @@ fetchData() {
           key={i}
           title={item.title}
           leftIcon={{name: item.icon}}
-          onPress = {() => this.setState({search: false})}
+          //onPress = {() => this.setState({search: false})}
+          onPress = {this._goToComment}
           />
           ))
         }
         </List>
-
+        </ScrollView>
 
 
         </View>
-        // <Button
-        //   small
-        //   containerStyle={{padding:10, height:45, overflow:'hidden', borderRadius:4, backgroundColor: 'white'}}
-        //   onPress={this._goToAddJobForm}
-        //   title = 'Add New Job'
-        //   backgroundColor = 'steelblue'
-        //   color = 'white'
-        //   />
-          // <View style = {{flex: 1}} />
+        
+      
+      <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
+       <TabBarIOS
+          unselectedTintColor="azure"
+          tintColor="white"
+          barTintColor="gainsboro"
+          backgroundColor = "azure">
+          <Icon.TabBarItemIOS
+            iconName="clock-o"
+            title="CountDown"
+            selected={this.state.selectedTab === 'firstTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CountDown,
+                  title: 'Count Down ',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="calendar"
+            title="Calendar"
+            selected={this.state.selectedTab === 'secondTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CalendarScene,
+                  title: 'Calendar',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="list"
+            title="MyJobs"
+            selected={this.state.selectedTab === 'thirdTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
+            >
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="user"
+            title="Profile"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"grey"}
+            selectedIconColor={'#1F2F3C'}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: HomePageScene,
+                  title: 'Home Page',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+        </TabBarIOS>
+        </View>
+        </View>
+      
           );
       }
 
@@ -259,7 +453,7 @@ fetchData() {
         },
         background:
         {
-          flex:1,
+          flex:1, 
         },
         container: {
           justifyContent: 'center',

@@ -121,23 +121,12 @@ export default class HomePageScene extends React.Component {
           barTintColor="gainsboro"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
-            iconName="list"
-            title="MyJobs"
+            iconName="clock-o"
+            title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
-            renderAsOriginal={true}
-            onPress={() => {
-              this.props.navigator.replace({
-                  component: CountDown,
-                  title: 'Count Down ',
-                  navigationBarHidden: true,
-                  passProps: {
-                    email: this.props.email,
-                    password: this.props.password
-                  }
-                });
-            }}>
+            renderAsOriginal={true}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
@@ -168,7 +157,7 @@ export default class HomePageScene extends React.Component {
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
             onPress={() => {
-              this.props.navigator.push({
+              this.props.navigator.replace({
                   component: JobList,
                   title: 'Job List',
                   passProps: {
