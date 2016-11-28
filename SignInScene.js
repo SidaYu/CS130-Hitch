@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SignUpScene from './SignUpScene';
 import HomePageScene from './HomePageScene';
+import CountDown from './CountDownScene';
 import Video from 'react-native-video';
 import {
   AppRegistry,
@@ -63,8 +64,8 @@ export default class SignInScene extends Component {
       .then((responseData) => {
         if(responseData.result){
           this.props.navigator.push({
-            component: HomePageScene,
-            title: 'Home Page',
+            component: CountDown,
+            title: 'Count Down',
             navigationBarHidden: true,
             passProps: {
               email: this.state.email,

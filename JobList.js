@@ -39,16 +39,13 @@ constructor(props) {
     this._goToAddJobForm = this._goToAddJobForm.bind(this);
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
     this.state = {
-        jobs: null,
-        searched_jobs: null,
+      jobs: null,
+      searched_jobs: null,
+      selectedTab: 'thirdTab',
       loaded: false,
       search:false,
     };
   }
-
-  changeTab (selectedTab) {
-  this.setState({selectedTab})
-}
 
   setImage()
   {

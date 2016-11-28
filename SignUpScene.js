@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import HomePageScene from './HomePageScene';
+import CountDown from './CountDownScene';
 import {
   AppRegistry,
   StyleSheet,
@@ -51,8 +52,8 @@ export default class SignUpScene extends Component {
           )
         }else{
           this.props.navigator.push({
-            component: HomePageScene,
-            title: 'Home Page',
+            component: CountDown,
+            title: 'Count Down',
             navigationBarHidden: true,
             passProps: {
               email: this.state.email,
