@@ -164,7 +164,7 @@ export default class CountDownScene extends Component {
   }
 
   _fetchData() {
-    var URL = 'https://hitch.herokuapp.com/api/getTimeStamps?job_id=2';
+    var URL = 'https://hitch.herokuapp.com/api/getTimeStamps?job_id='+this.props.job_id;
     fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {

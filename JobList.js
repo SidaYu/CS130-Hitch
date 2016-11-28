@@ -29,6 +29,7 @@ import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
+import Event from './Event';
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
 var Swipeout = require('react-native-swipeout')
@@ -112,6 +113,11 @@ constructor(props) {
     this.props.navigator.push({
       component: DynamicList,
       title: 'Application Process',
+      rightButtonTitle: 'Add',
+      onRightButtonPress: () => {this.props.navigator.push({component: Event,title: 'New Event',passProps: {
+          job_id : id,
+        }
+      })},
       passProps: {
         job_id: id,
         company_name: name,
@@ -251,7 +257,7 @@ fetchData() {
 
 
 
-    if (this.state.loaded == false) this.fetchData();
+    this.fetchData();
 
     return (
       <View style = {{marginTop: 60, flex: 1, backgroundColor: '#e6e6e6'}}>
