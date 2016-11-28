@@ -154,29 +154,20 @@ export default class DynamicList extends Component {
             refreshing  : false,
             rowToDelete : -1,
             dataSource  : ds,
-            dealineList : [null, null, null, null, null],
         });
     }
 
     _fetchData() {
-    var URL = 'https://hitch.herokuapp.com/api/getTimeStamps?job_id=2';
+    var URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com';
     return fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
-        var deadlineList = {};
-        var descriptionList = {};
-        var statusList = {};
-          deadlineList['size'] = responseJson.timeStamps.timeStamp_list.length;
-          descriptionList['size'] = responseJson.timeStamps.timeStamp_list.length;
-          statusList['size'] = responseJson.timeStamps.timeStamp_list.length;
-          for (var i = 0; i < responseJson.timeStamps.timeStamp_list.length; i++) {
-            deadlineList[i] = responseJson.timeStamps.timeStamp_list[i].deadline;
-            descriptionList[i] = responseJson.timeStamps.timeStamp_list[i].description;
-            statusList[i] = responseJson.timeStamps.timeStamp_list[i].status;
+        var state = {};
+          state['size'] = responseJson.res.timeStamp_list.length;
+          for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
+            state[i] = responseJson.res.timeStamp_list[i].deadline;
           }
-        this.setState(deadlineList);
-        this.setState(descriptionList);
-        this.setState(statusList);
+        this.setState(state);
         this.setState({
           loaded : true,
         });
@@ -214,8 +205,8 @@ export default class DynamicList extends Component {
                 <View>
                     <TouchableOpacity
                         style={styles.addButton}
-                        onPress={()=> this._addItemPressed()}>
-                        <Text style={styles.addButtonText}>+New</Text>
+                        onPress={()=> this._goEventDetail()}>
+                        <Text style={styles.addButtonText}>{this.state[1]}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
