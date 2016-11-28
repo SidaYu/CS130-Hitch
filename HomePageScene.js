@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
+
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
@@ -94,39 +97,41 @@ export default class HomePageScene extends React.Component {
         <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
         </View>
         <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightgrey'}}>
-          <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Verify Your Current Password"
-            onChangeText={(currentPassword) => this.setState({currentPassword})} autoCapitalize="none"/>
-          </View>
-          <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Please enter your new password"
-            onChangeText={(newPassword) => this.setState({newPassword})} autoCapitalize="none"/>
-          </View>
-          <View style={styles.textInput}>
-            <TextInput style={{height: 35,width: 300}} placeholder=" Please enter your new password again"
-            onChangeText={(newPassword2) => this.setState({newPassword2})} autoCapitalize="none"/>
-          </View>
-          <View style={styles.button}>
-            <TouchableHighlight onPress={this._goToChangePassword}>
-              <Text>Change Password</Text>
-            </TouchableHighlight>
-          </View>
-          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'azure'}}>
+          <Fumi style={{width:350}} label={'Verify your current email'} iconClass={FontAwesomeIcon} iconName={'envelope-o'} onChangeText={(currentPassword) => this.setState({currentPassword})} iconColor={'#f95a26'} autoCapitalize="none"/>
+          <Fumi style={{width:350}} label={'Enter your new password'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(newPassword) => this.setState({newPassword})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
+          <Fumi style={{width:350}} label={'Enter your new password again'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(newPassword2) => this.setState({newPassword2})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
+          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'lightgrey'}}>
+            <View style={styles.button}>
+              <TouchableHighlight onPress={this._goToChangePassword}>
+                <Text>Change Password</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
-        <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
+        <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightgrey'}}>
           <TabBarIOS
           unselectedTintColor="azure"
           tintColor="white"
           barTintColor="gainsboro"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
-            iconName="clock-o"
-            title="CountDown"
+            iconName="list"
+            title="MyJobs"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
-            renderAsOriginal={true}>
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CountDown,
+                  title: 'Count Down ',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
@@ -175,17 +180,7 @@ export default class HomePageScene extends React.Component {
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
-            onPress={() => {
-              this.props.navigator.replace({
-                  component: HomePageScene,
-                  title: 'Home Page',
-                  navigationBarHidden: true,
-                  passProps: {
-                    email: this.props.email,
-                    password: this.props.password
-                  }
-                });
-            }}>
+            >
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
         </TabBarIOS>
@@ -207,11 +202,11 @@ const styles = StyleSheet.create({
     padding:10,
   },
   button: {
-    backgroundColor:'azure',
-    borderBottomLeftRadius:20,
-    borderTopRightRadius:20,
-    borderTopLeftRadius:20,
-    borderBottomRightRadius:20,
+    backgroundColor:'white',
+    borderBottomLeftRadius:5,
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    borderBottomRightRadius:5,
     padding: 10,
   },
 });

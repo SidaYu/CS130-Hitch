@@ -156,7 +156,7 @@ constructor(props) {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         job_id: +id,
       })
     })
@@ -168,7 +168,7 @@ constructor(props) {
         rowToDelete: -1,
         });
     })
-    .done(); 
+    .done();
     this.fetchData();
     //this.props.navigator.pop();
     this.render();
@@ -223,7 +223,7 @@ fetchData() {
     if (!comps.length) this.setState({searched_jobs: this.state.jobs});
   }
 
-  render() 
+  render()
   {
 
     var titleConfig = {
@@ -239,7 +239,7 @@ fetchData() {
     {
       title: 'Add New Job',
       icon: 'add',
-    },  
+    },
     ]
 
     var refresh = [
@@ -266,12 +266,12 @@ fetchData() {
       <ScrollView style = {{height: 510}}>
       <List containerStyle = {{}} >
       {
-        
+
         this.state.searched_jobs.map((l, i) => (
 
 
-          <Swipeout 
-            key = {i} 
+          <Swipeout
+            key = {i}
             right={
             [
               deleteButton = {
@@ -331,8 +331,8 @@ fetchData() {
 
 
         </View>
-        
-      
+
+
       <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
        <TabBarIOS
           unselectedTintColor="azure"
@@ -412,7 +412,7 @@ fetchData() {
         </TabBarIOS>
         </View>
         </View>
-      
+
           );
       }
 
@@ -453,7 +453,7 @@ fetchData() {
         },
         background:
         {
-          flex:1, 
+          flex:1,
         },
         container: {
           justifyContent: 'center',

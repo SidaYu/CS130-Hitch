@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
+
 import SignUpScene from './SignUpScene';
 import HomePageScene from './HomePageScene';
 import CountDown from './CountDownScene';
@@ -84,20 +87,13 @@ export default class SignInScene extends Component {
 
   render() {
     return (
-        <View style={{height: 680, width: 380,flex:1, flexDirection: 'column',backgroundColor: 'powderblue',alignItems:'center'}}>
-          <Image
-          source={require('./pics/bcg.png')} style={{height:680,width:380}}>
-            <View style={{height: 300, justifyContent: 'center',alignItems:'center'}}>
+        <View style={{height: 680, width: 380,flex:1, flexDirection: 'column',backgroundColor: 'darkseagreen',alignItems:'center'}}>
+          <View style={{height:680,width:380}}>
+            <View style={{height: 240, justifyContent: 'center',alignItems:'center'}}>
             </View>
-            <View style={{height: 130, justifyContent: 'space-between',alignItems:'center'}}>
-              <View style={styles.textInput}>
-              	<TextInput style={{height: 35,width: 300}} placeholder=" Email"
-              	onChangeText={(email) => this.setState({email})} autoCapitalize="none"/>
-              </View>
-              <View style={styles.textInput}>
-              	<TextInput style={{height: 35,width: 300}} placeholder=" Password"
-              	onChangeText={(password) => this.setState({password})} autoCapitalize="none" secureTextEntry={true}/>
-              </View>
+            <View style={{height: 180, justifyContent: 'space-between', alignItems: 'center'}}>
+              <Fumi style={{width:350}} label={'Email'} iconClass={FontAwesomeIcon} iconName={'envelope-o'} onChangeText={(email) => this.setState({email})} iconColor={'#f95a26'} autoCapitalize="none"/>
+              <Fumi style={{width:350}} label={'Password'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(password) => this.setState({password})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
             </View>
             <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
               <View style={styles.button}>
@@ -112,7 +108,7 @@ export default class SignInScene extends Component {
                 </TouchableHighlight>
               </View>
             </View>
-          </Image>
+          </View>
         </View>
     )
   }
@@ -126,7 +122,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:20,
     borderBottomRightRadius:20,
     padding:10,
-
+  },
+  default: {
+    height: 26,
+    borderWidth: 0.5,
+    borderColor: '#0f0f0f',
+    flex: 1,
+    fontSize: 13,
+    padding: 4,
+    backgroundColor: 'skyblue',
   },
   forgetPassWord: {
   	fontFamily: 'Cochin',
@@ -135,11 +139,11 @@ const styles = StyleSheet.create({
   	paddingTop: 10,
   },
   button: {
-    backgroundColor:'azure',
-    borderBottomLeftRadius:20,
-    borderTopRightRadius:20,
-    borderTopLeftRadius:20,
-    borderBottomRightRadius:20,
+    backgroundColor:'white',
+    borderBottomLeftRadius:5,
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    borderBottomRightRadius:5,
     padding: 10,
   },
   logo: {

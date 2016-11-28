@@ -195,17 +195,7 @@ export default class CalendarScene extends Component {
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}
             renderAsOriginal={true}
-            onPress={() => {
-              this.props.navigator.replace({
-                  component: CalendarScene,
-                  title: 'Calendar',
-                  navigationBarHidden: true,
-                  passProps: {
-                    email: this.props.email,
-                    password: this.props.password
-                  }
-                });
-            }}>
+            >
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
