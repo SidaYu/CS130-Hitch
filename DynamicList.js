@@ -119,7 +119,6 @@ export default class DynamicList extends Component {
      * */
      constructor(props) {
         super(props);
-        this.setState({temp : this._getData()});
      }
     state = {
         loading     : true,
@@ -127,7 +126,7 @@ export default class DynamicList extends Component {
             rowHasChanged : (row1, row2) => true
         }),
         refreshing  : false,
-        rowToDelete : null
+        rowToDelete : null,
     };
 
     componentDidMount() {
@@ -160,16 +159,24 @@ export default class DynamicList extends Component {
     }
 
     _fetchData() {
-    var URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com';
+    var URL = 'https://hitch.herokuapp.com/api/getTimeStamp?event_id=2';
     return fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
-        var state = {};
-          state['size'] = responseJson.res.timeStamp_list.length;
+        var deadlineList = {};
+        var descriptionList = {};
+        var statusList = {};
+          deadlineList['size'] = responseJson.res.timeStamp_list.length;
+          descriptionList['size'] = responseJson.res.timeStamp_list.length;
+          statusList['size'] = responseJson.res.timeStamp_list.length;
           for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
-            state[i] = responseJson.res.timeStamp_list[i].deadline;
+            deadlineList[i] = responseJson.res.timeStamp_list[i].deadline;
+            descriptionList[i] = responseJson.res.timeStamp_list[i].description;
+            statusList[i] = responseJson.res.timeStamp_list[i].status;
           }
-        this.setState(state);
+        this.setState(deadlineList);
+        this.setState(descriptionList);
+        this.setState(statusList);
         this.setState({
           loaded : true,
         });
@@ -183,7 +190,6 @@ export default class DynamicList extends Component {
   }
 
     render() {
-        JSON.parse({this.state.jsonData});
         return (
             <View style={styles.container}>
                 <ListView
@@ -205,7 +211,7 @@ export default class DynamicList extends Component {
                     <TouchableOpacity
                         style={styles.addButton}
                         onPress={()=> this._addItemPressed()}>
-                        <Text style={styles.addButtonText}>{console.warn(this.state.jsonData)}</Text>
+                        <Text style={styles.addButtonText}>+New</Text>
                     </TouchableOpacity>
                 </View>
             </View>
