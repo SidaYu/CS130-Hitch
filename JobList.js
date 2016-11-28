@@ -17,8 +17,10 @@ import {
 
 import NavigationBar from 'react-native-navbar';
 
-
+import AddComment from './AddComment'
+import Comment from './Comment'
 import AddJobForm from './AddJobForm';
+import AddJobFormAuto from './AddJobFormAuto';
 import Google from './Google';
 import DynamicList from './DynamicList'
 
@@ -38,14 +40,16 @@ export default class JobList extends Component {
 
 constructor(props) {
     super(props);
-    this._goToAddJobForm = this._goToAddJobForm.bind(this);
+    this._goToAddJobFormAuto = this._goToAddJobFormAuto.bind(this);
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
+    this._goToComment = this._goToComment.bind(this);
     this.state = {
         jobs: null,
         searched_jobs: null,
       loaded: false,
       search:false,
-      rowToDelete : null
+      rowToDelete : null,
+      add_comment_id: -1
     };
   }
 
@@ -56,11 +60,10 @@ constructor(props) {
   setImage()
   {
     var list = this.state.jobs;
-    for (var i = 0; i < list.length; i++)
+    var len = list.length;
+    for (var i = 0; i < len; i++)
     {
-      if (list[i].company_name == '' && list[i].company_depart == '') list.splice(i, 1);
-      else
-      {
+
         if (list[i].company_name == 'Microsoft')
           list[i].avatar_url = 'https://www.microsoft.com/en-us/server-cloud/Images/shared/page-sharing-thumbnail.jpg';
         if (list[i].company_name == 'Linkedin')
@@ -74,14 +77,13 @@ constructor(props) {
           list[i].avatar_url = 'https://store-images.s-microsoft.com/image/apps.31672.9007199266244431.afea25ca-b409-4393-9a82-97fef1b330a0.6ae63586-6e3a-415f-bb6b-31a82bdcba1d?w=180&h=180&q=60';
         if (list[i].company_name == 'Appfolio')
           list[i].avatar_url = 'https://www.appfolio.com/images/html/apm-fb-logo.png';
-      }
     }
   }
 
-  _goToAddJobForm() {
+  _goToAddJobFormAuto() {
     this.props.navigator.push({
-      component: AddJobForm,
-      title: 'Add Job Form',
+      component: AddJobFormAuto,
+      title: 'Add Job Form Auto',
     });
   }
 
@@ -97,6 +99,25 @@ constructor(props) {
     });
   }
 
+
+  _goAddComment(id){
+      this.props.navigator.push({
+      component: AddComment,
+      title: 'Add Comment',
+      passProps: {
+        add_comment_id: id,
+      }
+    });
+  }
+
+
+  _goToComment(){
+      this.props.navigator.push({
+      component: Comment,
+      title: 'Comment',
+    });
+  }
+
   _onAfterRemovingElement() {
     this.setState({
       rowToDelete : null,
@@ -105,29 +126,33 @@ constructor(props) {
   }
 
   _deleteItem(id) {
-    fetch(REQUEST_URL, {
+    console.log("start deleteJob")
+    console.log(id)
+    fetch('https://hitch.herokuapp.com/api/deleteJob', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
       },
       body: JSON.stringify({ 
-        job_id: id,
+        job_id: +id,
       })
     })
-    .then((response) => response.json())
+    // .then((response) => response.json())
+    .then((response) => console.log(response))
     .then((responseData) => {
       this.setState({
-        jobs: responseData.jobs.job_list,
-        searched_jobs: responseData.jobs.job_list,
         loaded: true,
         rowToDelete: -1,
         });
     })
     .done(); 
+    this.fetchData();
     //this.props.navigator.pop();
     this.render();
   }
+
 
 fetchData() {
     fetch(REQUEST_URL, {
@@ -147,8 +172,8 @@ fetchData() {
       .done();
   //   var responseData = require('./jobs.json');
   //   this.setState({
-  //    jobs: responseData.user_info.jobs,
-  //    searched_jobs: responseData.user_info.jobs,
+  //    jobs: responseData.jobs.job_list,
+  //    searched_jobs: responseData.jobs.job_list,
   //    loaded: true,
   // });
 
@@ -218,20 +243,27 @@ fetchData() {
 
 
       <ScrollView>
-
-
-
       <List containerStyle = {{}} >
       {
         
         this.state.searched_jobs.map((l, i) => (
 
 
-          <Swipeout right={[deleteButton = {
-          text: 'Delete',
-          backgroundColor: '#FF6347',
-          onPress: () => this._deleteItem(l.job_id),
-          }]}>
+          <Swipeout right={
+          [
+            deleteButton = {
+              text: 'Delete',
+              backgroundColor: '#FF6347',
+              onPress: () => this._deleteItem(l.job_id),
+            },
+            editButton = {
+            text: 'Add Comment',
+            backgroundColor: 'lightgray',
+            color: 'white',
+            onPress: () => this._goAddComment(l.job_id),
+            }
+          ]
+          }>
           <ListItem
           roundAvatar
           avatar = {{uri: l.avatar_url}}
@@ -253,7 +285,7 @@ fetchData() {
           key={i}
           title={item.title}
           leftIcon={{name: item.icon}}
-          onPress = {this._goToAddJobForm}
+          onPress = {this._goToAddJobFormAuto}
           />
           ))
         }
@@ -266,7 +298,8 @@ fetchData() {
           key={i}
           title={item.title}
           leftIcon={{name: item.icon}}
-          onPress = {() => this.setState({search: false})}
+          //onPress = {() => this.setState({search: false})}
+          onPress = {this._goToComment}
           />
           ))
         }
@@ -279,7 +312,7 @@ fetchData() {
         // <Button 
         //   small
         //   containerStyle={{padding:10, height:45, overflow:'hidden', borderRadius:4, backgroundColor: 'white'}}
-        //   onPress={this._goToAddJobForm}
+        //   onPress={this._goToAddJobFormAuto}
         //   title = 'Add New Job' 
         //   backgroundColor = 'steelblue'
         //   color = 'white' 

@@ -1,143 +1,78 @@
 {
-  "status": "success", 
-  "user_info": {
-    "jobs": [
-      {
-        "app_URL": "www.google.com/jobs", 
-        "comments": [
-          {
-            "comment": "Google has four round interview", 
-            "id": 1, 
-            "job_id": 1
-          }, 
-          {
-            "comment": "Google will have a host matching process after interview.", 
-            "id": 2, 
-            "job_id": 1
-          }
-        ], 
-        "company_depart": "Youtube", 
-        "company_name": "Google", 
-        "position_title": "SDE", 
-        "time_stamps": [
-          {
-            "deadline": "Wed, 01 Jun 2005 00:00:00 GMT", 
-            "description": "apply", 
-            "id": 1, 
-            "job_id": 1, 
-            "status": false
-          }, 
-          {
-            "deadline": "Wed, 01 Jun 2005 00:00:00 GMT", 
-            "description": "apply", 
-            "id": 5, 
-            "job_id": 1, 
-            "status": true
-          }
-        ]
-      }, 
+  "jobs": {
+    "job_list": [
       {
         "app_URL": "N/A", 
-        "comments": [], 
         "company_depart": "Website", 
         "company_name": "Appfolio", 
-        "position_title": "Software Engineer ", 
-        "time_stamps": []
+        "job_id": 29, 
+        "position_title": "Software Engineer "
       }, 
       {
         "app_URL": "N/a", 
-        "comments": [], 
         "company_depart": "Windows OS", 
         "company_name": "Microsoft", 
-        "position_title": "Software Development", 
-        "time_stamps": []
+        "job_id": 30, 
+        "position_title": "Software Development"
       }, 
       {
         "app_URL": "", 
-        "comments": [], 
         "company_depart": "AWS", 
         "company_name": "Amazon", 
-        "position_title": "SDE", 
-        "time_stamps": []
+        "job_id": 49, 
+        "position_title": "SDE"
       }, 
       {
         "app_URL": "www.amazon.com/jobs", 
-        "comments": [
-          {
-            "comment": "Amazon will have 2 OAs.", 
-            "id": 3, 
-            "job_id": 2
-          }
-        ], 
         "company_depart": "AWS", 
         "company_name": "Amazon", 
-        "position_title": "HR", 
-        "time_stamps": [
-          {
-            "deadline": "Wed, 01 Jun 2005 00:00:00 GMT", 
-            "description": "apply", 
-            "id": 2, 
-            "job_id": 2, 
-            "status": false
-          }, 
-          {
-            "deadline": "Wed, 20 Jul 2005 00:00:00 GMT", 
-            "description": "onsite_interview", 
-            "id": 4, 
-            "job_id": 2, 
-            "status": false
-          }
-        ]
+        "job_id": 2, 
+        "position_title": "HR"
       }, 
       {
         "app_URL": "", 
-        "comments": [], 
-        "company_depart": "System", 
-        "company_name": "BOEING", 
-        "position_title": "Senior Developer", 
-        "time_stamps": []
-      }, 
-      {
-        "app_URL": "", 
-        "comments": [], 
         "company_depart": "Finance", 
         "company_name": "BOA", 
-        "position_title": "Consultant", 
-        "time_stamps": []
+        "job_id": 53, 
+        "position_title": "Consultant"
       }, 
       {
         "app_URL": "", 
-        "comments": [], 
         "company_depart": "WOW", 
         "company_name": "ADOBE", 
-        "position_title": "SDE", 
-        "time_stamps": []
+        "job_id": 54, 
+        "position_title": "SDE"
       }, 
       {
         "app_URL": "", 
-        "comments": [], 
         "company_depart": "", 
         "company_name": "TEST1", 
-        "position_title": "TT", 
-        "time_stamps": []
+        "job_id": 55, 
+        "position_title": "TT"
       }, 
       {
         "app_URL": "", 
-        "comments": [], 
         "company_depart": "", 
         "company_name": "TEST2", 
-        "position_title": "AA", 
-        "time_stamps": []
+        "job_id": 56, 
+        "position_title": "AA"
+      }, 
+      {
+        "app_URL": "", 
+        "company_depart": "", 
+        "company_name": "", 
+        "job_id": 57, 
+        "position_title": ""
       }, 
       {
         "app_URL": "www.amazon.com/jobs", 
-        "comments": [], 
         "company_depart": "AWS", 
         "company_name": "Amazon", 
-        "position_title": "SDE", 
-        "time_stamps": []
-      }
+        "job_id": 58, 
+        "position_title": "SDE"
+      }, 
     ], 
     "user_email": "tian@test.com"
-  }
+  }, 
+  "status": "success"
 }
