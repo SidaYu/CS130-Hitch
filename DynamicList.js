@@ -28,7 +28,6 @@ import {
   ListItem,
   Icon
 } from 'react-native-elements';
-
 import NavigationBar from 'react-native-navbar';
 import EventScene from './Event';
 // import AddJobForm from './AddJobForm';
