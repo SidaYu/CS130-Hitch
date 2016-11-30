@@ -17,6 +17,12 @@ import {
   View
 } from 'react-native';
 
+import {
+  Button
+} from 'react-native-elements'
+
+import LinearGradient from 'react-native-linear-gradient';
+
 
 export default class SignInScene extends Component {
   static propTypes = {
@@ -88,27 +94,51 @@ export default class SignInScene extends Component {
 
   render() {
     return (
-        <View style={{height: 680, width: 380,flex:1, flexDirection: 'column',backgroundColor: 'darkseagreen',alignItems:'center'}}>
+        <View style={{height: 680, width: 380,flex:1, flexDirection: 'column',backgroundColor: 'lightsteelblue',alignItems:'center'}}>
           <View style={{height:680,width:380}}>
-
-            <View style={{height: 140, justifyContent: 'center',alignItems:'center'}}>
+            <View style={{height: 60, justifyContent: 'center',alignItems:'center'}}>
             </View>
-            <View style={{height: 280, justifyContent: 'space-between', alignItems: 'center'}}>
-              <Image style={{width: 240, height: 100}} source={require('./pics/logo.png')}/>
+            <View style={{height: 360, justifyContent: 'space-between', alignItems: 'center'}}>
+              <Image style={{width: 240, height: 150}} source={require('./pics/logo1.jpg')}/>
               <Fumi style={{width:350}} label={'Email'} iconClass={FontAwesomeIcon} iconName={'envelope-o'} onChangeText={(email) => this.setState({email})} iconColor={'#f95a26'} autoCapitalize="none"/>
               <Fumi style={{width:350}} label={'Password'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(password) => this.setState({password})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
             </View>
-            <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
-              <View style={styles.button}>
-                <TouchableHighlight onPress={this._goToHomePage}>
-                	<Text>Sign In</Text>
-                </TouchableHighlight>
+            <View style={{height:50}}/>
+            <View style={{height: 60, justifyContent: 'space-between',alignItems:'center'}}>
+              <View>
+                <LinearGradient
+                  colors={['#4c669d', '#3b5998', '#192f6a']}
+                  style={styles.linearGradient}
+                  width={200}>
+                  <Button
+                  large
+                  iconRight
+                  icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+                  title='Sign In'
+                  fontSize={14}
+                  color='lightgrey'
+                  backgroundColor='transparent'
+                  onPress={this._goToHomePage}
+                  borderRadius={10}/>
+                </LinearGradient>
               </View>
-              <View style={{height:60}}/>
-              <View style={styles.button}>
-                <TouchableHighlight onPress={this._goToCreateAccount}>
-                	<Text>Create Account</Text>
-                </TouchableHighlight>
+              <View style={{height:20}}/>
+              <View>
+                <LinearGradient
+                  colors={['#4c669f', '#3b5998', '#192f6a']}
+                  style={styles.linearGradient}
+                  width={200}>
+                  <Button
+                  large
+                  iconRight
+                  icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+                  title='Create Account'
+                  fontSize={14}
+                  color='lightgrey'
+                  backgroundColor='transparent'
+                  onPress={this._goToCreateAccount}
+                  borderRadius={10}/>
+                </LinearGradient>
               </View>
             </View>
           </View>
@@ -159,5 +189,12 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-  }
+  },
+  linearGradient: {
+    flex: 1,
+    height: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10
+  },
 });

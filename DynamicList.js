@@ -8,6 +8,8 @@ import {
   Image,
   TextInput,
   View,
+  Tab,
+  Tabs,
   TabBarIOS,
   NavigatorIOS,
   Dimensions,
@@ -17,18 +19,20 @@ import {
 import CalendarScene from './CalendarScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
+import Collapsible from 'react-native-collapsible';
+import Event from './Event';
+import UpdateEvent from './UpdateEvent';
 
 import {
   FormLabel,
   FormInput,
   Button,
   List,
-  ListItem
+  ListItem,
 } from 'react-native-elements';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
 import NavigationBar from 'react-native-navbar';
 import EventScene from './Event';
+import Icon from 'react-native-vector-icons/FontAwesome';
 // import AddJobForm from './AddJobForm';
 // import Google from './Google';
 // import DynamicList from './DynamicList'
@@ -73,42 +77,47 @@ class MyButton extends Component {
     _changeStyles() {
         if (this.state._pressed)
         {
-            return 'green';
+            return 'white';
         }
         else
         {
-            return 'grey';
+            return 'white';
         }
     }
 
     _changeRightIcon() {
         if (this.state._pressed)
         {
-            return {name: 'check-box'}
+            return {name: 'check-box', color: 'green'}
         }
         else
         {
-            return {name: 'check-box-outline-blank'}
+            return {name: 'check-box-outline-blank', color: 'black'}
         }
     }
 
     render() {
         return (
-            <View marginBottom={10}>
+            <View borderColor={'white'}>
             <Button
             key={this.props.id}
             title={this.props.title}
-            iconRight={true}
             borderRadius={5}
-            icon={this._changeRightIcon()}
             backgroundColor={this._changeStyles()}
-            onPress={() => this._changeColor()}/>
+            onPress={() => this._changeColor()}
+            iconRight={true}
+            icon={this._changeRightIcon()}
+            textStyle={{color: 'black'}}
+            width={300}/>
+            <View alignItems={'center'}>
+            <Icon name='caret-down'/>
+            </View>
             </View>
         );
     }
 }
 
-export default class JobList extends Component {
+export default class DynamicList extends Component {
   static get defaultProps() {
     return {
       title: 'Job List'
@@ -131,6 +140,7 @@ export default class JobList extends Component {
       add_comment_id: -1,
       date: new Date(),
       refreshing: false,
+      selectedTab: 'firstTab',
     };
   }
 
@@ -227,13 +237,12 @@ export default class JobList extends Component {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
-
     this.fetchData();
-
+      const buttons = ['Edit', 'Add'];
       return (
-      <View style={{flex:1, flexDirection: 'column'}}>
-        <View>
-          <View style={{height: 40, justifyContent: 'center',alignItems:'center'}}>
+      <View style={{flex:1, flexDirection: 'column', borderColor:'white'}}>
+        <View borderColor={'white'}>
+          <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}>
           </View>
           <ScrollView style={styles.container}
           automaticallyAdjustContentInsets={false}
@@ -243,7 +252,7 @@ export default class JobList extends Component {
                 onRefresh={this._onRefresh.bind(this)}/>
           }
           >
-          <List>
+          <List borderColor={'white'}>
             {
               this.state.jobs.map((l, i) => (
                 <MyButton
@@ -252,10 +261,14 @@ export default class JobList extends Component {
                 subtitle={l.deadline}/>
           ))
             }
+            {(this.state.jobs.length !== 0) && <Button
+            title={"Congratulations!"}
+            borderRadius={5}
+            backgroundColor={'white'}
+            textStyle={{color: 'black'}}/>}
           </List>
           </ScrollView>
         </View>
-
       </View>
     );
             };
@@ -272,7 +285,9 @@ export default class JobList extends Component {
 var styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0,0,0,0)',
-    height: 577,
+    height: 670,
+    borderColor: 'transparent',
+    backgroundColor: 'lightgrey',
   },
   linearGradient: {
     height: 670,
@@ -299,5 +314,14 @@ var styles = StyleSheet.create({
   },
   unpressed: {
     backgroundColor: 'grey',
-  }
+  },
+  bar: {
+    width: 5,
+    height: 10,
+    backgroundColor: 'grey',
+  },
+  linearGradient: {
+    height: 620,
+    width: Dimensions.get('window').width
+  },
 });

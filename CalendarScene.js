@@ -19,7 +19,7 @@ import moment from 'moment';
 
 import HomePageScene from './HomePageScene';
 import CountDown from './CountDownScene';
-import Settings from './SettingsScene';
+import Comment from './Comment';
 import JobList from './JobList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -61,7 +61,7 @@ export default class CalendarScene extends Component {
     this.setState({selectedDate:date});
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email=tian@test.com', {
+    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email='+this.props.email, {
       headers: {
         'Cache-Control': 'no-cache'
       }
@@ -115,7 +115,7 @@ export default class CalendarScene extends Component {
     fetchResponse = {};
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email=tian@test.com', {
+    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email='+this.props.email, {
       headers: {
         'Cache-Control': 'no-cache'
       }
@@ -140,7 +140,7 @@ export default class CalendarScene extends Component {
       .done();
 
 		return (
-      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightsteelblue'}}>
         <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}>
         </View>
         <View style={{height: 350}}>
@@ -149,31 +149,29 @@ export default class CalendarScene extends Component {
           showControls={true}
           showEventIndicators={true}
           events={rows}
+          title = 'Calendar'
           onDateSelect={(date) => this._updateDateEvent(date) }
           />
         </View>
-        <View style={{flexDirection: 'column', height: 150}}>
-        <List>
-          <ListView
-            renderRow={this.renderRow}
-            dataSource={this.state.dataSource}
-          />
-        </List>
-        </View>
-        <View style={{height: 70, justifyContent: 'center',alignItems:'center'}}>
+        <View style={{flexDirection: 'column', height: 220}}>
+          <List style={{height: 220}}>
+            <ListView
+              renderRow={this.renderRow}
+              dataSource={this.state.dataSource}
+            />
+          </List>
         </View>
         <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
           <TabBarIOS
-          unselectedTintColor="azure"
-          tintColor="white"
-          barTintColor="gainsboro"
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
             title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -191,9 +189,9 @@ export default class CalendarScene extends Component {
           <Icon.TabBarItemIOS
             iconName="calendar"
             title="Calendar"
+            titlecolor="black"
             selected={this.state.selectedTab === 'secondTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"mediumseagreen"}
             renderAsOriginal={true}
             >
             <Text>Home</Text>
@@ -202,8 +200,7 @@ export default class CalendarScene extends Component {
             iconName="list"
             title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -217,12 +214,32 @@ export default class CalendarScene extends Component {
             }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
+
+           <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Comment',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'fourthTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            selected={this.state.selectedTab === 'fifthTab'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({

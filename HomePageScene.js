@@ -4,8 +4,9 @@ import { Fumi } from 'react-native-textinput-effects';
 
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
-import Settings from './SettingsScene';
 import JobList from './JobList';
+import Comment from './Comment';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -21,6 +22,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import {
+  Button
+} from 'react-native-elements'
+
+import LinearGradient from 'react-native-linear-gradient';
+
+
 export default class HomePageScene extends React.Component {
   static propTypes = {
     email: PropTypes.string.isRequired,
@@ -32,7 +40,7 @@ export default class HomePageScene extends React.Component {
     this._goToChangePassword = this._goToChangePassword.bind(this);
     this.state = {
       currentPassword:'',
-      selectedTab: 'fourthTab',
+      selectedTab: 'fifthTab',
       newPassword: '',
       newPassword2: '',
     };
@@ -93,33 +101,45 @@ export default class HomePageScene extends React.Component {
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightsteelblue'}}>
         <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
         </View>
-        <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightgrey'}}>
+        <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightsteelblue'}}>
           <Fumi style={{width:350}} label={'Verify your current email'} iconClass={FontAwesomeIcon} iconName={'envelope-o'} onChangeText={(currentPassword) => this.setState({currentPassword})} iconColor={'#f95a26'} autoCapitalize="none"/>
           <Fumi style={{width:350}} label={'Enter your new password'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(newPassword) => this.setState({newPassword})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
           <Fumi style={{width:350}} label={'Enter your new password again'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(newPassword2) => this.setState({newPassword2})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
-          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'lightgrey'}}>
-            <View style={styles.button}>
-              <TouchableHighlight onPress={this._goToChangePassword}>
-                <Text>Change Password</Text>
-              </TouchableHighlight>
+          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'lightsteelblue'}}>
+            <View style={{height:60}}>
+              <LinearGradient
+                colors={['#4c669d', '#3b5998', '#192f6a']}
+                style={styles.linearGradient}
+                width={200}>
+                <Button
+                large
+                iconRight
+                icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+                title='Change Password'
+                fontSize={14}
+                color='lightgrey'
+                backgroundColor='transparent'
+                onPress={this._goToChangePassword}
+                borderRadius={10}/>
+              </LinearGradient>
             </View>
           </View>
         </View>
-        <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightgrey'}}>
+        <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
           <TabBarIOS
-          unselectedTintColor="azure"
-          tintColor="white"
-          barTintColor="gainsboro"
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
             title="CountDown"
+            titlecolor="black"
             selected={this.state.selectedTab === 'firstTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -138,8 +158,7 @@ export default class HomePageScene extends React.Component {
             iconName="calendar"
             title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -158,13 +177,13 @@ export default class HomePageScene extends React.Component {
             iconName="list"
             title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: JobList,
                   title: 'Job List',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -173,12 +192,32 @@ export default class HomePageScene extends React.Component {
             }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
+
+           <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Comment',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'fourthTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            selected={this.state.selectedTab === 'fifthTab'}
+            iconColor={"mediumseagreen"}
             renderAsOriginal={true}
             >
             <Text>Home</Text>
@@ -209,4 +248,15 @@ const styles = StyleSheet.create({
     borderBottomRightRadius:5,
     padding: 10,
   },
+
 });
+
+  linearGradient: {
+    flex: 1,
+    height: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10
+  },
+});
+

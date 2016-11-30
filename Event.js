@@ -19,6 +19,9 @@ import {
 } from 'react-native-elements'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
+import LinearGradient from 'react-native-linear-gradient';
 
 class EventScene extends React.Component {
   constructor(props) {
@@ -27,7 +30,7 @@ class EventScene extends React.Component {
     this.state = {
       date: this.props.date,
       timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
-      name: "Interview"
+      name: null
     };
   }
 
@@ -66,12 +69,13 @@ class EventScene extends React.Component {
       .then((response) => response.json())
       .then((responseData) => {
         if(responseData.result == "success") {
-          AlertIOS.alert("SUCCESS");
+          //AlertIOS.alert("SUCCESS");
           this.props.navigator.pop()
         } else {
           AlertIOS.alert (
             "Add event failed"
-          )
+          );
+          this.props.navigator.pop()
         }
       })
       .done();
@@ -80,16 +84,27 @@ class EventScene extends React.Component {
   render() {
 
     return (
-      <ScrollView marginTop={70} marginBottom={20}>
+      <ScrollView marginBottom={20}>
+        <Fumi
+        label={'Event Name'}
+        iconClass={FontAwesomeIcon}
+        iconName={'briefcase'}
+        iconColor={'#f95a25'}
+        width={350}
+        value={this.state.name}
+        onChangeText={(text) => this.setState({name : text})}
+        />
 
-        <FormLabel labelStyle={styles.labelStyle}>Event name</FormLabel>
-        <FormInput inputStyle={styles.inputStyle} value={this.state.name}
-        	onChangeText={(text) => this.setState({name : text})}/>
-
-        <FormLabel labelStyle={styles.labelStyle}>Event time</FormLabel>
-        <FormInput inputStyle={styles.inputStyle} value={this.state.date.toLocaleDateString() +
-            ' ' +
-            this.state.date.toLocaleTimeString()}/>
+        <Fumi
+        label={'Time'}
+        iconClass={FontAwesomeIcon}
+        iconName={'calendar-plus-o'}
+        iconColor={'#f95a25'}
+        width={350}
+        value={this.state.date.toLocaleDateString() +
+             ' ' +
+             this.state.date.toLocaleTimeString()}
+        />
 
         <DatePickerIOS
           date={this.state.date}
@@ -98,27 +113,40 @@ class EventScene extends React.Component {
           onDateChange={this.onDateChange}
         />
 
-        <Button
-        large
-        iconRight
-        icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
-        title='Submit'
-        fontSize={24}
-        color='white'
-        backgroundColor='#1F2F3C'
-        onPress={()=>this._addNewEvent()} />
+        <View style={{height:100}}/>
+
+        <View alignItems={'center'}>
+          <LinearGradient
+            colors={['#4c669f', '#3b5998', '#192f6a']}
+            style={styles.linearGradient}
+            width={300}>
+
+
+          <Button
+          large
+          iconRight
+          icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+          title='Submit'
+          fontSize={24}
+          color='white'
+          backgroundColor='transparent'
+          onPress={this._addNewEvent}
+          borderRadius={10}/>
+          </LinearGradient>
+        </View>
       </ScrollView>
     );
   }
 }
 
-        // <FormLabel labelStyle={styles.labelStyle}>Location(optional)</FormLabel>
-        // <FormInput inputStyle={styles.inputStyle} value={this.state.location}
-        //   onChangeText={(text) => this.setState({Location : text})}/>
-
-
 
 var styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10
+  },
   labelStyle: {
     color: 'black',
     fontSize: 20,

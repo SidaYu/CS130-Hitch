@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {
+  AlertIOS,
   AppRegistry,
   StyleSheet,
   TouchableHighlight,
@@ -26,7 +27,6 @@ import AddJobFormAuto from './AddJobFormAuto';
 import DynamicList from './EventsScene';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
-import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import Event from './Event';
 
@@ -54,7 +54,6 @@ constructor(props) {
     super(props);
     this._goToAddJobFormAuto = this._goToAddJobFormAuto.bind(this);
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
-    this._goToComment = this._goToComment.bind(this);
     this.state = {
         jobs: null,
         searched_jobs: null,
@@ -118,7 +117,8 @@ constructor(props) {
       component: DynamicList,
       title: 'Job Progress',
       rightButtonTitle: 'Add',
-      onRightButtonPress: () => {this.props.navigator.push({component: Event,title: 'New Event',passProps: {
+      onRightButtonPress: () => {
+        this.props.navigator.push({component: Event,title: 'New Event',passProps: {
           job_id : id,
         }
       })},
@@ -141,14 +141,13 @@ constructor(props) {
     });
   }
 
+
     _goToComment(){
       this.props.navigator.push({
       component: Comment,
       title: 'Comment',
     });
   }
-
-
 
   _onAfterRemovingElement() {
     this.setState({
@@ -256,14 +255,6 @@ fetchData() {
     },
     ]
 
-    var refresh = [
-    {
-      title: 'Refresh',
-      icon: 'refresh',
-    }
-    ]
-
-
 
     this.fetchData();
     this.setImage();
@@ -322,20 +313,8 @@ fetchData() {
           ))
         }
         </List>
-
-        <List >
-        {
-          refresh.map((item, i) => (
-          <ListItem
-          key={i}
-          title={item.title}
-          leftIcon={{name: item.icon}}
-          //onPress = {() => this.setState({search: false})}
-          onPress = {this._goToComment}
-          />
-          ))
-        }
-        </List>
+        
+        </ScrollView> 
 
         </ScrollView>
 
@@ -399,7 +378,7 @@ fetchData() {
           <Icon.TabBarItemIOS
             iconName="file-o"
             title="Notes"
-            selected={this.state.selectedTab === 'fifthTab'}
+            selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
@@ -421,7 +400,7 @@ fetchData() {
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'fourthTab'}
+            selected={this.state.selectedTab === 'fifthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
