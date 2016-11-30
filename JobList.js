@@ -409,7 +409,7 @@ fetchData() {
 
           <Icon.TabBarItemIOS
             iconName="file-o"
-            title="Comments"
+            title="Notes"
             selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"black"}
             renderAsOriginal={true}

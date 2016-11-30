@@ -10,11 +10,14 @@ import {
   NavigatorIOS,
   ScrollView,
   AlertIOS,
+  Linking
 } from 'react-native';
 import {
   Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
 } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient';
+
+
 
 
 import NavigationBar from 'react-native-navbar';
@@ -34,8 +37,8 @@ var styles = StyleSheet.create({
     flex:1, 
   },
   container: {
-    padding: 5,
-    marginBottom: 10,
+    padding: 3,
+    marginBottom: 8,
     backgroundColor: 'white'
   },
   listView: {
@@ -43,13 +46,13 @@ var styles = StyleSheet.create({
   },
   company: {
     color: 'dimgrey',
-    fontSize: 15,
+    fontSize: 16,
     marginBottom: 8,
-    textDecorationLine: 'underline',
   },
   position: {
     textAlign: 'center',
     color: 'lightslategray',
+    fontSize: 14
   },
   line:{
     borderBottomWidth: 1,
@@ -140,8 +143,8 @@ fetchData() {
   render() 
   {
     return (
-      <View style={{padding:20, marginTop: 50, flex: 1}}>
-        <View style={{flex:10,}}>
+      <View style={{padding:20, marginTop: 50, flex: 1, backgroundColor: 'lightsteelblue'}}>
+        <View style={{flex:10, justifyContent: 'space-around', paddingBottom: 30}}>
 
         <View style = {styles.container}>
         <Text style = {styles.company}>Company</Text>
@@ -150,7 +153,9 @@ fetchData() {
 
         <View style = {styles.container}>
         <Text style = {styles.company}>Website</Text>
-        <Text style = {styles.position}>{this.props.m_w}</Text>
+        <Text  onPress={() => Linking.openURL(this.props.m_w).catch(err => console.error('An error occurred', err))} style = {styles.position}>{this.props.m_w}</Text>
+        
+
         </View>
 
         <View style = {styles.container}>

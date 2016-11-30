@@ -9,7 +9,8 @@ import {
   View,
   NavigatorIOS,
   ListView,
-  TabBarIOS
+  TabBarIOS,
+  AlertIOS
 } from 'react-native';
 import {
   Button, List, ListItem, CheckBox, SearchBar,  Tabs, Tab,
@@ -28,6 +29,7 @@ import HomePageScene from './HomePageScene';
 
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com';
+var customData = require('./question.json')
 
 var styles = StyleSheet.create({
   background:
@@ -61,17 +63,6 @@ var styles = StyleSheet.create({
   }
 });
 
-  var CommentsClass = React.createClass({
-    render: function() {
-        return (
-          <ul>
-            {this.props.data.map(function(name, index){
-                return <li key={ index }>{name}</li>;
-              })}
-          </ul>
-        )
-    }
-  });
 
 export default class Comment extends Component {
   static get defaultProps() {
@@ -87,6 +78,7 @@ export default class Comment extends Component {
 constructor(props) {
     super(props);
     this._renderSingleCommentt = this._renderSingleCommentt.bind(this);
+    this._deleteItemm = this._deleteItemm.bind(this);
 
     this.state = {
        dataSource: new ListView.DataSource({
@@ -113,6 +105,30 @@ constructor(props) {
       .done();
   }
 
+
+_deleteItemm(id){
+      fetch('https://hitch.herokuapp.com/api/deleteComment', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
+      },
+      body: JSON.stringify({
+        comment_id: +id,
+      })
+    })
+    // .then((response) => response.json())
+    .then((response) => console.log(response))
+    .then((responseData) => {
+      this.setState({
+        });
+    })
+    .done();
+    this.fetchData();
+    //this.props.navigator.pop();
+    this.render();
+  }
 
   componentDidMount() {
     this.fetchData();
@@ -151,11 +167,15 @@ constructor(props) {
 
 
 
-  renderComments(jobs) {
+ renderComments(jobs) {
      contents = jobs.comments.map(function(item){
       return(
         <View key = {item.comment} style = {styles.line}> 
+          <View style={{flex: 1,flexDirection: 'row',justifyContent: 'space-between',}}>
           <Text style = {styles.position}>{item.comment}</Text>
+          <Icon
+            name='trash' onPress={()=>this._deleteItemm(item.id)}/>
+          </View>
         </View>
       );
     });
@@ -169,6 +189,17 @@ constructor(props) {
     );
   }
 
+  popQuestions()
+  {
+    AlertIOS.alert(
+ 'Questions',
+ 'Keep your app up to date to enjoy the latest features',
+ [
+   {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+   {text: 'Install', onPress: () => console.log('Install Pressed')},
+ ],
+);
+  }
 
  render() {
     if (!this.state.loaded) {
@@ -183,6 +214,10 @@ constructor(props) {
           renderRow={this.renderComments}
           style={styles.listView}
         />
+        </View>
+
+        <View>
+        <Icon name = 'trash' onPress={this.popQuestions} />
         </View>
 
       <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
@@ -291,7 +326,3 @@ constructor(props) {
     );
   }
 }
-
-
-
-

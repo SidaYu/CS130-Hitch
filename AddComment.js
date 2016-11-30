@@ -99,7 +99,7 @@ fetchData() {
           fontSize={24}
           color='white'
           backgroundColor='transparent'
-          onPress={() => this._addNewEvent()}
+          onPress={() => this.fetchData()}
           borderRadius={10}/>
           </LinearGradient>
         </View>

@@ -1,0 +1,50 @@
+{
+	"lists":
+	[
+		{
+			"q": "What is OOPS?",
+			"a": "OOPS is abbreviated as Object Oriented Programming system in which programs are considered as a collection of objects. Each object is nothing but an instance of a class."
+		},
+		{
+			"q": "Write basic concepts of OOPS?",
+			"a": "Abstraction.Encapsulation.Inheritance.Polymorphism."
+		},
+		{
+			"q": "What is a class?",
+			"a": "A class is simply a representation of a type of object. It is the blueprint/ plan/ template that describe the details of an object."
+		},
+		{
+			"q": "What is an object?",
+			"a": "Object is termed as an instance of a class, and it has its own state, behavior and identity."
+		},
+		{
+			"q": "What is Encapsulation?",
+			"a": "Encapsulation is an attribute of an object, and it contains all data which is hidden. That hidden data can be restricted to the members of that class."
+		},
+		{
+			"q": "What is Polymorphism?",
+			"a": "Polymorphism is nothing butassigning behavior or value in a subclass to something that was already declared in the main class. Simply, polymorphism takes more than one form."
+		},
+		{
+			"q": "What is Inheritance?",
+			"a": "Inheritance is a concept where one class shares the structure and behavior defined in another class. Ifinheritance applied on one class is called Single Inheritance, and if it depends on multiple classes, then it is called multiple Inheritance."
+		},
+		{
+			"q": "What are manipulators?",
+			"a": "Manipulators are the functions which can be used in conjunction with the insertion (<<) and extraction (>>) operators on an object. Examples are endl and setw." 
+		},
+		{
+			"q": "What is Inline function?",
+			"a": "Inline function is a technique used by the compilers and instructs to insert complete body of the function wherever that function is used in the program source code."
+		},
+		{
+			"q": "What is a virtual function?",
+			"a": "Virtual function is a member function ofclass and its functionality can be overridden in its derived class. This function can be implemented by using a keyword called virtual, and it can be given during function declaration."
+		},
+		{
+			"q": "What is function overloading?",
+			"a": "Function overloading is defined as a normal function, but it has the ability to perform different tasks. It allowscreation of several methods with the same name which differ from each other by type of input and output of the function."
+		},
+
+	],
+}
