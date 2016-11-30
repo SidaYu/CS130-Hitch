@@ -77,7 +77,7 @@ class MyButton extends Component {
     _changeStyles() {
         if (this.state._pressed)
         {
-            return 'green';
+            return 'white';
         }
         else
         {
@@ -88,7 +88,7 @@ class MyButton extends Component {
     _changeRightIcon() {
         if (this.state._pressed)
         {
-            return {name: 'check-box', color: 'black'}
+            return {name: 'check-box', color: 'green'}
         }
         else
         {
@@ -105,6 +105,8 @@ class MyButton extends Component {
             borderRadius={5}
             backgroundColor={this._changeStyles()}
             onPress={() => this._changeColor()}
+            iconRight={true}
+            icon={this._changeRightIcon()}
             textStyle={{color: 'black'}}
             width={300}/>
             <View alignItems={'center'}>
@@ -317,5 +319,9 @@ var styles = StyleSheet.create({
     width: 5,
     height: 10,
     backgroundColor: 'grey',
-  }
+  },
+  linearGradient: {
+    height: 620,
+    width: Dimensions.get('window').width
+  },
 });
