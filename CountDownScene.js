@@ -14,9 +14,9 @@ import {
 } from 'react-native';
 
 import CalendarScene from './CalendarScene';
-import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import JobList from './JobList';
+import Comment from './Comment';
 import {
   FormLabel,
   FormInput,
@@ -57,7 +57,8 @@ export default class CountDownScene extends Component {
       search:false,
       rowToDelete : null,
       add_comment_id: -1,
-      date: new Date()
+      date: new Date(),
+      selectedTab: 'firstTab',
     };
   }
 
@@ -247,10 +248,31 @@ export default class CountDownScene extends Component {
           }}>
           <Text>Home</Text>
         </Icon.TabBarItemIOS>
+
+         <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Notes',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          
         <Icon.TabBarItemIOS
           iconName="user"
           title="Profile"
-          selected={this.state.selectedTab === 'fourthTab'}
+          selected={this.state.selectedTab === 'fifthTab'}
           iconColor={"black"}
           renderAsOriginal={true}
           onPress={() => {

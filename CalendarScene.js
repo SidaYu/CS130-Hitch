@@ -19,7 +19,7 @@ import moment from 'moment';
 
 import HomePageScene from './HomePageScene';
 import CountDown from './CountDownScene';
-import Settings from './SettingsScene';
+import Comment from './Comment';
 import JobList from './JobList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -214,10 +214,31 @@ export default class CalendarScene extends Component {
             }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
+
+           <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Comment',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'fourthTab'}
+            selected={this.state.selectedTab === 'fifthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {

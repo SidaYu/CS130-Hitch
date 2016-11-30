@@ -27,7 +27,6 @@ import Google from './Google';
 import DynamicList from './EventsScene';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
-import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import Event from './Event';
 
@@ -374,7 +373,7 @@ fetchData() {
           <Icon.TabBarItemIOS
             iconName="file-o"
             title="Notes"
-            selected={this.state.selectedTab === 'fifthTab'}
+            selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
@@ -396,7 +395,7 @@ fetchData() {
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'fourthTab'}
+            selected={this.state.selectedTab === 'fifthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
