@@ -9,16 +9,24 @@ import {
   View,
   NavigatorIOS,
   ListView,
+  TabBarIOS
 } from 'react-native';
 import {
-  Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
-} from 'react-native-elements'
+  Button, List, ListItem, CheckBox, SearchBar,  Tabs, Tab,
+} from 'react-native-elements';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 import NavigationBar from 'react-native-navbar';
 import AddJobForm from './AddJobForm';
 import Google from './Google';
-import DynamicList from './DynamicList'
+import DynamicList from './DynamicList';
+import JobList from './JobList';
+import CalendarScene from './CalendarScene';
+import CountDown from './CountDownScene';
+import HomePageScene from './HomePageScene';
+
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com';
 
@@ -86,6 +94,7 @@ constructor(props) {
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
        loaded: false,
+       selectedTab: 'fourthTab'
      };
   }
 
@@ -165,14 +174,117 @@ constructor(props) {
     }
 
     return (
-        <View style = {{backgroundColor: 'gainsboro', flex: 1}} >
-        <View style = {{marginTop: 70}} >
+        <View style = {{marginTop: 70, backgroundColor: 'gainsboro', flex: 1}} >
+        <View style = {{height: 500}}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderComments}
           style={styles.listView}
         />
         </View>
+
+      <View style={{flex:1, flexDirection: 'column', backgroundColor:'gainsboro'}}>
+       <TabBarIOS
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
+          backgroundColor = "azure">
+          <Icon.TabBarItemIOS
+            iconName="clock-o"
+            title="CountDown"
+            selected={this.state.selectedTab === 'firstTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CountDown,
+                  title: 'Count Down ',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="calendar"
+            title="Calendar"
+            selected={this.state.selectedTab === 'secondTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: CalendarScene,
+                  title: 'Calendar',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="list"
+            title="MyJobs"
+            selected={this.state.selectedTab === 'thirdTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: JobList,
+                  title: 'Job List',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"mediumseagreen"}
+            renderAsOriginal={true}
+            >
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+
+          <Icon.TabBarItemIOS
+            iconName="user"
+            title="Profile"
+            selected={this.state.selectedTab === 'fifthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: HomePageScene,
+                  title: 'Home Page',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+          
+
+
+          
+        </TabBarIOS>
+        </View>
+
+
+
+
         </View>
     );
   }

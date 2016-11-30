@@ -4,8 +4,9 @@ import { Fumi } from 'react-native-textinput-effects';
 
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
-import Settings from './SettingsScene';
 import JobList from './JobList';
+import Comment from './Comment';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -39,7 +40,7 @@ export default class HomePageScene extends React.Component {
     this._goToChangePassword = this._goToChangePassword.bind(this);
     this.state = {
       currentPassword:'',
-      selectedTab: 'fourthTab',
+      selectedTab: 'fifthTab',
       newPassword: '',
       newPassword2: '',
     };
@@ -129,16 +130,16 @@ export default class HomePageScene extends React.Component {
         </View>
         <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
           <TabBarIOS
-          unselectedTintColor="azure"
-          tintColor="white"
-          barTintColor="gainsboro"
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
             title="CountDown"
+            titlecolor="black"
             selected={this.state.selectedTab === 'firstTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -157,8 +158,7 @@ export default class HomePageScene extends React.Component {
             iconName="calendar"
             title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -177,13 +177,13 @@ export default class HomePageScene extends React.Component {
             iconName="list"
             title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: JobList,
                   title: 'Job List',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -192,12 +192,32 @@ export default class HomePageScene extends React.Component {
             }}>
             <Text>Home</Text>
           </Icon.TabBarItemIOS>
+
+           <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fourthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Comment',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
-            selected={this.state.selectedTab === 'fourthTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            selected={this.state.selectedTab === 'fifthTab'}
+            iconColor={"mediumseagreen"}
             renderAsOriginal={true}
             >
             <Text>Home</Text>

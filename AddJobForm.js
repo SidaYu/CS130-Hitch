@@ -36,7 +36,8 @@ export default class AddJobForm extends Component {
       company_name:'',
       company_depart:'',
       position_title:'',
-      app_URL:''
+      app_URL:'',
+      selectedTab: 'moreTab'
     }
   }
 
@@ -74,7 +75,39 @@ export default class AddJobForm extends Component {
 
   render() {
     return (
-        <View style={{flex:1, flexDirection: 'column',backgroundColor: 'white'}}>
+       <View style={{marginTop: 70, flex:1,backgroundColor: 'lightgrey'}}>
+    
+        <TabBarIOS
+           unselectedTintColor="yellow"
+           tintColor="white"
+           barTintColor="darkslateblue">
+        <TabBarIOS.Item
+          title="search Tab"
+          systemIcon="search"
+          selected={this.state.selectedTab === 'searchTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'searchTab',
+            });
+          }}>
+          <Text> </Text>
+        </TabBarIOS.Item>
+
+        <TabBarIOS.Item
+          systemIcon="more"
+          title="More"
+          selected={this.state.selectedTab === 'moreTab'}
+          onPress={() => {
+              this.props.navigator.push({
+                  component: AddJobForm,
+                  title: 'Add Job Form',
+                });
+
+          }}>
+          <Text> </Text>
+        </TabBarIOS.Item>
+        </TabBarIOS>
+
           <View style={{height: 80, justifyContent: 'center',alignItems:'center'}}> 
         </View>
 
