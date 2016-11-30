@@ -17,6 +17,8 @@ import {
 } from 'react-native-elements';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 
 import NavigationBar from 'react-native-navbar';
@@ -29,7 +31,7 @@ import HomePageScene from './HomePageScene';
 
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com';
-var customData = require('./question.json')
+var customData = require('./question.json');
 
 var styles = StyleSheet.create({
   background:
@@ -85,7 +87,8 @@ constructor(props) {
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
        loaded: false,
-       selectedTab: 'fourthTab'
+       selectedTab: 'fourthTab',
+       m_index: 0,
      };
   }
 
@@ -173,8 +176,6 @@ _deleteItemm(id){
         <View key = {item.comment} style = {styles.line}> 
           <View style={{flex: 1,flexDirection: 'row',justifyContent: 'space-between',}}>
           <Text style = {styles.position}>{item.comment}</Text>
-          <Icon
-            name='trash' onPress={()=>this._deleteItemm(item.id)}/>
           </View>
         </View>
       );
@@ -189,16 +190,26 @@ _deleteItemm(id){
     );
   }
 
+  showAns(){
+  AlertIOS.alert(
+ 'Answer',
+ customData.lists[0].a,
+);
+  }
+
   popQuestions()
   {
+    var i = this.state.m_index;
     AlertIOS.alert(
  'Questions',
- 'Keep your app up to date to enjoy the latest features',
+ customData.lists[i].q,
  [
-   {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-   {text: 'Install', onPress: () => console.log('Install Pressed')},
- ],
+   {text: 'I got it', onPress: () => console.log('Cancel Pressed')},
+   {text: 'Answer please', onPress: () => AlertIOS.alert( 'Answer',
+ customData.lists[i].a)}]
 );
+i = i + 1;
+this.setState({m_index: i});
   }
 
  render() {
@@ -208,7 +219,7 @@ _deleteItemm(id){
 
     return (
         <View style = {{marginTop: 70, backgroundColor: 'lightsteelblue', flex: 1}} >
-        <View style = {{height: 500}}>
+        <View style = {{height: 400}}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderComments}
@@ -216,8 +227,24 @@ _deleteItemm(id){
         />
         </View>
 
-        <View>
-        <Icon name = 'trash' onPress={this.popQuestions} />
+        <View alignItems={'center'}>
+          <LinearGradient 
+            colors={['#4c669f', '#3b5998', '#192f6a']} 
+            style={styles.linearGradient}
+            width={300}>
+
+        <Button
+        large
+        iconRight
+        icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+        title='Pop Question!'
+        fontSize={24}
+        color='white'
+        backgroundColor='transparent'
+        onPress={()=>this.popQuestions()}
+        borderRadius={10}/>
+
+         </LinearGradient>
         </View>
 
       <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
