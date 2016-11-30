@@ -30,7 +30,7 @@ class EventScene extends React.Component {
     this.state = {
       date: this.props.date,
       timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
-      name: "Interview"
+      name: null
     };
   }
 
