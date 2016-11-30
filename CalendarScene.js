@@ -140,7 +140,7 @@ export default class CalendarScene extends Component {
       .done();
 
 		return (
-      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'white'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightsteelblue'}}>
         <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}>
         </View>
         <View style={{height: 350}}>
@@ -234,7 +234,7 @@ export default class CalendarScene extends Component {
             }}>
             <Text></Text>
           </Icon.TabBarItemIOS>
-          
+
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"

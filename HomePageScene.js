@@ -22,6 +22,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import {
+  Button
+} from 'react-native-elements'
+
+import LinearGradient from 'react-native-linear-gradient';
+
+
 export default class HomePageScene extends React.Component {
   static propTypes = {
     email: PropTypes.string.isRequired,
@@ -94,22 +101,34 @@ export default class HomePageScene extends React.Component {
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightsteelblue'}}>
         <View style={{height: 200, justifyContent: 'center',alignItems:'center'}}>
         </View>
-        <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightgrey'}}>
+        <View style={{height: 420, flexDirection:'column', justifyContent: 'space-between',alignItems:'center', backgroundColor:'lightsteelblue'}}>
           <Fumi style={{width:350}} label={'Verify your current email'} iconClass={FontAwesomeIcon} iconName={'envelope-o'} onChangeText={(currentPassword) => this.setState({currentPassword})} iconColor={'#f95a26'} autoCapitalize="none"/>
           <Fumi style={{width:350}} label={'Enter your new password'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(newPassword) => this.setState({newPassword})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
           <Fumi style={{width:350}} label={'Enter your new password again'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(newPassword2) => this.setState({newPassword2})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
-          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'lightgrey'}}>
-            <View style={styles.button}>
-              <TouchableHighlight onPress={this._goToChangePassword}>
-                <Text>Change Password</Text>
-              </TouchableHighlight>
+          <View style={{height: 140, justifyContent: 'center',alignItems:'center', backgroundColor:'lightsteelblue'}}>
+            <View style={{height:60}}>
+              <LinearGradient
+                colors={['#4c669d', '#3b5998', '#192f6a']}
+                style={styles.linearGradient}
+                width={200}>
+                <Button
+                large
+                iconRight
+                icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+                title='Change Password'
+                fontSize={14}
+                color='lightgrey'
+                backgroundColor='transparent'
+                onPress={this._goToChangePassword}
+                borderRadius={10}/>
+              </LinearGradient>
             </View>
           </View>
         </View>
-        <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightgrey'}}>
+        <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
           <TabBarIOS
           unselectedTintColor="black"
           tintColor="mediumseagreen"
@@ -228,5 +247,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:5,
     borderBottomRightRadius:5,
     padding: 10,
+  },
+  linearGradient: {
+    flex: 1,
+    height: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10
   },
 });

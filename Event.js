@@ -112,12 +112,12 @@ class EventScene extends React.Component {
           timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
           onDateChange={this.onDateChange}
         />
-        
+
         <View style={{height:100}}/>
 
         <View alignItems={'center'}>
-          <LinearGradient 
-            colors={['#4c669f', '#3b5998', '#192f6a']} 
+          <LinearGradient
+            colors={['#4c669f', '#3b5998', '#192f6a']}
             style={styles.linearGradient}
             width={300}>
 
@@ -130,7 +130,7 @@ class EventScene extends React.Component {
           fontSize={24}
           color='white'
           backgroundColor='transparent'
-          onPress={() => this._addNewEvent()}
+          onPress={this._addNewEvent}
           borderRadius={10}/>
           </LinearGradient>
         </View>
