@@ -20,7 +20,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import NavigationBar from 'react-native-navbar';
 import AddJobForm from './AddJobForm';
-import DynamicList from './DynamicList'
 import DynamicList from './DynamicList';
 import JobList from './JobList';
 import CalendarScene from './CalendarScene';

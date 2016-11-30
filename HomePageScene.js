@@ -249,8 +249,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-});
-
   linearGradient: {
     flex: 1,
     height: 20,

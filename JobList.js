@@ -24,7 +24,7 @@ import AddComment from './AddComment'
 import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
-import DynamicList from './EventsScene';
+import DynamicList from './DynamicList';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import HomePageScene from './HomePageScene';
@@ -262,7 +262,7 @@ fetchData() {
     return (
       <View style = {{marginTop: 60, flex: 1, flexDirection: 'column', backgroundColor: '#e6e6e6'}}>
 
-      <ScrollView style = {{flex: 10, height: 610}}>
+      <ScrollView style = {{flex: 10, height: 310}}>
       <List containerStyle = {{}} >
       {
 
@@ -316,8 +316,6 @@ fetchData() {
         
         </ScrollView> 
 
-        </ScrollView>
-
 
       <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
        <TabBarIOS
@@ -327,14 +325,14 @@ fetchData() {
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
-            title="CountDown"
+            title="Back"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: CountDown,
-                  title: 'Count Down ',
+                  title: 'Back',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
@@ -346,14 +344,14 @@ fetchData() {
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             iconName="calendar"
-            title="Calendar"
+            title="Back"
             selected={this.state.selectedTab === 'secondTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: CalendarScene,
-                  title: 'Calendar',
+                  title: 'Back',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
@@ -365,7 +363,7 @@ fetchData() {
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             iconName="list"
-            title="MyJobs"
+            title="Back"
             selected={this.state.selectedTab === 'thirdTab'}
             iconColor={"mediumseagreen"}
             renderAsOriginal={true}
@@ -377,14 +375,14 @@ fetchData() {
 
           <Icon.TabBarItemIOS
             iconName="file-o"
-            title="Notes"
+            title="Back"
             selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: Comment,
-                  title: 'Comment',
+                  title: 'Back',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
@@ -399,14 +397,14 @@ fetchData() {
 
           <Icon.TabBarItemIOS
             iconName="user"
-            title="Profile"
+            title="Back"
             selected={this.state.selectedTab === 'fifthTab'}
             iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: HomePageScene,
-                  title: 'Home Page',
+                  title: 'Back',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
