@@ -8,6 +8,8 @@ import {
   Image,
   TextInput,
   View,
+  Tab,
+  Tabs,
   TabBarIOS,
   NavigatorIOS,
   Dimensions,
@@ -23,10 +25,9 @@ import {
   FormInput,
   Button,
   List,
-  ListItem
+  ListItem,
+  Icon
 } from 'react-native-elements';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
 import NavigationBar from 'react-native-navbar';
 import EventScene from './Event';
 // import AddJobForm from './AddJobForm';
@@ -94,7 +95,7 @@ class MyButton extends Component {
 
     render() {
         return (
-            <View marginBottom={10}>
+            <View borderColor={'white'}>
             <Button
             key={this.props.id}
             title={this.props.title}
@@ -103,12 +104,13 @@ class MyButton extends Component {
             icon={this._changeRightIcon()}
             backgroundColor={this._changeStyles()}
             onPress={() => this._changeColor()}/>
+            <Icon name='keyboard-arrow-down'/>
             </View>
         );
     }
 }
 
-export default class JobList extends Component {
+export default class DynamicList extends Component {
   static get defaultProps() {
     return {
       title: 'Job List'
@@ -227,13 +229,12 @@ export default class JobList extends Component {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
-
     this.fetchData();
 
       return (
-      <View style={{flex:1, flexDirection: 'column'}}>
-        <View>
-          <View style={{height: 40, justifyContent: 'center',alignItems:'center'}}>
+      <View style={{flex:1, flexDirection: 'column', borderColor:'white'}}>
+        <View borderColor={'white'}>
+          <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}>
           </View>
           <ScrollView style={styles.container}
           automaticallyAdjustContentInsets={false}
@@ -243,7 +244,7 @@ export default class JobList extends Component {
                 onRefresh={this._onRefresh.bind(this)}/>
           }
           >
-          <List>
+          <List borderColor={'white'}>
             {
               this.state.jobs.map((l, i) => (
                 <MyButton
@@ -252,10 +253,13 @@ export default class JobList extends Component {
                 subtitle={l.deadline}/>
           ))
             }
+            {(this.state.jobs.length !== 0) && <Button
+            title={"Congratulations!"}
+            borderRadius={5}
+            backgroundColor={'grey'}/>}
           </List>
           </ScrollView>
         </View>
-
       </View>
     );
             };
@@ -272,7 +276,8 @@ export default class JobList extends Component {
 var styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0,0,0,0)',
-    height: 577,
+    height: 670,
+    borderColor: 'transparent',
   },
   linearGradient: {
     height: 670,
@@ -298,6 +303,11 @@ var styles = StyleSheet.create({
     backgroundColor: '#12ad2a',
   },
   unpressed: {
+    backgroundColor: 'grey',
+  },
+  bar: {
+    width: 5,
+    height: 10,
     backgroundColor: 'grey',
   }
 });

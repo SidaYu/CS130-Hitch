@@ -12,7 +12,11 @@ import {
 
 
 //Add from github package
-import { FormLabel, FormInput } from 'react-native-elements';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Fumi } from 'react-native-textinput-effects';
+import LinearGradient from 'react-native-linear-gradient';
 //end
 
 export default class AddJobForm extends Component {
@@ -106,30 +110,70 @@ export default class AddJobForm extends Component {
 
           <View style={{height: 80, justifyContent: 'center',alignItems:'center'}}> 
         </View>
-        <FormLabel>Company Name</FormLabel>
-        <FormInput onChangeText={(company_name) => this.setState({company_name})}/>
+
+        <Fumi
+        label={'Company Name'}
+        iconClass={FontAwesomeIcon}
+        iconName={'briefcase'}
+        iconColor={'#f95a25'}
+        width={350}
+        value={this.state.name}
+        onChangeText={(company_name) => this.setState({company_name})}
+        />
 
 
-        <FormLabel>Department Name</FormLabel>
-        <FormInput onChangeText={(company_depart) => this.setState({company_depart})}/>
+        <Fumi
+        label={'Department Name'}
+        iconClass={FontAwesomeIcon}
+        iconName={'cogs'}
+        iconColor={'#f95a25'}
+        width={350}
+        value={this.state.name}
+        onChangeText={(company_depart) => this.setState({company_depart})}
+        />
 
-         <FormLabel>Job Title</FormLabel>
-         <FormInput onChangeText={(position_title) => this.setState({position_title})}/>
 
-          <FormLabel>Company Website</FormLabel>
-         <FormInput onChangeText={(app_URL) => this.setState({app_URL})}/>
+        <Fumi
+        label={'Job Title'}
+        iconClass={FontAwesomeIcon}
+        iconName={'user-plus'}
+        iconColor={'#f95a25'}
+        width={350}
+        value={this.state.name}
+        onChangeText={(position_title) => this.setState({position_title})}
+        />
 
-       
-        <View style={{height: 200}}>
-        </View>
-        <View style={{height: 120, justifyContent: 'flex-start',alignItems:'center'}}>
-          <View style={styles.textInput}>
-            <TouchableHighlight onPress={this._goToJobList}>
-              <Text> Add Job </Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View style={{height: 200, justifyContent: 'center', alignItems:'center'}}>
+
+        <Fumi
+        label={'Company Website'}
+        iconClass={FontAwesomeIcon}
+        iconName={'feed'}
+        iconColor={'#f95a25'}
+        width={350}
+        value={this.state.name}
+        onChangeText={(app_URL) => this.setState({app_URL})}
+        />
+
+        <View style={{height:100}}/>
+
+        <View alignItems={'center'}>
+          <LinearGradient 
+            colors={['#4c669f', '#3b5998', '#192f6a']} 
+            style={styles.linearGradient}
+            width={300}>
+
+        <Button
+        large
+        iconRight
+        icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+        title='Submit'
+        fontSize={24}
+        color='white'
+        backgroundColor='transparent'
+        onPress={this._goToJobList}
+        borderRadius={10}/>
+
+         </LinearGradient>
         </View>
       </View>
     )
