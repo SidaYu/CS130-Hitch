@@ -61,7 +61,7 @@ export default class CalendarScene extends Component {
     this.setState({selectedDate:date});
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email=tian@test.com', {
+    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email='+this.props.email, {
       headers: {
         'Cache-Control': 'no-cache'
       }
@@ -115,7 +115,7 @@ export default class CalendarScene extends Component {
     fetchResponse = {};
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email=tian@test.com', {
+    fetch('https://hitch.herokuapp.com/api/getAllEvents?user_email='+this.props.email, {
       headers: {
         'Cache-Control': 'no-cache'
       }
@@ -149,18 +149,17 @@ export default class CalendarScene extends Component {
           showControls={true}
           showEventIndicators={true}
           events={rows}
+          title = 'Calendar'
           onDateSelect={(date) => this._updateDateEvent(date) }
           />
         </View>
-        <View style={{flexDirection: 'column', height: 150}}>
-        <List>
-          <ListView
-            renderRow={this.renderRow}
-            dataSource={this.state.dataSource}
-          />
-        </List>
-        </View>
-        <View style={{height: 70, justifyContent: 'center',alignItems:'center'}}>
+        <View style={{flexDirection: 'column', height: 220}}>
+          <List style={{height: 220}}>
+            <ListView
+              renderRow={this.renderRow}
+              dataSource={this.state.dataSource}
+            />
+          </List>
         </View>
         <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
           <TabBarIOS
