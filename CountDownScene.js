@@ -28,9 +28,6 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import NavigationBar from 'react-native-navbar';
 import EventScene from './Event';
-// import AddJobForm from './AddJobForm';
-// import Google from './Google';
-// import DynamicList from './DynamicList'
 import LinearGradient from 'react-native-linear-gradient';
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com'
@@ -49,7 +46,7 @@ export default class CountDownScene extends Component {
 
   constructor(props) {
     super(props);
-    this._goToSpecificEvent = this._goToSpecificEvent.bind(this);
+    // this._goToSpecificEvent = this._goToSpecificEvent.bind(this);
     this.state = {
         jobs: null,
         searched_jobs: null,
@@ -67,15 +64,15 @@ export default class CountDownScene extends Component {
     var a = 1;
   }
 
-  _goToSpecificEvent(id) {
-    this.props.navigator.push({
-      component: EventScene,
-      title: 'Application Process',
-      passProps: {
-        event_id: id,
-      }
-    });
-  }
+  // _goToSpecificEvent(id) {
+  //   this.props.navigator.push({
+  //     component: EventScene,
+  //     title: 'Application Process',
+  //     passProps: {
+  //       event_id: id
+  //     }
+  //   });
+  // }
 
   _onAfterRemovingElement() {
     this.setState({
@@ -83,9 +80,6 @@ export default class CountDownScene extends Component {
       dataSource  : this.state.dataSource.cloneWithRows(this._data)
       });
   }
-
-
-
 
   fetchData() {
     fetch(REQUEST_URL, {
@@ -104,6 +98,36 @@ export default class CountDownScene extends Component {
 
   }
 
+  setImage()
+  {
+    var list = this.state.jobs;
+    var len = list.length;
+    for (var i = 0; i < len; i++)
+    {
+        if (list[i].company_name.toLowerCase() == 'microsoft')
+          list[i].avatar_url = 'https://www.microsoft.com/en-us/server-cloud/Images/shared/page-sharing-thumbnail.jpg';
+        else if (list[i].company_name.toLowerCase() == 'linkedin')
+          list[i].avatar_url = 'https://yt3.ggpht.com/-CepHHHB3l1Y/AAAAAAAAAAI/AAAAAAAAAAA/Z8MftqWbEqA/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
+        else if (list[i].company_name.toLowerCase() == 'facebook')
+          list[i].avatar_url = 'https://www.facebook.com/images/fb_icon_325x325.png';
+        else if (list[i].company_name.toLowerCase() == 'google')
+          list[i].avatar_url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg';
+        else if (list[i].company_name.toLowerCase() == 'amazon')
+          list[i].avatar_url = 'https://store-images.s-microsoft.com/image/apps.31672.9007199266244431.afea25ca-b409-4393-9a82-97fef1b330a0.6ae63586-6e3a-415f-bb6b-31a82bdcba1d?w=180&h=180&q=60';
+        else if (list[i].company_name.toLowerCase() == 'appfolio')
+          list[i].avatar_url = 'https://www.appfolio.com/images/html/apm-fb-logo.png';
+        else if (list[i].company_name.toLowerCase() == 'laserfiche')
+          list[i].avatar_url = 'https://lh5.ggpht.com/TZOsQ_TJKzcobHRvQO9VDuk_fOuUGa7sgi6yFdJ3Opy_lnLAHvPyLZqsRX0gCm5mDzcQ=w300';
+        else if (list[i].company_name.toLowerCase() == 'hulu')
+          list[i].avatar_url = 'https://yt3.ggpht.com/-MgU-QxeJRcM/AAAAAAAAAAI/AAAAAAAAAAA/_tghiNsm6NU/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
+       else if (list[i].company_name.toLowerCase() == 'apple')
+          list[i].avatar_url = 'https://www.fantasygrounds.com/img/mac_os.png';
+        else if (list[i].company_name.toLowerCase() == 'ibm')
+          list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
+        else
+          list[i].avatar_url = 'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
+    }
+  }
 
   componentDidMount() {
     this.fetchData();
@@ -158,7 +182,7 @@ export default class CountDownScene extends Component {
 
 
     this.fetchData();
-
+    this.setImage();
 
       return (
       <View style={{flex:1, flexDirection: 'column'}}>
@@ -185,10 +209,9 @@ export default class CountDownScene extends Component {
             title={this._getDiffDays(l.deadline) + ' Days left'}
             titleStyle={{fontSize: 22, color: '#eeeae5'}}
             subtitleStyle={{fontSize: 15, color: 'white'}}
-            subtitle = {l.description}
-            leftIcon={{name: 'clock-o', type: 'font-awesome', color: '#eeeae5'}}
+            subtitle = {l.company_name + ' ' + l.description}
+            avatar = {{uri: l.avatar_url}}
             containerStyle={{backgroundColor: 'transparent'}}
-            onPress = {()=>this._goToSpecificEvent(l.id)}
           />
           ))
             }

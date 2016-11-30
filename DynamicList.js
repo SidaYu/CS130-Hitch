@@ -98,7 +98,7 @@ class MyButton extends Component {
 
     render() {
         return (
-            <View borderColor={'white'} alignItems={'center'}>
+            <View borderColor={'white'}>
             <Button
             key={this.props.id}
             title={this.props.title}
@@ -107,7 +107,9 @@ class MyButton extends Component {
             onPress={() => this._changeColor()}
             textStyle={{color: 'black'}}
             width={300}/>
+            <View alignItems={'center'}>
             <Icon name='caret-down'/>
+            </View>
             </View>
         );
     }
