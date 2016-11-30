@@ -75,41 +75,10 @@ export default class AddJobForm extends Component {
 
   render() {
     return (
-       <View style={{marginTop: 70, flex:1,backgroundColor: 'lightgrey'}}>
-    
-        <TabBarIOS
-           unselectedTintColor="yellow"
-           tintColor="white"
-           barTintColor="darkslateblue">
-        <TabBarIOS.Item
-          title="search Tab"
-          systemIcon="search"
-          selected={this.state.selectedTab === 'searchTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'searchTab',
-            });
-          }}>
-          <Text> </Text>
-        </TabBarIOS.Item>
-
-        <TabBarIOS.Item
-          systemIcon="more"
-          title="More"
-          selected={this.state.selectedTab === 'moreTab'}
-          onPress={() => {
-              this.props.navigator.push({
-                  component: AddJobForm,
-                  title: 'Add Job Form',
-                });
-
-          }}>
-          <Text> </Text>
-        </TabBarIOS.Item>
-        </TabBarIOS>
-
-          <View style={{height: 80, justifyContent: 'center',alignItems:'center'}}> 
+       <View style={{marginTop: 60, flex:1,backgroundColor: 'lightsteelblue'}}>
+        <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}> 
         </View>
+
 
         <Fumi
         label={'Company Name'}
@@ -121,6 +90,8 @@ export default class AddJobForm extends Component {
         onChangeText={(company_name) => this.setState({company_name})}
         />
 
+        <View style={{height: 20, justifyContent: 'center',alignItems:'center'}}> 
+        </View>
 
         <Fumi
         label={'Department Name'}
@@ -132,6 +103,8 @@ export default class AddJobForm extends Component {
         onChangeText={(company_depart) => this.setState({company_depart})}
         />
 
+        <View style={{height: 20, justifyContent: 'center',alignItems:'center'}}> 
+        </View>
 
         <Fumi
         label={'Job Title'}
@@ -143,6 +116,8 @@ export default class AddJobForm extends Component {
         onChangeText={(position_title) => this.setState({position_title})}
         />
 
+        <View style={{height: 20, justifyContent: 'center',alignItems:'center'}}> 
+        </View>
 
         <Fumi
         label={'Company Website'}
