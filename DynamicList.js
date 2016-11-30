@@ -17,7 +17,6 @@ import {
 } from 'react-native';
 
 import CalendarScene from './CalendarScene';
-import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import Collapsible from 'react-native-collapsible';
 import Event from './Event';

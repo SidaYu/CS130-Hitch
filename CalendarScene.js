@@ -206,6 +206,7 @@ export default class CalendarScene extends Component {
               this.props.navigator.replace({
                   component: JobList,
                   title: 'Job List',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
