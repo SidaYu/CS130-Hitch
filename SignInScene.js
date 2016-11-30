@@ -90,10 +90,10 @@ export default class SignInScene extends Component {
         <View style={{height: 680, width: 380,flex:1, flexDirection: 'column',backgroundColor: 'darkseagreen',alignItems:'center'}}>
           <View style={{height:680,width:380}}>
 
-            <View style={{height: 140, justifyContent: 'center',alignItems:'center'}}>
+            <View style={{height: 60, justifyContent: 'center',alignItems:'center'}}>
             </View>
-            <View style={{height: 280, justifyContent: 'space-between', alignItems: 'center'}}>
-              <Image style={{width: 240, height: 100}} source={require('./pics/logo.png')}/>
+            <View style={{height: 360, justifyContent: 'space-between', alignItems: 'center'}}>
+              <Image style={{width: 240, height: 150}} source={require('./pics/logo1.jpg')}/>
               <Fumi style={{width:350}} label={'Email'} iconClass={FontAwesomeIcon} iconName={'envelope-o'} onChangeText={(email) => this.setState({email})} iconColor={'#f95a26'} autoCapitalize="none"/>
               <Fumi style={{width:350}} label={'Password'} iconClass={FontAwesomeIcon} iconName={'key'} onChangeText={(password) => this.setState({password})} iconColor={'#ac83c4'} autoCapitalize="none" secureTextEntry={true}/>
             </View>
