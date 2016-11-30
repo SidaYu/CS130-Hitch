@@ -30,15 +30,15 @@ import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import Event from './Event';
-import Search from './Search';
+
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
 var Swipeout = require('react-native-swipeout')
 
-export default class JobList extends Component {
+export default class Search extends Component {
   static get defaultProps() {
     return {
-      title: 'Job List'
+      title: 'Search'
     };
   }
   static propTypes = {
@@ -54,44 +54,12 @@ constructor(props) {
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
     this._goToComment = this._goToComment.bind(this);
     this.state = {
-        searched_jobs: this.props.m_jobs,
+      jobs: this.props.m_jobs,
+      searched_jobs: [],
       search:false,
     };
   }
 
-
-  setImage()
-  {
-    var list = this.state.jobs;
-    var len = list.length;
-    for (var i = 0; i < len; i++)
-    {
-
-        if (list[i].company_name.toLowerCase() == 'microsoft')
-          list[i].avatar_url = 'https://www.microsoft.com/en-us/server-cloud/Images/shared/page-sharing-thumbnail.jpg';
-        else if (list[i].company_name.toLowerCase() == 'linkedin')
-          list[i].avatar_url = 'https://yt3.ggpht.com/-CepHHHB3l1Y/AAAAAAAAAAI/AAAAAAAAAAA/Z8MftqWbEqA/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
-        else if (list[i].company_name.toLowerCase() == 'facebook')
-          list[i].avatar_url = 'https://www.facebook.com/images/fb_icon_325x325.png';
-
-        else if (list[i].company_name.toLowerCase() == 'google')
-          list[i].avatar_url = 'https://www.wired.com/wp-content/uploads/2015/09/google-logo-1200x630.jpg';
-        else if (list[i].company_name.toLowerCase() == 'amazon')
-          list[i].avatar_url = 'https://store-images.s-microsoft.com/image/apps.31672.9007199266244431.afea25ca-b409-4393-9a82-97fef1b330a0.6ae63586-6e3a-415f-bb6b-31a82bdcba1d?w=180&h=180&q=60';
-        else if (list[i].company_name.toLowerCase() == 'appfolio')
-          list[i].avatar_url = 'https://www.appfolio.com/images/html/apm-fb-logo.png';
-        else if (list[i].company_name.toLowerCase() == 'laserfiche')
-          list[i].avatar_url = 'https://lh5.ggpht.com/TZOsQ_TJKzcobHRvQO9VDuk_fOuUGa7sgi6yFdJ3Opy_lnLAHvPyLZqsRX0gCm5mDzcQ=w300';
-        else if (list[i].company_name.toLowerCase() == 'hulu')
-          list[i].avatar_url = 'https://yt3.ggpht.com/-MgU-QxeJRcM/AAAAAAAAAAI/AAAAAAAAAAA/_tghiNsm6NU/s900-c-k-no-mo-rj-c0xffffff/photo.jpg';
-       else if (list[i].company_name.toLowerCase() == 'apple')
-          list[i].avatar_url = 'https://www.fantasygrounds.com/img/mac_os.png';
-        else if (list[i].company_name.toLowerCase() == 'ibm')
-          list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
-        else
-          list[i].avatar_url = 'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
-    }
-  }
 
   _goToAddJobFormAuto() {
     this.props.navigator.push({
@@ -193,7 +161,7 @@ constructor(props) {
     n = n.toLowerCase();
     this.setState({search: true});
     let comps = [];
-    var list = this.state.searched_jobs;
+    var list = this.state.jobs;
     for (var i = 0; i < list.length; i++)
     {
       if (list[i].company_name.toLowerCase().includes(n))
@@ -202,7 +170,7 @@ constructor(props) {
         this.setState ({searched_jobs: comps});
       }
     }
-    if (!comps.length) this.setState({searched_jobs: this.state.jobs});
+    if (!comps.length) this.setState({searched_jobs: []});
   }
 
   render()

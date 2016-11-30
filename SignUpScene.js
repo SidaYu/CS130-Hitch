@@ -28,7 +28,7 @@ export default class SignUpScene extends Component {
     this.state = {
       email: '',
       password:'',
-      loaded: "false"
+      loaded: false
     };
   }
 

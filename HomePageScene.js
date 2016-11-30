@@ -115,8 +115,8 @@ export default class HomePageScene extends React.Component {
           barTintColor="gainsboro"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
-            iconName="list"
-            title="MyJobs"
+            iconName="clock-o"
+            title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"grey"}
             selectedIconColor={'#1F2F3C'}

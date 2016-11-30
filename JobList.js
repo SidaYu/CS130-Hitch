@@ -9,17 +9,16 @@ import {
   View,
   NavigatorIOS,
   ScrollView,
-  TabBarIOS,
-  InteractionManager
+  TabBarIOS
 } from 'react-native';
 import {
-  Button, List, ListItem, SearchBar,CheckBox, Tabs, Tab,
+  Button, List, ListItem, CheckBox, SearchBar, Tabs, Tab,
 } from 'react-native-elements'
-//import SearchBar from 'react-native-searchbar'
 
 
 import NavigationBar from 'react-native-navbar';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 import AddComment from './AddComment'
 import Comment from './Comment'
 import AddJobForm from './AddJobForm';
@@ -30,10 +29,13 @@ import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import Event from './Event';
-import Search from './Search';
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
 var Swipeout = require('react-native-swipeout')
+
+class rowElement extends Component {
+  
+}
 
 export default class JobList extends Component {
   static get defaultProps() {
@@ -58,9 +60,9 @@ constructor(props) {
         searched_jobs: null,
       loaded: false,
       search:false,
-      selectedTab: 'thirdTab',
-      renderPlaceholderOnly: true,
-      dataSource: null,
+      rowToDelete : null,
+      add_comment_id: -1,
+      selectedTab: 'thirdTab'
     };
   }
 
@@ -102,6 +104,7 @@ constructor(props) {
     this.props.navigator.push({
       component: AddJobFormAuto,
       title: 'Add Job Form Auto',
+      navigationBarHidden: true,
     });
   }
 
@@ -113,7 +116,7 @@ constructor(props) {
   _goToSpecificJob(id, name, logo) {
     this.props.navigator.push({
       component: DynamicList,
-      title: 'Application Process',
+      title: 'Job Progress',
       rightButtonTitle: 'Add',
       onRightButtonPress: () => {this.props.navigator.push({component: Event,title: 'New Event',passProps: {
           job_id : id,
@@ -138,35 +141,25 @@ constructor(props) {
     });
   }
 
-
-  _goToComment(){
-    this.props.navigator.push({
-    component: Comment,
-    title: 'Comment',
-    });
-  }
-
-  _goToSearch(){
+    _goToComment(){
       this.props.navigator.push({
-      component: Search,
-      title: 'Search',
-      passProps: {
-        m_jobs: this.state.searched_jobs,
-      }
+      component: Comment,
+      title: 'Comment',
     });
   }
 
-  _deleteItemHelp(id)
-  {
-  	var list = this.state.searched_jobs;
-    var len = list.length;
-    for (var i = 0; i < len; i++)
-    {
-    	if (list[i].job_id == id) list.splice(i,1);
-    }
+
+
+  _onAfterRemovingElement() {
+    this.setState({
+      rowToDelete : null,
+      dataSource  : this.state.dataSource.cloneWithRows(this._data)
+      });
   }
 
   _deleteItem(id) {
+    console.log("start deleteJob")
+    console.log(id)
     fetch('https://hitch.herokuapp.com/api/deleteJob', {
       method: 'POST',
       headers: {
@@ -178,21 +171,19 @@ constructor(props) {
         job_id: +id,
       })
     })
-     .then((response) => response.json())
-    //.then((response) => console.log(response))
+    // .then((response) => response.json())
+    .then((response) => console.log(response))
     .then((responseData) => {
       this.setState({
         loaded: true,
+        rowToDelete: -1,
         });
     })
     .done();
-    this._deleteItemHelp(id);
-    //this.fetchData();
+    this.fetchData();
     //this.props.navigator.pop();
     this.render();
   }
-
-
 
 
 fetchData() {
@@ -203,6 +194,7 @@ fetchData() {
     })
       .then((response) => response.json())
       .then((responseData) => {
+         
         this.setState({
           jobs: responseData.jobs.job_list,
           searched_jobs: responseData.jobs.job_list,
@@ -218,6 +210,8 @@ fetchData() {
   // });
 
   }
+
+
 
 
 
@@ -246,10 +240,6 @@ fetchData() {
   render()
   {
 
-    if (this.state.loaded == false) {
-      return this.renderLoadingView();
-    }
-
     var titleConfig = {
       title: 'Job List',
     };
@@ -276,19 +266,12 @@ fetchData() {
 
 
     this.fetchData();
+    this.setImage();
 
     return (
-      <View style = {{marginTop: 60, flex: 1, backgroundColor: '#e6e6e6'}}>
+      <View style = {{marginTop: 60, flex: 1, flexDirection: 'column', backgroundColor: '#e6e6e6'}}>
 
-      <View>
-      <SearchBar
-      onChangeText={(l) => this._goToSearch()}
-      placeholder='Type to search company name...' />
-
-
-
-
-      <ScrollView style = {{height: 510}}>
+      <ScrollView style = {{flex: 10, height: 610}}>
       <List containerStyle = {{}} >
       {
 
@@ -296,8 +279,8 @@ fetchData() {
 
 
           <Swipeout
-          	autoClose = {true}
             key = {i}
+            autoClose = {true}
             right={
             [
               deleteButton = {
@@ -353,24 +336,21 @@ fetchData() {
           ))
         }
         </List>
+
         </ScrollView>
-
-
-        </View>
 
 
       <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
        <TabBarIOS
-          unselectedTintColor="azure"
-          tintColor="white"
-          barTintColor="gainsboro"
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
             title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -389,8 +369,7 @@ fetchData() {
             iconName="calendar"
             title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -409,18 +388,41 @@ fetchData() {
             iconName="list"
             title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"mediumseagreen"}
             renderAsOriginal={true}
             >
             <Text></Text>
           </Icon.TabBarItemIOS>
+
+
+
+          <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fifthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Comment',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+
+
+
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
             selected={this.state.selectedTab === 'fourthTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({

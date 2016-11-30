@@ -21,7 +21,7 @@ import AddJobForm from './AddJobForm';
 import JobDetail from './JobDetail';
 
 
-export default class CountDownScene extends Component {
+export default class SearchJob extends Component {
   static get defaultProps() {
     return {
       title: 'GlassDoor Related'
@@ -87,6 +87,15 @@ export default class CountDownScene extends Component {
     });
   }
 
+
+   _goToAddJobForm() {
+    this.props.navigator.push({
+      component: AddJobForm,
+      title: 'Add Job Form',
+    });
+  }
+
+
   addJobAutoHelp()
   {
      fetch("https://api.glassdoor.com/api/api.htm?t.p=108386&t.k=gOGr6axYbOq&userip=172.91.91.28&useragent=Mozilla/5.0%20(Macintosh;%20Intel%20Mac%20OS%20X%2010_11_6)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/54.0.2840.98%20Safari/537.36&format=json&v=1&action=employers&q=XXXXX", {
@@ -97,6 +106,9 @@ export default class CountDownScene extends Component {
           jobs: responseData.response.employers,
           loaded: true,
         });
+      })
+      .catch((error) => {
+        console.error(error);
       })
       .done();
     }
@@ -162,18 +174,7 @@ export default class CountDownScene extends Component {
               selectedTab: 'searchTab',
             });
           }}>
-          <Text> </Text>
-        </TabBarIOS.Item>
 
-        <TabBarIOS.Item
-          systemIcon="top-rated"
-          selected={this.state.selectedTab === 'ratingTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'ratingTab',
-            });
-
-          }}>
           <Text> </Text>
         </TabBarIOS.Item>
         <TabBarIOS.Item
@@ -190,6 +191,9 @@ export default class CountDownScene extends Component {
           <Text> </Text>
         </TabBarIOS.Item>
         </TabBarIOS>
+
+       
+
       </View>
 
     )

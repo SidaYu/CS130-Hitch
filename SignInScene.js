@@ -30,7 +30,7 @@ export default class SignInScene extends Component {
     this.state = {
       email: '',
       password:'',
-      loaded: "false",
+      loaded: false,
     };
   }
 

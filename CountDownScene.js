@@ -16,7 +16,7 @@ import {
 import CalendarScene from './CalendarScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
-
+import JobList from './JobList';
 import {
   FormLabel,
   FormInput,
@@ -36,7 +36,7 @@ import LinearGradient from 'react-native-linear-gradient';
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com'
 
 
-export default class JobList extends Component {
+export default class CountDownScene extends Component {
   static get defaultProps() {
     return {
       title: 'Job List'

@@ -22,6 +22,7 @@ import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
 import DynamicList from './DynamicList'
+import JobList from './JobList';
 
 var REQUEST_URL = 'http://api.glassdoor.com/api/api.htm?t.p=108386&t.k=gOGr6axYbOq&userip=172.91.91.28&useragent=Mozilla/5.0%2520(Macintosh;%2520Intel%2520Mac%2520OS%2520X%252010_11_6)%2520AppleWebKit/537.36%2520(KHTML,%2520like%2520Gecko)%2520Chrome/54.0.2840.98%2520Safari/537.36&format=json&v=1&action=employers&q=software%2527'
 var Swipeout = require('react-native-swipeout')
@@ -75,7 +76,6 @@ constructor(props) {
     };
   }
 
-
 fetchData() {
      fetch("https://hitch.herokuapp.com/api/addjob", {
       method: 'POST',
@@ -98,7 +98,7 @@ fetchData() {
           AlertIOS.alert(
             'Add job succeeded',
             null,
-            (() =>this.props.navigator.pop())
+            (() => this.props.navigator.pop()),
           );
         }
         else
@@ -127,6 +127,12 @@ fetchData() {
           });
         }
     }    
+  }
+
+  f()
+  {
+    this.props.register();
+    this.props.navigator.pop();
   }
 
   render() 

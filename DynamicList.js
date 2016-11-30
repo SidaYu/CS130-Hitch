@@ -1,409 +1,303 @@
-'use strict';
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
-    View, 
-    Text, 
-    Alert, 
-    AlertIOS, 
-    ListView, 
-    ListViewDataSource, 
-    StyleSheet,
-    TouchableOpacity, 
-    TouchableHighlight, 
-    InteractionManager, 
-    RefreshControl, 
-    Animated, 
-    Platform, 
-    ProgressViewIOS,
-    Dimensions,
+  AppRegistry,
+  RefreshControl,
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  Image,
+  TextInput,
+  View,
+  TabBarIOS,
+  NavigatorIOS,
+  Dimensions,
+  ScrollView
 } from 'react-native';
+
+import CalendarScene from './CalendarScene';
+import Settings from './SettingsScene';
+import HomePageScene from './HomePageScene';
+
+import {
+  FormLabel,
+  FormInput,
+  Button,
+  List,
+  ListItem
+} from 'react-native-elements';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Swipeout from 'react-native-swipeout';
+import NavigationBar from 'react-native-navbar';
 import EventScene from './Event';
+// import AddJobForm from './AddJobForm';
+// import Google from './Google';
+// import DynamicList from './DynamicList'
+import LinearGradient from 'react-native-linear-gradient';
 
-import data from './data.json';
-const window = Dimensions.get('window');
+var REQUEST_URL = 'https://hitch.herokuapp.com/api/getTimeStamps?job_id=';
 
-class CheckButton extends Component {
-    state = {
-        _pressed : false,
-    }
+class MyButton extends Component {
+    constructor(props){
+    super(props);
+    this.state = {
+        _pressed: false,
+    };
+}
 
     _changeColor() {
         this.setState({_pressed : !this.state._pressed});
     }
 
-    _getIconStyle() {
-        if (!this.state._pressed) {
-            return styles.falseIcon;
-        }
-        else {
-            return styles.trueIcon; 
-        }
-    }
-
-    _getName() {
-        if (!this.state._pressed) {
-            return 'circle-o';
-        }
-        else {
-            return 'check-circle'; 
-        }
-    }
-
-    render() {
-        return (
-            <TouchableOpacity style={styles.deleteWrapper} onPress={() => this._changeColor()}>
-                <Icon name={this._getName()} style={this._getIconStyle()}/>
-            </TouchableOpacity>
-        );
-    }
-}
-
-
-class DynamicListRow extends Component {
-
-    // these values will need to be fixed either within the component or sent through props
-    _defaultHeightValue = 60;
-    _defaultTransition  = 100;
-
-    state = {
-        _rowHeight  : new Animated.Value(this._defaultHeightValue),
-        _rowOpacity : new Animated.Value(0)
-    };
-
-    componentDidMount() {
-        Animated.timing(this.state._rowOpacity, {
-            toValue  : 1,
-            duration : this._defaultTransition
-        }).start()
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.remove) {
-            this.onRemoving(nextProps.onRemoving);
-        } else {
-            this.resetHeight()
-        }
-    }
-
-    onRemoving(callback) {
-        console.log("removing");
-        Animated.timing(this.state._rowHeight, {
-            toValue  : 0,
-            duration : this._defaultTransition
-        }).start(callback);
-    }
-
-    resetHeight() {
-        Animated.timing(this.state._rowHeight, {
-            toValue  : this._defaultHeightValue,
-            duration : 0
-        }).start();
-    }
-
-    render() {
-        return (
-            <Animated.View
-                style={{height: this.state._rowHeight, opacity: this.state._rowOpacity}}>
-                {this.props.children}
-            </Animated.View>
-        );
-    }
-}
-
-export default class DynamicList extends Component {
-
-    /**
-     * Default state values
-     * */
-     constructor(props) {
-        super(props);
-     }
-    state = {
-        loading     : true,
-        dataSource  : new ListView.DataSource({
-            rowHasChanged : (row1, row2) => true
-        }),
-        refreshing  : false,
-        rowToDelete : null,
-    };
-
-    componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this._loadData()
-        });
-    }
-
-    _loadData(refresh) {
-        refresh && this.setState({
-            refreshing : true
-        });
-
-        this.dataLoadSuccess({data : data});
-    }
-
-    dataLoadSuccess(result) {
-
-        this._data = result.data;
-
-        let ds = this.state.dataSource.cloneWithRows(this._data);
-
-        this.setState({
-            loading     : false,
-            refreshing  : false,
-            rowToDelete : -1,
-            dataSource  : ds,
-        });
-    }
-
-    _fetchData() {
-    var URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com';
-    return fetch(URL)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        var state = {};
-          state['size'] = responseJson.res.timeStamp_list.length;
-          for (var i = 0; i < responseJson.res.timeStamp_list.length; i++) {
-            state[i] = responseJson.res.timeStamp_list[i].deadline;
-          }
-        this.setState(state);
-        this.setState({
-          loaded : true,
-        });
-        // return events;
-      })
-      .catch(function(err) {
-        // something went wrong
-        AlertIOS.alert("failed to get event!", "Please check you network");
-      })
-      .done();
-  }
-
-    render() {
-        if (this.state.loaded == true)
+    _getTitleStyles() {
+        if (this.state._pressed)
         {
-            this._fetchData();
+            return styles.pressedButton;
         }
+        else
+        {
+            return styles.unpressedButton;
+        }
+    }
+
+    _getSubtitleStyles() {
+        if (this.state._pressed)
+        {
+            return styles.pressedButtonSub;
+        }
+        else
+        {
+            return styles.unpressedButtonSub;
+        }
+    }
+
+    _changeStyles() {
+        if (this.state._pressed)
+        {
+            return 'green';
+        }
+        else
+        {
+            return 'grey';
+        }
+    }
+
+    _changeRightIcon() {
+        if (this.state._pressed)
+        {
+            return {name: 'check-box'}
+        }
+        else
+        {
+            return {name: 'check-box-outline-blank'}
+        }
+    }
+
+    render() {
         return (
-            <View style={styles.container}>
-                <ListView
-                    refreshControl={
-                      <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this._loadData.bind(this, true)}
-                        tintColor="#00AEC7"
-                        title="Loading..."
-                        titleColor="#00AEC7"
-                        colors={['#FFF', '#FFF', '#FFF']}
-                        progressBackgroundColor="#00AEC7"/>
-                    }
-                    enableEmptySections={true}
-                    dataSource={this.state.dataSource}
-                    renderRow={this._renderRow.bind(this)}/>
-                    
-                <View>
-                    <TouchableOpacity
-                        style={styles.addButton}
-                        onPress={()=> this._goEventDetail()}>
-                        <Text style={styles.addButtonText}>{this.state[1]}</Text>
-                    </TouchableOpacity>
-                </View>
+            <View marginBottom={10}>
+            <Button
+            key={this.props.id}
+            title={this.props.title}
+            iconRight={true}
+            borderRadius={5}
+            icon={this._changeRightIcon()}
+            backgroundColor={this._changeStyles()}
+            onPress={() => this._changeColor()}/>
             </View>
         );
     }
-
-    _renderRow(rowData, sectionID, rowID) {
-        console.log(rowData.id === this.state.rowToDelete);
-        var logoStyle;
-        var editButton = {
-            text: 'Edit',
-            backgroundColor: '#F5F5F5',
-            color: 'black',
-            onPress: () => this._goEventDetail(),
-        }
-        var deleteButton = {
-            text: 'Delete',
-            backgroundColor: '#FF6347',
-            onPress: () => this._deleteItem(rowData.id),
-        }
-        if (rowData.status == "False") {
-            logoStyle =  styles.falseIcon;
-        }
-        else {
-            logoStyle = styles.trueIcon; 
-        }
-        return (
-            <DynamicListRow
-                remove={rowData.id === this.state.rowToDelete}
-                onRemoving={this._onAfterRemovingElement.bind(this)}>
-                <Swipeout autoClose={true} right={[deleteButton, editButton]}>
-                <View style={styles.rowStyle}>
-                    <View style={styles.contact}>
-                        <TouchableOpacity onPress={() => this._showCollapsed()}>
-                        <Text style={[styles.name]}>{rowData.name}</Text>
-                        <Text style={styles.phone}>{rowData.phone}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <CheckButton status={rowData.status}/>
-                </View>
-                </Swipeout>
-            </DynamicListRow>
-        );
-    }
-
-    _showCollapsed() {
-        // Todo
-    }
-
-    _goEventDetail() {
-        this.props.navigator.push({
-            component: EventScene,
-            title: 'EventScene'
-        });
-    }
-
-    _addItemPressed() {
-
-        AlertIOS.prompt(
-            'Add Item',
-            'Name here:',
-            [
-                {
-                    text    : 'OK',
-                    onPress : (name) => {
-                        this._addItem(name);
-                    }
-                }
-            ],
-            'plain-text',
-            ''
-        );
-    }
-
-    _addItem(name) {
-        this._data.push({
-            id    : name + Math.random(),
-            name  : name,
-            phone : 'XX-XXX-XXX-XXXX',
-            status : 'False'
-        });
-        this.setState({
-            rowToDelete : -1,
-            dataSource  : this.state.dataSource.cloneWithRows(this._data)
-        });
-    }
-
-    componentWillUpdate(nexProps, nexState) {
-        if (nexState.rowToDelete !== null) {
-            this._data = this._data.filter((item) => {
-                if (item.id !== nexState.rowToDelete) {
-                    return item;
-                }
-            });
-        }
-    }
-
-    _deleteItem(id) {
-        this.setState({
-            rowToDelete : id
-        });
-    }
-
-    _onAfterRemovingElement() {
-        this.setState({
-            rowToDelete : null,
-            dataSource  : this.state.dataSource.cloneWithRows(this._data)
-        });
-    }
-
 }
 
-const styles = StyleSheet.create({
-    container : {
-        flex            : 1,
-        backgroundColor : '#fff'
-    },
-    noData    : {
-        color     : '#000',
-        fontSize  : 18,
-        alignSelf : 'center',
-        top       : 200
-    },
+export default class JobList extends Component {
+  static get defaultProps() {
+    return {
+      title: 'Job List'
+    };
+  }
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    navigator: PropTypes.object.isRequired,
+  }
 
-    addPanel      : {
-        paddingTop      : 40,
-        paddingBottom   : 20,
-        backgroundColor : '#F9F9F9'
-    },
-    addButton     : {
-        backgroundColor : '#0A5498',
-        height: 50,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-    },
-    addButtonText : {
-        color     : '#fff',
-        alignSelf : 'center',
-    },
+  constructor(props) {
+    super(props);
+    this._goToSpecificEvent = this._goToSpecificEvent.bind(this);
+    this.state = {
+        jobs: null,
+        searched_jobs: null,
+      loaded: false,
+      search:false,
+      rowToDelete : null,
+      add_comment_id: -1,
+      date: new Date(),
+      refreshing: false,
+    };
+  }
 
-    rowStyle : {
-        backgroundColor   : '#FFF',
-        paddingBottom: 10,
-        paddingTop   : 5,
-        paddingHorizontal : 10,
-        borderBottomColor : '#ccc',
-        borderBottomWidth : 1,
-        flexDirection     : 'row'
-    },
+  _goToDifferent(){
+    this.setState({search: false});
+    var a = 1;
+  }
 
-    rowIcon : {
-        width            : 30,
-        alignSelf        : 'flex-start',
-        marginHorizontal : 10,
-        fontSize         : 24
-    },
+  _goToSpecificEvent(id) {
+    this.props.navigator.push({
+      component: EventScene,
+      title: 'Application Process',
+      passProps: {
+        event_id: id,
+      }
+    });
+  }
 
-    name    : {
-        color    : '#212121',
-        fontSize : 14,
-        fontWeight: 'bold'
-    },
-    phone   : {
-        color    : '#212121',
-        fontSize : 10
-    },
-    contact : {
-        width     : window.width - 100,
-        alignSelf : 'flex-start'
-    },
+  _onAfterRemovingElement() {
+    this.setState({
+      rowToDelete : null,
+      dataSource  : this.state.dataSource.cloneWithRows(this._data)
+      });
+  }
 
-    dateText      : {
-        fontSize         : 10,
-        color            : '#ccc',
-        marginHorizontal : 10
-    },
-    deleteWrapper : {
-        paddingVertical : 10,
-        width           : 80,
-        alignSelf       : 'flex-end'
-    },
-    deleteIcon    : {
-        fontSize  : 24,
-        color     : '#DA281C',
-        alignSelf : 'center'
-    },
-    trueIcon    : {
-        fontSize  : 24,
-        color     : 'green',
-        alignSelf : 'center'
-    },
-    falseIcon    : {
-        fontSize  : 24,
-        color     : 'black',
-        alignSelf : 'center'
-    },
-    progressView: {
-        marginTop: 20,
+  fetchData() {
+    fetch(REQUEST_URL + this.props.job_id, {
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({
+          jobs:responseData.timeStamps.timeStamp_list,
+          loaded: true,
+        });
+      })
+      .done();
+
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  _parseDate(dateString) {
+    var monthtoDay = {
+      "Jan" : 0,
+      "Feb" : 1,
+      "Mar" : 2,
+      "Apr" : 3,
+      "May" : 4,
+      "Jun" : 5,
+      "Jul" : 6,
+      "Aug" : 7,
+      "Sep" : 8,
+      "Oct" : 9,
+      "Nov" : 10,
+      "Dec" : 11
+    };
+
+    var eventDate = parseInt( dateString.substring(5,7) );
+    var eventMonth = monthtoDay[ dateString.substring(8,11) ];
+    var eventYear = parseInt( dateString.substring(12,17) );
+    return new Date(eventYear, eventMonth, eventDate);
+  }
+
+  _getDiffDays(dateString) {
+    var eventDateObj = this._parseDate(dateString);
+    var oneDay = 24*60*60*1000;
+    var diffDays = Math.ceil(Math.abs(eventDateObj.getTime() - this.state.date.getTime())/oneDay);
+    return diffDays;
+  }
+
+  _dateFormat() {
+    var monthNames = ["Janunary", "Februrary", "March", "April", "May", "June", "July",
+      "August", "September", "October", "November", "December"];
+    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return dayNames[this.state.date.getDay()] + ',\n' +
+           this.state.date.getDate() + "th " + monthNames[this.state.date.getMonth()];
+    // return "day: " + new Date().getDay() + "date: " + new Date().getDate() + "month: " + this.state.date.getMonth();
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true, loaded: false});
+    this.forceUpdate()
+    this.setState({refreshing: false});
+  }
+
+  render() {
+
+
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
+
+    this.fetchData();
+
+      return (
+      <View style={{flex:1, flexDirection: 'column'}}>
+        <View>
+          <View style={{height: 40, justifyContent: 'center',alignItems:'center'}}>
+          </View>
+          <ScrollView style={styles.container}
+          automaticallyAdjustContentInsets={false}
+          refreshControl={
+            <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh.bind(this)}/>
+          }
+          >
+          <List>
+            {
+              this.state.jobs.map((l, i) => (
+                <MyButton
+                key={i}
+                title={l.description}
+                subtitle={l.deadline}/>
+          ))
+            }
+          </List>
+          </ScrollView>
+        </View>
+
+      </View>
+    );
+            };
+
+  renderLoadingView() {
+    return (
+      <Text>
+      Loading companies...
+      </Text>
+      );
+    }
+  }
+
+var styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    height: 577,
   },
+  linearGradient: {
+    height: 670,
+    width: Dimensions.get('window').width
+  },
+  pressedButton: {
+    fontSize: 22,
+    color: 'white',
+  },
+  unpressedButton: {
+    fontSize: 22,
+    color: 'white',
+  },
+  pressedButtonSub: {
+    fontSize: 17,
+    color: 'white',
+  },
+  unpressedButtonSub: {
+    fontSize: 17,
+    color: 'white',
+  },
+  pressed: {
+    backgroundColor: '#12ad2a',
+  },
+  unpressed: {
+    backgroundColor: 'grey',
+  }
 });
