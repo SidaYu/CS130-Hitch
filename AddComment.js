@@ -64,9 +64,11 @@ fetchData() {
     .then((responseData) => {
     })
     .done();
-    AlertIOS.alert(
-      "Comment has added!"
-          )
+          AlertIOS.alert(
+            'Comment add succeeded!',
+            null,
+            (() =>this.props.navigator.pop())
+          );
   }
 
   render() 

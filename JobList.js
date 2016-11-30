@@ -171,11 +171,10 @@ constructor(props) {
     .then((responseData) => {
       this.setState({
         loaded: true,
-        rowToDelete: -1,
         });
     })
     .done();
-    this.fetchData();
+    //this.fetchData();
     //this.props.navigator.pop();
     this.render();
   }
@@ -284,6 +283,7 @@ fetchData() {
 
 
           <Swipeout
+          	autoClose = {true}
             key = {i}
             right={
             [
