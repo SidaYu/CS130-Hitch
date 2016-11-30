@@ -263,7 +263,7 @@ fetchData() {
 
 
 
-    this.fetchData();
+    if (this.state.loaded == false) this.fetchData();
 
     return (
       <View style = {{marginTop: 60, flex: 1, backgroundColor: '#e6e6e6'}}>
