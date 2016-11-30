@@ -351,7 +351,7 @@ fetchData() {
         </ScrollView> 
 
 
-      <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
        <TabBarIOS
           unselectedTintColor="black"
           tintColor="mediumseagreen"
@@ -497,7 +497,7 @@ fetchData() {
         container: {
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'white',
+          backgroundColor: 'lightsteelblue',
           borderBottomColor: 'grey',
           borderBottomWidth: 1,
         },
