@@ -121,7 +121,6 @@ class EventScene extends React.Component {
             style={styles.linearGradient}
             width={300}>
 
-
           <Button
           large
           iconRight
@@ -130,7 +129,7 @@ class EventScene extends React.Component {
           fontSize={24}
           color='white'
           backgroundColor='transparent'
-          onPress={this._addNewEvent}
+          onPress={() => this._addNewEvent()}
           borderRadius={10}/>
           </LinearGradient>
         </View>
