@@ -20,7 +20,7 @@
     "react-native-side-menu": "^0.20.1",
     "react-native-swipeout": "^2.0.12",
     "react-native-textinput-effects": "^0.2.0",
-    "react-native-vector-icons": "^3.0.0",
+    "react-native-vector-icons": "^2.1.0",
     "react-native-video": "^0.9.0",
     "yargs": "^6.3.0",
     "yargs-parser": "^4.0.2"
