@@ -75,7 +75,7 @@ export default class SignInScene extends Component {
         if(responseData.result){
           this.props.navigator.push({
             component: CountDown,
-            title: 'Count Down',
+            title: '',
             navigationBarHidden: true,
             passProps: {
               email: this.state.email,
