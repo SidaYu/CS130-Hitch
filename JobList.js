@@ -24,7 +24,7 @@ import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
 import Google from './Google';
-import DynamicList from './DynamicList';
+import DynamicList from './EventsScene';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
@@ -55,7 +55,6 @@ constructor(props) {
     super(props);
     this._goToAddJobFormAuto = this._goToAddJobFormAuto.bind(this);
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
-    this._goToComment = this._goToComment.bind(this);
     this.state = {
         jobs: null,
         searched_jobs: null,
@@ -117,7 +116,7 @@ constructor(props) {
   _goToSpecificJob(id, name, logo) {
     this.props.navigator.push({
       component: DynamicList,
-      title: 'Application Process',
+      title: 'Job Progress',
       rightButtonTitle: 'Add',
       onRightButtonPress: () => {this.props.navigator.push({component: Event,title: 'New Event',passProps: {
           job_id : id,
@@ -143,12 +142,6 @@ constructor(props) {
   }
 
 
-  _goToComment(){
-      this.props.navigator.push({
-      component: Comment,
-      title: 'Comment',
-    });
-  }
 
   _onAfterRemovingElement() {
     this.setState({
@@ -254,14 +247,6 @@ fetchData() {
     },
     ]
 
-    var refresh = [
-    {
-      title: 'Refresh',
-      icon: 'refresh',
-    }
-    ]
-
-
 
     this.fetchData();
 
@@ -323,19 +308,7 @@ fetchData() {
         }
         </List>
 
-        <List >
-        {
-          refresh.map((item, i) => (
-          <ListItem
-          key={i}
-          title={item.title}
-          leftIcon={{name: item.icon}}
-          //onPress = {() => this.setState({search: false})}
-          onPress = {this._goToComment}
-          />
-          ))
-        }
-        </List>
+        
         </ScrollView>
 
 
@@ -395,6 +368,31 @@ fetchData() {
             >
             <Text></Text>
           </Icon.TabBarItemIOS>
+
+
+
+          <Icon.TabBarItemIOS
+            iconName="file-o"
+            title="Notes"
+            selected={this.state.selectedTab === 'fifthTab'}
+            iconColor={"black"}
+            renderAsOriginal={true}
+            onPress={() => {
+              this.props.navigator.replace({
+                  component: Comment,
+                  title: 'Comment',
+                  navigationBarHidden: true,
+                  passProps: {
+                    email: this.props.email,
+                    password: this.props.password
+                  }
+                });
+            }}>
+            <Text></Text>
+          </Icon.TabBarItemIOS>
+
+
+
           <Icon.TabBarItemIOS
             iconName="user"
             title="Profile"
