@@ -29,7 +29,8 @@ export default class SignInScene extends Component {
     this._goToHomePage = this._goToHomePage.bind(this);
     this.state = {
       email: '',
-      password:''
+      password:'',
+      loaded: "false",
     };
   }
 

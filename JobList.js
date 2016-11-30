@@ -13,8 +13,9 @@ import {
   InteractionManager
 } from 'react-native';
 import {
-  Button, List, ListItem, CheckBox, SearchBar, Tabs, Tab,
+  Button, List, ListItem, SearchBar,CheckBox, Tabs, Tab,
 } from 'react-native-elements'
+//import SearchBar from 'react-native-searchbar'
 
 
 import NavigationBar from 'react-native-navbar';
@@ -29,6 +30,7 @@ import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
 import Event from './Event';
+import Search from './Search';
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
 var Swipeout = require('react-native-swipeout')
@@ -56,10 +58,9 @@ constructor(props) {
         searched_jobs: null,
       loaded: false,
       search:false,
-      rowToDelete : null,
-      add_comment_id: -1,
       selectedTab: 'thirdTab',
-      renderPlaceholderOnly: true
+      renderPlaceholderOnly: true,
+      dataSource: null,
     };
   }
 
@@ -139,17 +140,30 @@ constructor(props) {
 
 
   _goToComment(){
-      this.props.navigator.push({
-      component: Comment,
-      title: 'Comment',
+    this.props.navigator.push({
+    component: Comment,
+    title: 'Comment',
     });
   }
 
-  _onAfterRemovingElement() {
-    this.setState({
-      rowToDelete : null,
-      dataSource  : this.state.dataSource.cloneWithRows(this._data)
-      });
+  _goToSearch(){
+      this.props.navigator.push({
+      component: Search,
+      title: 'Search',
+      passProps: {
+        m_jobs: this.state.searched_jobs,
+      }
+    });
+  }
+
+  _deleteItemHelp(id)
+  {
+  	var list = this.state.searched_jobs;
+    var len = list.length;
+    for (var i = 0; i < len; i++)
+    {
+    	if (list[i].job_id == id) list.splice(i,1);
+    }
   }
 
   _deleteItem(id) {
@@ -172,10 +186,13 @@ constructor(props) {
         });
     })
     .done();
+    this._deleteItemHelp(id);
     //this.fetchData();
     //this.props.navigator.pop();
     this.render();
   }
+
+
 
 
 fetchData() {
@@ -206,9 +223,6 @@ fetchData() {
 
 
   componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.setState({renderPlaceholderOnly: false});
-    });
     this.fetchData();
   }
 
@@ -232,7 +246,7 @@ fetchData() {
   render()
   {
 
-    if (this.state.renderPlaceholderOnly) {
+    if (this.state.loaded == false) {
       return this.renderLoadingView();
     }
 
@@ -261,15 +275,16 @@ fetchData() {
 
 
 
-    if (this.state.loaded == false) this.fetchData();
+    this.fetchData();
 
     return (
       <View style = {{marginTop: 60, flex: 1, backgroundColor: '#e6e6e6'}}>
 
       <View>
       <SearchBar
-      onChangeText={(l) => this.changeList(l)}
+      onChangeText={(l) => this._goToSearch()}
       placeholder='Type to search company name...' />
+
 
 
 
