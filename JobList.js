@@ -193,6 +193,7 @@ fetchData() {
     })
       .then((response) => response.json())
       .then((responseData) => {
+         
         this.setState({
           jobs: responseData.jobs.job_list,
           searched_jobs: responseData.jobs.job_list,
