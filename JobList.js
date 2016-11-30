@@ -24,7 +24,7 @@ import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
 import Google from './Google';
-import DynamicList from './EventsScene';
+import DynamicList from './DynamicList';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
@@ -33,6 +33,10 @@ import Event from './Event';
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
 var Swipeout = require('react-native-swipeout')
+
+class rowElement extends Component {
+  
+}
 
 export default class JobList extends Component {
   static get defaultProps() {
@@ -266,9 +270,6 @@ fetchData() {
       <SearchBar
       onChangeText={(l) => this.changeList(l)}
       placeholder='Type to search company name...' />
-
-
-
       <ScrollView style = {{height: 510}}>
       <List containerStyle = {{}} >
       {

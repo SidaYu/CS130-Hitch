@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  RefreshControl,
   TouchableHighlight,
   TabBarIOS,
   Text,
@@ -36,29 +37,7 @@ class MyButton extends Component {
 	state = {
         _pressed : false,
     }
-
-    _parseDate(dateString) {
-    var monthtoDay = {
-      "Jan" : 0,
-      "Feb" : 1,
-      "Mar" : 2,
-      "Apr" : 3,
-      "May" : 4,
-      "Jun" : 5,
-      "Jul" : 6,
-      "Aug" : 7,
-      "Sep" : 8,
-      "Oct" : 9,
-      "Nov" : 10,
-      "Dec" : 11
-    };
-
-    var eventDate = dateString.substring(5,7);
-    var eventMonth = dateString.substring(8,11);
-    var eventYear = dateString.substring(12,17);
-    return eventMonth + " " + eventDate + ", " + eventYear;
-  }
-
+    
     _changeColor() {
         this.setState({_pressed : !this.state._pressed});
     }
@@ -112,24 +91,20 @@ class MyButton extends Component {
     }
 }
 
-export default class CountDownScene extends Component {
+export default class EventsScene extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: 'firstTab',
       date: new Date(),
-      loaded: false
+      loaded: false,
+      refreshing: false,
     };
   }
   static get defaultProps() {
     return {
       title: 'Count Down'
     };
-  }
-
-  static propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
   }
 
   static colorMap = {
@@ -161,6 +136,13 @@ export default class CountDownScene extends Component {
       })
       .done();
       this.render();
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    this._fetchData();
+    this.forceUpdate();
+    this.setState({refreshing: false});
   }
 
   _fetchData() {
@@ -227,6 +209,11 @@ export default class CountDownScene extends Component {
           </View>
           <ScrollView style={styles.container}
           automaticallyAdjustContentInsets={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}/>
+          }
           >
           <List>
             {events}
