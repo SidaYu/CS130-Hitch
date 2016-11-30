@@ -60,7 +60,7 @@ class EventScene extends React.Component {
             'Content-Type': 'application/json'
         },
       body: JSON.stringify({
-          job_id: this.props.job_id,
+          job_id: String(this.props.job_id),
           description: this.state.name,
           deadline: this.state.date,
           status: "False"

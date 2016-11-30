@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {
+  AlertIOS,
   AppRegistry,
   StyleSheet,
   TouchableHighlight,
@@ -24,7 +25,7 @@ import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
 import Google from './Google';
-import DynamicList from './EventsScene';
+import DynamicList from './DynamicList';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
 import Settings from './SettingsScene';
@@ -118,7 +119,8 @@ constructor(props) {
       component: DynamicList,
       title: 'Job Progress',
       rightButtonTitle: 'Add',
-      onRightButtonPress: () => {this.props.navigator.push({component: Event,title: 'New Event',passProps: {
+      onRightButtonPress: () => {
+        this.props.navigator.push({component: Event,title: 'New Event',passProps: {
           job_id : id,
         }
       })},
