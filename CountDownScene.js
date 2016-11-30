@@ -162,7 +162,7 @@ export default class CountDownScene extends Component {
       return (
       <View style={{flex:1, flexDirection: 'column'}}>
         <View style={{height:620}}>
-        <LinearGradient colors={['#1F2F3C', '#3D5167', '#5C7894', '#7C9AAF', '#97B2BE']}
+        <LinearGradient colors={['#928DAB','#408AC7']}
                         style={styles.linearGradient}>
           <View style={{height: 40, justifyContent: 'center',alignItems:'center'}}>
           </View>
@@ -197,16 +197,15 @@ export default class CountDownScene extends Component {
         </View>
         <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
         <TabBarIOS
-        unselectedTintColor="azure"
-        tintColor="white"
-        barTintColor="gainsboro"
-        backgroundColor = "azure">
+       unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
+          backgroundColor = "azure">
         <Icon.TabBarItemIOS
           iconName="clock-o"
           title="CountDown"
           selected={this.state.selectedTab === 'firstTab'}
-          iconColor={"grey"}
-          selectedIconColor={'#1F2F3C'}
+          iconColor={"mediumseagreen"}
           renderAsOriginal={true}
           >
           <Text>Home</Text>
@@ -215,8 +214,7 @@ export default class CountDownScene extends Component {
           iconName="calendar"
           title="Calendar"
           selected={this.state.selectedTab === 'secondTab'}
-          iconColor={"grey"}
-          selectedIconColor={'#1F2F3C'}
+          iconColor={"black"}
           renderAsOriginal={true}
           onPress={() => {
             this.props.navigator.replace({
@@ -235,8 +233,7 @@ export default class CountDownScene extends Component {
           iconName="list"
           title="MyJobs"
           selected={this.state.selectedTab === 'thirdTab'}
-          iconColor={"grey"}
-          selectedIconColor={'#1F2F3C'}
+          iconColor={"black"}
           renderAsOriginal={true}
           onPress={() => {
             this.props.navigator.replace({
@@ -254,8 +251,7 @@ export default class CountDownScene extends Component {
           iconName="user"
           title="Profile"
           selected={this.state.selectedTab === 'fourthTab'}
-          iconColor={"grey"}
-          selectedIconColor={'#1F2F3C'}
+          iconColor={"black"}
           renderAsOriginal={true}
           onPress={() => {
             this.props.navigator.replace({

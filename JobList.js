@@ -105,6 +105,7 @@ constructor(props) {
     this.props.navigator.push({
       component: AddJobFormAuto,
       title: 'Add Job Form Auto',
+      navigationBarHidden: true,
     });
   }
 
@@ -343,16 +344,15 @@ fetchData() {
 
       <View style={{flex:1, flexDirection: 'column', backgroundColor:'skyblue'}}>
        <TabBarIOS
-          unselectedTintColor="azure"
-          tintColor="white"
-          barTintColor="gainsboro"
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
             title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -371,8 +371,7 @@ fetchData() {
             iconName="calendar"
             title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -391,8 +390,7 @@ fetchData() {
             iconName="list"
             title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"mediumseagreen"}
             renderAsOriginal={true}
             >
             <Text></Text>
@@ -401,8 +399,7 @@ fetchData() {
             iconName="user"
             title="Profile"
             selected={this.state.selectedTab === 'fourthTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({

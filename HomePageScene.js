@@ -110,16 +110,16 @@ export default class HomePageScene extends React.Component {
         </View>
         <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightgrey'}}>
           <TabBarIOS
-          unselectedTintColor="azure"
-          tintColor="white"
-          barTintColor="gainsboro"
+          unselectedTintColor="black"
+          tintColor="mediumseagreen"
+          barTintColor="white"
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
             title="CountDown"
+            titlecolor="black"
             selected={this.state.selectedTab === 'firstTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -138,8 +138,7 @@ export default class HomePageScene extends React.Component {
             iconName="calendar"
             title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
@@ -158,13 +157,13 @@ export default class HomePageScene extends React.Component {
             iconName="list"
             title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"black"}
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
                   component: JobList,
                   title: 'Job List',
+                  navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
                     password: this.props.password
@@ -177,8 +176,7 @@ export default class HomePageScene extends React.Component {
             iconName="user"
             title="Profile"
             selected={this.state.selectedTab === 'fourthTab'}
-            iconColor={"grey"}
-            selectedIconColor={'#1F2F3C'}
+            iconColor={"mediumseagreen"}
             renderAsOriginal={true}
             >
             <Text>Home</Text>
