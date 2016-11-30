@@ -81,7 +81,8 @@ export default class CountDownScene extends Component {
   }
 
   fetchData() {
-    var REQUEST_URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email='+this.props.user_email
+    var REQUEST_URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email=tian@test.com'
+    //var REQUEST_URL = 'https://hitch.herokuapp.com/api/getUndoTimeStamp?user_email='+this.props.user_email
     fetch(REQUEST_URL, {
       headers: {
         'Cache-Control': 'no-cache'

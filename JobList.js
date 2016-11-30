@@ -68,7 +68,7 @@ constructor(props) {
 
   setImage()
   {
-    var list = this.state.jobs;
+    var list = this.state.searched_jobs;
     var len = list.length;
     for (var i = 0; i < len; i++)
     {
@@ -94,6 +94,8 @@ constructor(props) {
           list[i].avatar_url = 'https://www.fantasygrounds.com/img/mac_os.png';
         else if (list[i].company_name.toLowerCase() == 'ibm')
           list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
+        else if (list[i].company_name.toLowerCase() == 'oracle')
+          list[i].avatar_url = 'http://www.sightcall.com/wp-content/uploads/2013/09/oracle-logo.jpg';
         else
           list[i].avatar_url = 'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
     }
@@ -197,7 +199,7 @@ constructor(props) {
 
 
 fetchData() {
-  var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email='+this.props.user_email;
+  var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com';
     fetch(REQUEST_URL, {
       headers: {
         'Cache-Control': 'no-cache'
@@ -407,7 +409,7 @@ fetchData() {
 
           <Icon.TabBarItemIOS
             iconName="file-o"
-            title="Back"
+            title="Comments"
             selected={this.state.selectedTab === 'fourthTab'}
             iconColor={"black"}
             renderAsOriginal={true}

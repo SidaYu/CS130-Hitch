@@ -76,6 +76,11 @@ constructor(props) {
     };
   }
 
+popHelp(){
+  this.props.navigator.pop();
+  this.props.navigator.pop();
+}
+
 fetchData() {
      fetch("https://hitch.herokuapp.com/api/addjob", {
       method: 'POST',
@@ -98,7 +103,7 @@ fetchData() {
           AlertIOS.alert(
             'Add job succeeded',
             null,
-            (() => this.props.navigator.pop()),
+            (() => this.popHelp()),
           );
         }
         else
