@@ -109,7 +109,7 @@ class MyButton extends Component {
             icon={this._changeRightIcon()}
             textStyle={{color: 'black'}}
             width={300}/>
-            <View alignItems={'center'}>
+            <View alignItems={'center'} marginTop={10} marginBottom={10}>
             <Icon name='caret-down'/>
             </View>
             </View>
@@ -287,7 +287,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
     height: 670,
     borderColor: 'transparent',
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'lightsteelblue',
   },
   linearGradient: {
     height: 670,

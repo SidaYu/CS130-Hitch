@@ -137,41 +137,6 @@ export default class SearchJob extends Component {
     if (this.state.loaded == false) this.addJobAutoHelp();
     return (
      <View style={{marginTop: 70, flex:1,backgroundColor: 'lightgrey'}}>
-  
-        <TabBarIOS
-           unselectedTintColor="yellow"
-           tintColor="white"
-           barTintColor="darkslateblue">
-        <TabBarIOS.Item
-          title="search Tab"
-          systemIcon="search"
-          selected={this.state.selectedTab === 'searchTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'searchTab',
-            });
-          }}>
-          <Text> </Text>
-        </TabBarIOS.Item>
-
-        <TabBarIOS.Item
-          systemIcon="more"
-          title="More"
-          selected={this.state.selectedTab === 'moreTab'}
-          onPress={() => {
-              this.props.navigator.push({
-                  component: AddJobForm,
-                  title: 'Add Job Form',
-                });
-
-          }}>
-          <Text> </Text>
-        </TabBarIOS.Item>
-        </TabBarIOS>
-        
-
-
-        <View style = {{height: 300}}>
       <SearchBar
       onChangeText={(l) => this.addJobAuto(l)}
       placeholder='Add job by typing company name...' />
@@ -191,10 +156,6 @@ export default class SearchJob extends Component {
 
       </ScrollView>
       </View>
-
-
-      </View>
-    
            
 
     

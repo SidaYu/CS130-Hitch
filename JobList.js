@@ -54,6 +54,7 @@ export default class JobList extends Component {
 constructor(props) {
     super(props);
     this._goToAddJobFormAuto = this._goToAddJobFormAuto.bind(this);
+    this._goToAddJobForm = this._goToAddJobForm.bind(this);
     this._goToSpecificJob = this._goToSpecificJob.bind(this);
     this.state = {
         jobs: null,
@@ -100,11 +101,22 @@ constructor(props) {
     }
   }
 
+
+
   _goToAddJobFormAuto() {
     this.props.navigator.push({
       component: AddJobFormAuto,
-      title: 'Add Job Form Auto',
-      navigationBarHidden: true,
+      title: 'Search Job',
+
+    });
+  }
+
+
+   _goToAddJobForm() {
+    this.props.navigator.push({
+      component: AddJobForm,
+      title: 'Add Job',
+
     });
   }
 
@@ -248,6 +260,12 @@ fetchData() {
     },
     ]
 
+    var searchJob = [
+    {
+      title: 'Search Job',
+      icon: 'search',
+    },
+    ]
 
     this.fetchData();
 
@@ -298,12 +316,26 @@ fetchData() {
 
         <List >
         {
-          addJob.map((item, i) => (
+          searchJob.map((item, i) => (
           <ListItem
           key={i}
           title={item.title}
           leftIcon={{name: item.icon}}
           onPress = {this._goToAddJobFormAuto}
+
+          />
+          ))
+        }
+        </List>
+
+        <List >
+        {
+          addJob.map((item, i) => (
+          <ListItem
+          key={i}
+          title={item.title}
+          leftIcon={{name: item.icon}}
+          onPress = {this._goToAddJobForm}
           />
           ))
         }
