@@ -19,6 +19,9 @@ import {
 import CalendarScene from './CalendarScene';
 import Settings from './SettingsScene';
 import HomePageScene from './HomePageScene';
+import Collapsible from 'react-native-collapsible';
+import Event from './Event';
+import UpdateEvent from './UpdateEvent';
 
 import {
   FormLabel,
@@ -26,10 +29,10 @@ import {
   Button,
   List,
   ListItem,
-  Icon
 } from 'react-native-elements';
 import NavigationBar from 'react-native-navbar';
 import EventScene from './Event';
+import Icon from 'react-native-vector-icons/FontAwesome';
 // import AddJobForm from './AddJobForm';
 // import Google from './Google';
 // import DynamicList from './DynamicList'
@@ -78,33 +81,33 @@ class MyButton extends Component {
         }
         else
         {
-            return 'grey';
+            return 'white';
         }
     }
 
     _changeRightIcon() {
         if (this.state._pressed)
         {
-            return {name: 'check-box'}
+            return {name: 'check-box', color: 'black'}
         }
         else
         {
-            return {name: 'check-box-outline-blank'}
+            return {name: 'check-box-outline-blank', color: 'black'}
         }
     }
 
     render() {
         return (
-            <View borderColor={'white'}>
+            <View borderColor={'white'} alignItems={'center'}>
             <Button
             key={this.props.id}
             title={this.props.title}
-            iconRight={true}
             borderRadius={5}
-            icon={this._changeRightIcon()}
             backgroundColor={this._changeStyles()}
-            onPress={() => this._changeColor()}/>
-            <Icon name='keyboard-arrow-down'/>
+            onPress={() => this._changeColor()}
+            textStyle={{color: 'black'}}
+            width={300}/>
+            <Icon name='caret-down'/>
             </View>
         );
     }
@@ -133,6 +136,7 @@ export default class DynamicList extends Component {
       add_comment_id: -1,
       date: new Date(),
       refreshing: false,
+      selectedTab: 'firstTab',
     };
   }
 
@@ -230,7 +234,7 @@ export default class DynamicList extends Component {
       return this.renderLoadingView();
     }
     this.fetchData();
-
+      const buttons = ['Edit', 'Add'];
       return (
       <View style={{flex:1, flexDirection: 'column', borderColor:'white'}}>
         <View borderColor={'white'}>
@@ -256,7 +260,8 @@ export default class DynamicList extends Component {
             {(this.state.jobs.length !== 0) && <Button
             title={"Congratulations!"}
             borderRadius={5}
-            backgroundColor={'grey'}/>}
+            backgroundColor={'white'}
+            textStyle={{color: 'black'}}/>}
           </List>
           </ScrollView>
         </View>
@@ -278,6 +283,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
     height: 670,
     borderColor: 'transparent',
+    backgroundColor: 'lightgrey',
   },
   linearGradient: {
     height: 670,
