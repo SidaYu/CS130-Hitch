@@ -180,11 +180,11 @@ fetchData() {
         large
         iconRight
         icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
-        title='Submit'
+        title='Add Job!'
         fontSize={24}
         color='white'
         backgroundColor='transparent'
-        onPress={this._goToJobList}
+        onPress={()=>this.fetchData()}
         borderRadius={10}/>
 
          </LinearGradient>

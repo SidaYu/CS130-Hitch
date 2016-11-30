@@ -95,7 +95,7 @@ constructor(props) {
         else if (list[i].company_name.toLowerCase() == 'ibm')
           list[i].avatar_url = 'http://107.170.195.98/wp-content/uploads/2014/12/ibm.png';
         else if (list[i].company_name.toLowerCase() == 'oracle')
-          list[i].avatar_url = 'http://www.sightcall.com/wp-content/uploads/2013/09/oracle-logo.jpg';
+          list[i].avatar_url = 'https://lh3.ggpht.com/2uJCZ_OC3mibLq9-HDXbqY82HemZT_sChHDR3UxpFlD1TDwZG27UIBC8JlJ0uGruv7q1=w300';
         else
           list[i].avatar_url = 'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
     }
