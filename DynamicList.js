@@ -73,11 +73,11 @@ class MyButton extends Component {
     _changeStyles() {
         if (this.state._pressed)
         {
-            return styles.pressed;
+            return 'green';
         }
         else
         {
-            return styles.unpressed;
+            return 'grey';
         }
     }
 
@@ -94,17 +94,16 @@ class MyButton extends Component {
 
     render() {
         return (
-            <ListItem key={this.props.id}
-                      id = {this.props.id}
-                      title={this.props.title}
-                      titleStyle={this._getTitleStyles()}
-                      containerStyle={this._changeStyles()}
-                      underlayColor={'green'}
-                      subtitle={this.props.subtitle.substring(0,17)}
-                      subtitleStyle={this._getSubtitleStyles()}
-                      onPress={() => this._changeColor()}
-                      rightIcon={this._changeRightIcon()}>
-                  </ListItem>
+            <View marginBottom={10}>
+            <Button
+            key={this.props.id}
+            title={this.props.title}
+            iconRight={true}
+            borderRadius={5}
+            icon={this._changeRightIcon()}
+            backgroundColor={this._changeStyles()}
+            onPress={() => this._changeColor()}/>
+            </View>
         );
     }
 }
@@ -273,7 +272,7 @@ export default class JobList extends Component {
 var styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0,0,0,0)',
-    height: 670,
+    height: 577,
   },
   linearGradient: {
     height: 670,
