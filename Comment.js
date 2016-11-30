@@ -235,8 +235,8 @@ constructor(props) {
             renderAsOriginal={true}
             onPress={() => {
               this.props.navigator.replace({
-                  component: CalendarScene,
-                  title: 'Calendar',
+                  component: JobList,
+                  title: 'Job List',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
