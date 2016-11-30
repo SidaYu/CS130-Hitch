@@ -9,7 +9,8 @@ import {
   View,
   NavigatorIOS,
   ScrollView,
-  TabBarIOS
+  TabBarIOS,
+  InteractionManager
 } from 'react-native';
 import {
   Button, List, ListItem, CheckBox, SearchBar, Tabs, Tab,
@@ -59,7 +60,8 @@ constructor(props) {
       search:false,
       rowToDelete : null,
       add_comment_id: -1,
-      selectedTab: 'thirdTab'
+      selectedTab: 'thirdTab',
+      renderPlaceholderOnly: true
     };
   }
 
@@ -153,8 +155,6 @@ constructor(props) {
   }
 
   _deleteItem(id) {
-    console.log("start deleteJob")
-    console.log(id)
     fetch('https://hitch.herokuapp.com/api/deleteJob', {
       method: 'POST',
       headers: {
@@ -166,8 +166,8 @@ constructor(props) {
         job_id: +id,
       })
     })
-    // .then((response) => response.json())
-    .then((response) => console.log(response))
+     .then((response) => response.json())
+    //.then((response) => console.log(response))
     .then((responseData) => {
       this.setState({
         loaded: true,
@@ -209,6 +209,9 @@ fetchData() {
 
 
   componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({renderPlaceholderOnly: false});
+    });
     this.fetchData();
   }
 
@@ -231,6 +234,10 @@ fetchData() {
 
   render()
   {
+
+    if (this.state.renderPlaceholderOnly) {
+      return this.renderLoadingView();
+    }
 
     var titleConfig = {
       title: 'Job List',

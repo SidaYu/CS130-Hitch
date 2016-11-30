@@ -94,17 +94,19 @@ fetchData() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        if(responseData.result == "success"){
+        if(responseData.result == "success")
+        {
           AlertIOS.alert(
-            "Add job succeeded"
-          );      
-        }else{
-          AlertIOS.alert(
-            "Add job failed"
-          )
+            'Add job succeeded',
+            null,
+            (() =>this.props.navigator.pop())
+          );
+        }
+        else
+        {
+          AlertIOS.alert("Add job failed")
         }
       })
-      .then(() => this.props.navigator.pop()) 
       .done(); 
   }
 
