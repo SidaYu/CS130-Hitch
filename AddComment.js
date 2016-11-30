@@ -14,6 +14,7 @@ import {
 import {
   Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
 } from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient';
 
 
 import NavigationBar from 'react-native-navbar';
@@ -83,18 +84,44 @@ fetchData() {
           onChangeText={(text) => this.setState({text})}
         />
         </View>
-        <View style={{flex:1}}>
-        <Button
-          backgroundColor = 'lightblue'
-          raised
+        <View alignItems={'center'}>
+          <LinearGradient 
+            colors={['#4c669f', '#3b5998', '#192f6a']} 
+            style={styles.linearGradient}
+            width={300}>
+
+
+          <Button
           large
-          icon={{name: 'cached'}}
-          title='Add Comment!' 
-          onPress = {() => this.fetchData()}/>
+          iconRight
+          icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+          title='Add Comment!'
+          fontSize={24}
+          color='white'
+          backgroundColor='transparent'
+          onPress={() => this._addNewEvent()}
+          borderRadius={10}/>
+          </LinearGradient>
         </View>
       </View>
 
     );
   }
 }
+
+const styles = StyleSheet.create({
+  textInput: {
+    backgroundColor:'white',
+    borderBottomLeftRadius:5,
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    borderBottomRightRadius:5,
+  },
+  button: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: 'white',
+  },
+});
 

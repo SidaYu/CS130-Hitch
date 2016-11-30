@@ -14,6 +14,7 @@ import {
 import {
   Button, List, ListItem, CheckBox, SearchBar, Icon, Tabs, Tab,
 } from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient';
 
 
 import NavigationBar from 'react-native-navbar';
@@ -169,14 +170,24 @@ fetchData() {
 
         </View>
 
-        <View style={{flex:1}}>
+        <View alignItems={'center'}>
+          <LinearGradient 
+            colors={['#4c669f', '#3b5998', '#192f6a']} 
+            style={styles.linearGradient}
+            width={300}>
+
         <Button
-          backgroundColor = 'lightblue'
-          raised
-          large
-          icon={{name: 'cached'}}
-          title='Add This Job!' 
-          onPress = {() => this.fetchData()}/>
+        large
+        iconRight
+        icon={{name: 'pencil-square-o', type: 'font-awesome', color: 'white'}}
+        title='Submit'
+        fontSize={24}
+        color='white'
+        backgroundColor='transparent'
+        onPress={this._goToJobList}
+        borderRadius={10}/>
+
+         </LinearGradient>
         </View>
       </View>
 
