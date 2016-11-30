@@ -262,7 +262,7 @@ export default class DynamicList extends Component {
           ))
             }
             {(this.state.jobs.length !== 0) && <Button
-            title={"Congratulations!"}
+            title={"Next Step (TBC) "}
             borderRadius={5}
             backgroundColor={'white'}
             textStyle={{color: 'black'}}/>}

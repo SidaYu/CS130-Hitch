@@ -139,7 +139,7 @@ export default class SearchJob extends Component {
     //this.setImage();
     if (this.state.loaded == false) this.addJobAutoHelp();
     return (
-     <View style={{marginTop: 70, flex:1,backgroundColor: 'lightgrey'}}>
+     <View style={{marginTop: 70, flex:1,backgroundColor: 'lightsteelblue'}}>
       <SearchBar
       onChangeText={(l) => this.addJobAuto(l)}
       placeholder='Add job by typing company name...' />

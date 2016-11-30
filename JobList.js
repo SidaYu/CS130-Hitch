@@ -30,7 +30,6 @@ import CountDown from './CountDownScene';
 import HomePageScene from './HomePageScene';
 import Event from './Event';
 
-var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email=tian@test.com'
 var Swipeout = require('react-native-swipeout')
 
 class rowElement extends Component {
@@ -198,6 +197,7 @@ constructor(props) {
 
 
 fetchData() {
+  var REQUEST_URL = 'https://hitch.herokuapp.com/api/getJobList?user_email='+this.props.user_email;
     fetch(REQUEST_URL, {
       headers: {
         'Cache-Control': 'no-cache'
@@ -278,9 +278,9 @@ fetchData() {
     this.setImage();
 
     return (
-      <View style = {{marginTop: 60, flex: 1, flexDirection: 'column', backgroundColor: '#e6e6e6'}}>
+      <View style = {{marginTop: 60, flex: 1, flexDirection: 'column', backgroundColor: 'lightsteelblue'}}>
 
-      <ScrollView style = {{flex: 10, height: 310}}>
+      <ScrollView style = {{height: 510}}>
       <List containerStyle = {{}} >
       {
 
@@ -357,7 +357,7 @@ fetchData() {
           backgroundColor = "azure">
           <Icon.TabBarItemIOS
             iconName="clock-o"
-            title="Back"
+            title="CountDown"
             selected={this.state.selectedTab === 'firstTab'}
             iconColor={"black"}
             renderAsOriginal={true}
@@ -376,7 +376,7 @@ fetchData() {
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             iconName="calendar"
-            title="Back"
+            title="Calendar"
             selected={this.state.selectedTab === 'secondTab'}
             iconColor={"black"}
             renderAsOriginal={true}
@@ -395,7 +395,7 @@ fetchData() {
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             iconName="list"
-            title="Back"
+            title="MyJobs"
             selected={this.state.selectedTab === 'thirdTab'}
             iconColor={"mediumseagreen"}
             renderAsOriginal={true}
@@ -414,7 +414,7 @@ fetchData() {
             onPress={() => {
               this.props.navigator.replace({
                   component: Comment,
-                  title: 'Back',
+                  title: 'Notes',
                   navigationBarHidden: true,
                   passProps: {
                     email: this.props.email,
@@ -429,7 +429,7 @@ fetchData() {
 
           <Icon.TabBarItemIOS
             iconName="user"
-            title="Back"
+            title="Profile"
             selected={this.state.selectedTab === 'fifthTab'}
             iconColor={"black"}
             renderAsOriginal={true}

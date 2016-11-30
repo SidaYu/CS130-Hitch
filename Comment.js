@@ -176,7 +176,7 @@ constructor(props) {
     }
 
     return (
-        <View style = {{marginTop: 70, backgroundColor: 'gainsboro', flex: 1}} >
+        <View style = {{marginTop: 70, backgroundColor: 'lightsteelblue', flex: 1}} >
         <View style = {{height: 500}}>
         <ListView
           dataSource={this.state.dataSource}
@@ -185,7 +185,7 @@ constructor(props) {
         />
         </View>
 
-      <View style={{flex:1, flexDirection: 'column', backgroundColor:'gainsboro'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor:'lightsteelblue'}}>
        <TabBarIOS
           unselectedTintColor="black"
           tintColor="mediumseagreen"

@@ -86,7 +86,7 @@ export default class AddJobForm extends Component {
         iconName={'briefcase'}
         iconColor={'#f95a25'}
         width={350}
-        value={this.state.name}
+        value={this.state.company_name}
         onChangeText={(company_name) => this.setState({company_name})}
         />
 
@@ -99,7 +99,7 @@ export default class AddJobForm extends Component {
         iconName={'cogs'}
         iconColor={'#f95a25'}
         width={350}
-        value={this.state.name}
+        value={this.state.company_depart}
         onChangeText={(company_depart) => this.setState({company_depart})}
         />
 
@@ -112,7 +112,7 @@ export default class AddJobForm extends Component {
         iconName={'user-plus'}
         iconColor={'#f95a25'}
         width={350}
-        value={this.state.name}
+        value={this.state.position_title}
         onChangeText={(position_title) => this.setState({position_title})}
         />
 
@@ -125,7 +125,7 @@ export default class AddJobForm extends Component {
         iconName={'feed'}
         iconColor={'#f95a25'}
         width={350}
-        value={this.state.name}
+        value={this.state.app_URL}
         onChangeText={(app_URL) => this.setState({app_URL})}
         />
 
