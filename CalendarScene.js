@@ -140,7 +140,7 @@ export default class CalendarScene extends Component {
       .done();
 
 		return (
-      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightgrey'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'lightsteelblue'}}>
         <View style={{height: 50, justifyContent: 'center',alignItems:'center'}}>
         </View>
         <View style={{height: 350}}>
