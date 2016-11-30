@@ -21,7 +21,7 @@ import AddJobForm from './AddJobForm';
 import JobDetail from './JobDetail';
 
 
-export default class CountDownScene extends Component {
+export default class SearchJob extends Component {
   static get defaultProps() {
     return {
       title: 'GlassDoor Related'
@@ -86,6 +86,15 @@ export default class CountDownScene extends Component {
       }
     });
   }
+
+
+   _goToAddJobForm() {
+    this.props.navigator.push({
+      component: AddJobForm,
+      title: 'Add Job Form',
+    });
+  }
+
 
   addJobAutoHelp()
   {
@@ -162,18 +171,7 @@ export default class CountDownScene extends Component {
               selectedTab: 'searchTab',
             });
           }}>
-          <Text> </Text>
-        </TabBarIOS.Item>
 
-        <TabBarIOS.Item
-          systemIcon="top-rated"
-          selected={this.state.selectedTab === 'ratingTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'ratingTab',
-            });
-
-          }}>
           <Text> </Text>
         </TabBarIOS.Item>
         <TabBarIOS.Item
@@ -190,6 +188,9 @@ export default class CountDownScene extends Component {
           <Text> </Text>
         </TabBarIOS.Item>
         </TabBarIOS>
+
+       
+
       </View>
 
     )
