@@ -76,10 +76,6 @@ constructor(props) {
     };
   }
 
-popHelp(){
-  this.props.navigator.pop();
-  this.props.navigator.pop();
-}
 
 fetchData() {
      fetch("https://hitch.herokuapp.com/api/addjob", {
@@ -134,11 +130,11 @@ fetchData() {
     }    
   }
 
-  f()
-  {
-    this.props.register();
-    this.props.navigator.pop();
+  popHelp(){
+    this.props.navigator.pop()
   }
+
+
 
   render() 
   {

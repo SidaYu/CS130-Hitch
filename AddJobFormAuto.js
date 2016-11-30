@@ -83,6 +83,7 @@ export default class SearchJob extends Component {
         m_o: o,
         m_c: c,
         m_r: r,
+        popped: false,
       }
     });
   }
@@ -141,6 +142,8 @@ export default class SearchJob extends Component {
     return (
      <View style={{marginTop: 70, flex:1,backgroundColor: 'lightsteelblue'}}>
       <SearchBar
+      autoCorrect = {'none'}
+      autoCapitalize = {'none'}
       onChangeText={(l) => this.addJobAuto(l)}
       placeholder='Add job by typing company name...' />
       <ScrollView>

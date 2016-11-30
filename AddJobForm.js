@@ -120,6 +120,7 @@ export default class AddJobForm extends Component {
         </View>
 
         <Fumi
+        autoCapitalize = {'none'}
         label={'Company Website'}
         iconClass={FontAwesomeIcon}
         iconName={'feed'}
