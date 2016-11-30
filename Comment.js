@@ -90,7 +90,10 @@ constructor(props) {
 
 
   fetchData() {
-    fetch(REQUEST_URL)
+    fetch(REQUEST_URL,{
+            headers: {
+        'Cache-Control': 'no-cache'
+      }})
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
