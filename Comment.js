@@ -17,7 +17,6 @@ import {
 
 import NavigationBar from 'react-native-navbar';
 import AddJobForm from './AddJobForm';
-import Google from './Google';
 import DynamicList from './DynamicList'
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/getAllJobs?user_email=tian@test.com';

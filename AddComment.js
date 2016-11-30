@@ -21,7 +21,6 @@ import NavigationBar from 'react-native-navbar';
 import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
-import Google from './Google';
 import DynamicList from './DynamicList'
 
 var REQUEST_URL = 'https://hitch.herokuapp.com/api/addComment?user_email=tian@test.com'

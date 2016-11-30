@@ -19,12 +19,10 @@ import {
 
 import NavigationBar from 'react-native-navbar';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import AddComment from './AddComment'
 import Comment from './Comment'
 import AddJobForm from './AddJobForm';
 import AddJobFormAuto from './AddJobFormAuto';
-import Google from './Google';
 import DynamicList from './EventsScene';
 import CalendarScene from './CalendarScene';
 import CountDown from './CountDownScene';
